@@ -45,4 +45,11 @@ defmodule StrawHat.Map.County do
       where: c.id in ^county_ids
     Repo.all(query)
   end
+
+  def counties_by_state(id) do
+    query =
+      from s in County,
+      where: [state_id: ^id]
+    Repo.all(query)
+  end
 end

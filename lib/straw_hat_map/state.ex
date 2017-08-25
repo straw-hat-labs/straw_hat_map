@@ -36,19 +36,20 @@ defmodule StrawHat.Map.State do
     end
   end
 
-  def get_state(id), do: Repo.get(State, id)
+  def get_state(id),
+    do: Repo.get(State, id)
 
   def state_by_ids(state_ids) do
     query =
-      from s in State,
-      where: s.id in ^state_ids
+      from state in State,
+      where: state.id in ^state_ids
     Repo.all(query)
   end
 
-  def states_by_country(id) do
+  def states_by_countries(ids) do
     query =
-      from s in State,
-      where: [country_id: ^id]
+      from state in State,
+      where: state.country_id in ^ids
     Repo.all(query)
   end
 end

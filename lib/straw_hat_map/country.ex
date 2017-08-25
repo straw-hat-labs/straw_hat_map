@@ -41,8 +41,8 @@ defmodule StrawHat.Map.Country do
 
   def country_by_ids(country_ids) do
     query =
-      from ct in Country,
-      where: ct.id in ^country_ids
+      from country in Country,
+      where: country.id in ^country_ids
     Repo.all(query)
   end
 end

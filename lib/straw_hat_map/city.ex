@@ -41,22 +41,29 @@ defmodule StrawHat.Map.City do
 
   def city_by_ids(city_ids) do
     query =
-      from ci in City,
-      where: ci.id in ^city_ids
+      from city in City,
+      where: city.id in ^city_ids
     Repo.all(query)
   end
 
   def cities_by_state(id) do
     query =
-      from s in City,
+      from city in City,
       where: [state_id: ^id]
     Repo.all(query)
   end
 
-  def cities_by_county(id) do
+  def cities_by_states(ids) do
     query =
-      from s in City,
-      where: [county_id: ^id]
+      from city in City,
+      where: city.state_id in ^ids
+    Repo.all(query)
+  end
+
+  def cities_by_counties(ids) do
+    query =
+      from city in City,
+      where: city.county_id in ^ids
     Repo.all(query)
   end
 end

@@ -4,7 +4,8 @@ defmodule StrawHat.Map.County do
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.County
 
-  def list_counties(params), do: Repo.paginate(County, params)
+  def list_counties(params),
+    do: Repo.paginate(County, params)
 
   def create_county(params) do
     %County{}
@@ -41,15 +42,15 @@ defmodule StrawHat.Map.County do
 
   def county_by_ids(county_ids) do
     query =
-      from c in County,
-      where: c.id in ^county_ids
+      from county in County,
+      where: county.id in ^county_ids
     Repo.all(query)
   end
 
-  def counties_by_state(id) do
+  def counties_by_states(ids) do
     query =
-      from s in County,
-      where: [state_id: ^id]
+      from county in County,
+      where: county.state_id in ^ids
     Repo.all(query)
   end
 end

@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Test.DataCase do
+defmodule StrawHatMapTest.DataCase do
   use ExUnit.CaseTemplate
 
   using do
@@ -6,8 +6,8 @@ defmodule StrawHat.Map.Test.DataCase do
       import Ecto
       import Ecto.Query
 
-      import StrawHat.Map.Test.DataCase
-      import StrawHat.Map.Test.Factory
+      import StrawHatMapTest.DataCase
+      import StrawHatMapTest.Factory
 
       alias StrawHat.Map.Repo
     end

@@ -1,5 +1,5 @@
-defmodule StrawHat.Map.Test.StateTest do
-  use StrawHat.Map.Test.DataCase, async: true
+defmodule StrawHatMapTest.StateTest do
+  use StrawHatMapTest.DataCase, async: true
   alias StrawHat.Map.State
 
   test "get by id" do

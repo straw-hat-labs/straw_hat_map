@@ -1,5 +1,5 @@
-defmodule StrawHat.Map.Test.CountryTest do
-  use StrawHat.Map.Test.DataCase, async: true
+defmodule StrawHatMapTest.CountryTest do
+  use StrawHatMapTest.DataCase, async: true
   alias StrawHat.Map.Country
 
   test "get by id" do

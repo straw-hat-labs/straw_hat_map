@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Mixfile do
 
   @elixir_version "~> 1.5"
   @name :straw_hat_map
-  @version "0.0.1"
+  @version "0.0.2"
   @description """
     Addresses Management
   """

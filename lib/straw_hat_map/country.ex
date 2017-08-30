@@ -1,6 +1,5 @@
 defmodule StrawHat.Map.Country do
-  import Ecto.Query, only: [from: 2]
-
+  alias StrawHat.IAM.Query.Country, as: CountryQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Country
@@ -18,17 +17,8 @@ defmodule StrawHat.Map.Country do
     |> Country.changeset(params)
     |> Repo.update()
   end
-  def update_country(id, params) do
-    with {:ok, country} <- find_country(id),
-      do: update_country(country, params)
-  end
 
-  def destroy_country(%Country{} = country),
-    do: Repo.delete(country)
-  def destroy_country(id) do
-    with {:ok, country} <- find_country(id),
-      do: destroy_country(country)
-  end
+  def destroy_country(%Country{} = country), do: Repo.delete(country)
 
   def find_country(id) do
     case get_country(id) do
@@ -37,13 +27,11 @@ defmodule StrawHat.Map.Country do
     end
   end
 
-  def get_country(id),
-    do: Repo.get(Country, id)
+  def get_country(id), do: Repo.get(Country, id)
 
   def country_by_ids(country_ids) do
-    query =
-      from country in Country,
-      where: country.id in ^country_ids
-    Repo.all(query)
+    Country
+    |> CountryQuery.by_ids(country_ids)
+    |> Repo.all()
   end
 end

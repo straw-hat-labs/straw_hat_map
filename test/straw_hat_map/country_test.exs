@@ -30,16 +30,12 @@ defmodule StrawHatMapTest.CountryTest do
 
   test "update by id" do
     country = insert(:country)
-    {:ok, country} = Country.update_country(country.id, %{"name": "Cuba"})
+    {:ok, country} = Country.update_country(country, %{"name": "Cuba"})
     assert country.name == "Cuba"
-  end
-
-  test "update by invalid id" do
-    {:error, _} = Country.update_country(99999, %{})
   end
 
   test "delete country by id" do
     country = insert(:country)
-    assert {:ok, _} = Country.destroy_country(country.id)
+    assert {:ok, _} = Country.destroy_country(country)
   end
 end

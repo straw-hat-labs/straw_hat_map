@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.City do
   import Ecto.Query, only: [from: 2]
 
+  alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.City
 
@@ -31,7 +32,7 @@ defmodule StrawHat.Map.City do
 
   def find_city(id) do
     case get_city(id) do
-      nil -> {:error, {:not_found, "City #{id} not found"}}
+      nil -> {:error, Error.new("map.city.not_found", metadata: [id: id])}
       city -> {:ok, city}
     end
   end

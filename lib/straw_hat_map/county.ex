@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.County do
   import Ecto.Query, only: [from: 2]
 
+  alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.County
 
@@ -32,7 +33,7 @@ defmodule StrawHat.Map.County do
 
   def find_county(id) do
     case get_county(id) do
-      nil -> {:error, {:not_found, "County #{id} not found"}}
+      nil -> {:error, Error.new("map.county.not_found", metadata: [id: id])}
       county -> {:ok, county}
     end
   end

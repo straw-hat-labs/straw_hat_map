@@ -1,6 +1,8 @@
 defmodule StrawHat.Map.Schema.Place do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Strawhat.Error
   alias StrawHat.Map.Schema.Address
 
   @required_fields ~w(name account_id address_id)a
@@ -25,7 +27,7 @@ defmodule StrawHat.Map.Schema.Place do
 
   def validate_address(params) do
     case Map.get(params, :address, :error) do
-      :error  -> {:error, "Missing field address"}
+      :error  -> {:error, Error.new("map.place.not_found_field", metadata: [name: :address])}
       address -> {:ok, address}
     end
   end

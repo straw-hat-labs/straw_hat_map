@@ -31,16 +31,12 @@ defmodule StrawHatMapTest.CityTest do
 
   test "update by id" do
     city = insert(:city)
-    {:ok, city} = City.update_city(city.id, %{"name": "Havana"})
+    {:ok, city} = City.update_city(city, %{"name": "Havana"})
     assert city.name == "Havana"
-  end
-
-  test "update by invalid id" do
-    {:error, _} = City.update_city(99999, %{})
   end
 
   test "delete city by id" do
     city = insert(:city)
-    assert {:ok, _} = City.destroy_city(city.id)
+    assert {:ok, _} = City.destroy_city(city)
   end
 end

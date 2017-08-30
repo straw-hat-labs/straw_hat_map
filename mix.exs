@@ -53,11 +53,11 @@ defmodule StrawHat.Map.Mixfile do
 
   defp deps do
     [
+      {:straw_hat, "~> 0.0.8", organization: "straw_hat"},
+
       {:postgrex, "~> 0.13.2"},
       {:ecto, "~> 2.1.6"},
       {:scrivener_ecto, "~> 1.2"},
-
-      {:straw_hat, github: "straw-hat-llc/straw_hat", tag: "0.0.5"},
 
       # Testing
       {:ex_machina, ">= 0.0.0", only: :test},

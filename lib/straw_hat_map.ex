@@ -1,2 +1,2 @@
 defmodule StrawHat.Map do
- end
+end

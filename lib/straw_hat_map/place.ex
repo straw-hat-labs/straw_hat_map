@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.Place do
   import Ecto.Query, only: [from: 2]
 
+  alias StrawHat.Error
   alias Ecto.Multi
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Place
@@ -32,7 +33,7 @@ defmodule StrawHat.Map.Place do
       |> Multi.delete(:address, address)
     case Repo.transaction(multi) do
       {:ok, result} -> {:ok, result[:place]}
-      _ -> {:error, "Can't delete the Place #{place.id}"}
+      _ -> {:error,Error.new("map.place.destroy_failed", metadata: [id: place.id])}
     end
   end
   def destroy_place(id) do
@@ -57,13 +58,14 @@ defmodule StrawHat.Map.Place do
       |> Ecto.Multi.delete_all(:address, address_query)
     case Repo.transaction(transaction) do
       {:ok, places} -> {:ok, places}
-      {:error, _failed_operation, failed_value, _changes_so_far} -> {:error, failed_value}
+      {:error, _failed_operation, failed_value, _changes_so_far} ->
+        {:error, Error.new("map.place.destroy_places_failed", metadata: [failed_value: failed_value])}
     end
   end
 
   def find_place(id) do
     case get_place(id) do
-      nil -> {:error, {:not_found, "Place #{id} not found"}}
+      nil -> {:error, Error.new("map.place.not_found", metadata: [id: id])}
       place -> {:ok, place}
     end
   end

@@ -57,6 +57,8 @@ defmodule StrawHat.Map.Mixfile do
       {:ecto, "~> 2.1.6"},
       {:scrivener_ecto, "~> 1.2"},
 
+      {:straw_hat, github: "straw-hat-llc/straw_hat", tag: "0.0.5"},
+
       # Testing
       {:ex_machina, ">= 0.0.0", only: :test},
       {:faker, ">= 0.0.0", only: :test},

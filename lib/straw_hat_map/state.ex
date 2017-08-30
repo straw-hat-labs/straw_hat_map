@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.State do
   import Ecto.Query, only: [from: 2]
 
+  alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.State
 
@@ -31,7 +32,7 @@ defmodule StrawHat.Map.State do
 
   def find_state(id) do
     case get_state(id) do
-      nil -> {:error, {:not_found, "State #{id} not found"}}
+      nil -> {:error, Error.new("map.state.not_found", metadata: [id: id])}
       state -> {:ok, state}
     end
   end

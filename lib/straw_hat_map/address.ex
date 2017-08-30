@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.Address do
   import Ecto.Query, only: [from: 2]
 
+  alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Address
 
@@ -31,10 +32,8 @@ defmodule StrawHat.Map.Address do
 
   def find_address(id) do
     case get_address(id) do
-      nil -> {:error, {:not_found, "Address #{id} not found"}}
-      address ->
-
-        {:ok, address}
+      nil -> {:error, Error.new("map.address.not_found", metadata: [id: id])}
+      address ->  {:ok, address}
     end
   end
 

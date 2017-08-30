@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Schema.Place do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Strawhat.Error
+  alias StrawHat.Error
   alias StrawHat.Map.Schema.Address
 
   @required_fields ~w(name account_id address_id)a

@@ -1,13 +1,13 @@
 defmodule StrawHat.Map.Place do
-  import Ecto.Query, only: [from: 2]
-
+  alias StrawHat.Map.Query.Place, as: PlaceQuery
+  alias StrawHat.Map.Query.Address, as: AddressQuery
   alias StrawHat.Error
   alias Ecto.Multi
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Place
   alias StrawHat.Map.Schema.Address
 
-  def list_places(params), do: Repo.paginate(Place, params)
+  def list_places(paginate), do: Repo.paginate(Place, paginate)
 
   def create_place(params) do
     %Place{}
@@ -19,10 +19,6 @@ defmodule StrawHat.Map.Place do
     place
     |> Place.changeset(params)
     |> Repo.update()
-  end
-  def update_place(id, params) do
-    with {:ok, place} <- find_place(id),
-      do: update_place(place, params)
   end
 
   def destroy_place(%Place{} = place) do
@@ -36,21 +32,14 @@ defmodule StrawHat.Map.Place do
       _ -> {:error,Error.new("map.place.destroy_failed", metadata: [id: place.id])}
     end
   end
-  def destroy_place(id) do
-    with {:ok, place} <- find_place(id),
-      do: destroy_place(place)
-  end
 
   def destroy_places(place_ids) do
-    place_query =
-      (from p in Place,
-      where: p.id in ^place_ids)
+
+    place_query = PlaceQuery.by_ids(Place, place_ids)
     places = Repo.all(place_query)
 
     address_ids = Enum.map(places, fn(place) -> place.address_id end)
-    address_query =
-      (from a in Address,
-      where: a.id in ^address_ids)
+    address_query = AddressQuery.by_ids(Address, address_ids )
 
     transaction =
       Ecto.Multi.new()
@@ -70,26 +59,22 @@ defmodule StrawHat.Map.Place do
     end
   end
 
-  def get_place(id),
-    do: Repo.get(Place, id)
+  def get_place(id), do: Repo.get(Place, id)
 
   def get_places_by_account(id)do
-    query =
-      from p in Place,
-      where: [account_id: ^id]
-    Repo.all(query)
+    Place
+    |> PlaceQuery.by_account(id)
+    |> Repo.all()
   end
-  def get_places_by_account(id, params)do
-    query =
-      from p in Place,
-      where: [account_id: ^id]
-    Repo.paginate(query, params)
+  def get_places_by_account(id, paginate)do
+    Place
+    |> PlaceQuery.by_account(id)
+    |> Repo.paginate(paginate)
   end
 
   def place_by_ids(place_ids) do
-    query =
-      from p in Place,
-      where: p.id in ^place_ids
-    Repo.all(query)
+    Place
+    |> PlaceQuery.by_ids(place_ids)
+    |> Repo.all()
   end
 end

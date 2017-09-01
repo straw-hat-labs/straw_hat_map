@@ -1,10 +1,10 @@
 defmodule StrawHat.Map.City do
-  alias StrawHat.IAM.Query.City, as: CityQuery
+  alias StrawHat.Map.Query.City, as: CityQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.City
 
-  def list_cities(params), do: Repo.paginate(City, params)
+  def list_cities(paginate), do: Repo.paginate(City, paginate)
 
   def create_city(params) do
     %City{}

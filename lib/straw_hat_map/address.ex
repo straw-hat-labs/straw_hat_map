@@ -1,10 +1,10 @@
 defmodule StrawHat.Map.Address do
-  alias StrawHat.IAM.Query.Address, as: AddressQuery
+  alias StrawHat.Map.Query.Address, as: AddressQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Address
 
-  def list_adresses(params), do: Repo.paginate(Address, params)
+  def list_adresses(paginate), do: Repo.paginate(Address, paginate)
 
   def create_address(params) do
     %Address{}

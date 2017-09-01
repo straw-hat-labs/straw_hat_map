@@ -1,12 +1,10 @@
 defmodule StrawHat.Map.County do
-  import Ecto.Query, only: [from: 2]
-
+  alias StrawHat.Map.Query.County, as: CountyQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.County
 
-  def list_counties(params),
-    do: Repo.paginate(County, params)
+  def list_counties(paginate), do: Repo.paginate(County, paginate)
 
   def create_county(params) do
     %County{}
@@ -19,17 +17,8 @@ defmodule StrawHat.Map.County do
     |> County.changeset(params)
     |> Repo.update()
   end
-  def update_county(id, params) do
-    with {:ok, county} <- find_county(id),
-      do: update_county(county, params)
-  end
 
-  def destroy_county(%County{} = county),
-    do: Repo.delete(county)
-  def destroy_county(id) do
-    with {:ok, county} <- find_county(id),
-      do: destroy_county(county)
-  end
+  def destroy_county(%County{} = county), do: Repo.delete(county)
 
   def find_county(id) do
     case get_county(id) do
@@ -38,20 +27,17 @@ defmodule StrawHat.Map.County do
     end
   end
 
-  def get_county(id),
-    do: Repo.get(County, id)
+  def get_county(id), do: Repo.get(County, id)
 
   def county_by_ids(county_ids) do
-    query =
-      from county in County,
-      where: county.id in ^county_ids
-    Repo.all(query)
+    County
+    |> CountyQuery.by_ids(county_ids)
+    |> Repo.all()
   end
 
   def counties_by_states(ids) do
-    query =
-      from county in County,
-      where: county.state_id in ^ids
-    Repo.all(query)
+    County
+    |> CountyQuery.by_states(ids)
+    |> Repo.all()
   end
 end

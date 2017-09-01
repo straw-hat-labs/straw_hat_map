@@ -1,4 +1,4 @@
-defmodule StrawHat.IAM.Query.Address do
+defmodule StrawHat.Map.Query.Address do
   import Ecto.Query, only: [from: 2]
 
   def by_ids(query, ids) do

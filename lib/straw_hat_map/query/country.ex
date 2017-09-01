@@ -1,4 +1,4 @@
-defmodule StrawHat.IAM.Query.Country do
+defmodule StrawHat.Map.Query.Country do
   import Ecto.Query, only: [from: 2]
 
   def by_ids(query, ids) do

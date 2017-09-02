@@ -23,24 +23,14 @@ defmodule StrawHatMapTest.StateTest do
     assert {:ok, _state} = State.create_state(params)
   end
 
-  test "update by entity" do
+  test "update by state" do
     state = insert(:state)
     {:ok, state} = State.update_state(state, %{"name": "Havana"})
     assert state.name == "Havana"
   end
 
-  test "update by id" do
+  test "delete by state" do
     state = insert(:state)
-    {:ok, state} = State.update_state(state.id, %{"name": "Havana"})
-    assert state.name == "Havana"
-  end
-
-  test "update by invalid id" do
-    {:error, _} = State.update_state(99999, %{})
-  end
-
-  test "delete state by id" do
-    state = insert(:state)
-    assert {:ok, _} = State.destroy_state(state.id)
+    assert {:ok, _} = State.destroy_state(state)
   end
 end

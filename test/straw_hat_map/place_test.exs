@@ -23,24 +23,14 @@ defmodule StrawHatMapTest.PlaceTest do
     assert {:ok, _place} = Place.create_place(params)
   end
 
-  test "update by entity" do
+  test "update by place" do
     place = insert(:place)
     {:ok, place} = Place.update_place(place, %{"name": "Home"})
     assert place.name == "Home"
   end
 
-  test "update by id" do
+  test "delete by place" do
     place = insert(:place)
-    {:ok, place} = Place.update_place(place.id, %{"name": "Home"})
-    assert place.name == "Home"
-  end
-
-  test "update by invalid id" do
-    {:error, _} = Place.update_place(99999, %{})
-  end
-
-  test "delete place by id" do
-    place = insert(:place)
-    assert {:ok, _} = Place.destroy_place(place.id)
+    assert {:ok, _} = Place.destroy_place(place)
   end
 end

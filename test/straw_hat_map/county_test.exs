@@ -23,24 +23,14 @@ defmodule StrawHatMapTest.CountyTest do
     assert {:ok, _county} = County.create_county(params)
   end
 
-  test "update by entity" do
+  test "update by county" do
     county = insert(:county)
     {:ok, county} = County.update_county(county, %{"name": "Havana"})
     assert county.name == "Havana"
   end
 
-  test "update by id" do
+  test "delete by county" do
     county = insert(:county)
-    {:ok, county} = County.update_county(county.id, %{"name": "Havana"})
-    assert county.name == "Havana"
-  end
-
-  test "update by invalid id" do
-    {:error, _} = County.update_county(99999, %{})
-  end
-
-  test "delete county by id" do
-    county = insert(:county)
-    assert {:ok, _} = County.destroy_county(county.id)
+    assert {:ok, _} = County.destroy_county(county)
   end
 end

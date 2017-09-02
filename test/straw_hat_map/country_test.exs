@@ -22,19 +22,13 @@ defmodule StrawHatMapTest.CountryTest do
     assert {:ok, _country} = Country.create_country(params)
   end
 
-  test "update by entity" do
+  test "update by country" do
     country = insert(:country)
     {:ok, country} = Country.update_country(country, %{"name": "Cuba"})
     assert country.name == "Cuba"
   end
 
-  test "update by id" do
-    country = insert(:country)
-    {:ok, country} = Country.update_country(country, %{"name": "Cuba"})
-    assert country.name == "Cuba"
-  end
-
-  test "delete country by id" do
+  test "delete country" do
     country = insert(:country)
     assert {:ok, _} = Country.destroy_country(country)
   end

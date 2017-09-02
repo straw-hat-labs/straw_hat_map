@@ -23,13 +23,13 @@ defmodule StrawHatMapTest.AddressTest do
     assert {:ok, _address} = Address.create_address(params)
   end
 
-  test "update" do
+  test "update by address" do
     address = insert(:address)
     {:ok, address} = Address.update_address(address, %{"line_two": "PO BOX 123"})
     assert address.line_two == "PO BOX 123"
   end
 
-  test "delete" do
+  test "delete by address" do
     address = insert(:address)
     assert {:ok, _} = Address.destroy_address(address)
   end

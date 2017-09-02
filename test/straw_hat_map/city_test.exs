@@ -23,19 +23,13 @@ defmodule StrawHatMapTest.CityTest do
     assert {:ok, _city} = City.create_city(params)
   end
 
-  test "update by entity" do
+  test "update by city" do
     city = insert(:city)
     {:ok, city} = City.update_city(city, %{"name": "Havana"})
     assert city.name == "Havana"
   end
 
-  test "update by id" do
-    city = insert(:city)
-    {:ok, city} = City.update_city(city, %{"name": "Havana"})
-    assert city.name == "Havana"
-  end
-
-  test "delete city by id" do
+  test "delete by city" do
     city = insert(:city)
     assert {:ok, _} = City.destroy_city(city)
   end

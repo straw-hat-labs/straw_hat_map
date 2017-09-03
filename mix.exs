@@ -1,10 +1,11 @@
 defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
+  @version "0.0.4"
+
   @elixir_version "~> 1.5"
   @name :straw_hat_map
   @organization "straw_hat"
-  @version "0.0.3"
   @description """
     Addresses Management
   """

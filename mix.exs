@@ -56,7 +56,7 @@ defmodule StrawHat.Map.Mixfile do
       {:straw_hat, "~> 0.0.9", organization: "straw_hat"},
 
       {:postgrex, "~> 0.13.2"},
-      {:ecto, "~> 2.1.6"},
+      {:ecto, "~> 2.2"},
       {:scrivener_ecto, "~> 1.2"},
 
       # Testing

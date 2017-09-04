@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Schema.State do
+  @moduledoc false
+  
   use Ecto.Schema
   import Ecto.Changeset
   alias StrawHat.Map.Schema.Country

@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Schema.Address do
+  @moduledoc false
+  
   use Ecto.Schema
   import Ecto.Changeset
   alias StrawHat.Map.Schema.City

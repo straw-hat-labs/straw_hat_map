@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Schema.Place do
+  @moduledoc false
+  
   use Ecto.Schema
   import Ecto.Changeset
 

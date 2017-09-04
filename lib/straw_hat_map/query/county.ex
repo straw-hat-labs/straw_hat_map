@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Query.County do
+  @moduledoc false
+
   import Ecto.Query, only: [from: 2]
 
   def by_ids(query, ids) do

@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Schema.County do
   @moduledoc false
-  
+
   use Ecto.Schema
   import Ecto.Changeset
   alias StrawHat.Map.Schema.State

@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Place do
   alias StrawHat.Map.Query.Place, as: PlaceQuery
   alias StrawHat.Map.Query.Address, as: AddressQuery
   alias StrawHat.Error
-  alias Ecto.Multi
+  alias Multi
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Place
   alias StrawHat.Map.Schema.Address
@@ -29,22 +29,21 @@ defmodule StrawHat.Map.Place do
       |> Multi.delete(:address, address)
     case Repo.transaction(multi) do
       {:ok, result} -> {:ok, result[:place]}
-      _ -> {:error,Error.new("map.place.destroy_failed", metadata: [id: place.id])}
+      _ -> {:error, Error.new("map.place.destroy_failed", metadata: [id: place.id])}
     end
   end
 
   def destroy_places(place_ids) do
-
     place_query = PlaceQuery.by_ids(Place, place_ids)
     places = Repo.all(place_query)
 
     address_ids = Enum.map(places, fn(place) -> place.address_id end)
-    address_query = AddressQuery.by_ids(Address, address_ids )
+    address_query = AddressQuery.by_ids(Address, address_ids)
 
     transaction =
-      Ecto.Multi.new()
-      |> Ecto.Multi.delete_all(:place, place_query)
-      |> Ecto.Multi.delete_all(:address, address_query)
+      Multi.new()
+      |> Multi.delete_all(:place, place_query)
+      |> Multi.delete_all(:address, address_query)
     case Repo.transaction(transaction) do
       {:ok, places} -> {:ok, places}
       {:error, _failed_operation, failed_value, _changes_so_far} ->

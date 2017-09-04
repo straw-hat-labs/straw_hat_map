@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Query.County do
+defmodule StrawHat.Map.Query.CountyQuery do
   @moduledoc false
 
   import Ecto.Query, only: [from: 2]

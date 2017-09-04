@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Query.Address do
+defmodule StrawHat.Map.Query.AddressQuery do
   @moduledoc false
 
   import Ecto.Query, only: [from: 2]

@@ -1,8 +1,8 @@
 defmodule StrawHat.Map.Place do
-  alias StrawHat.Map.Query.Place, as: PlaceQuery
-  alias StrawHat.Map.Query.Address, as: AddressQuery
+  alias StrawHat.Map.Query.PlaceQuery
+  alias StrawHat.Map.Query.AddressQuery
   alias StrawHat.Error
-  alias Multi
+  alias Ecto.Multi
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Place
   alias StrawHat.Map.Schema.Address
@@ -24,7 +24,7 @@ defmodule StrawHat.Map.Place do
   def destroy_place(%Place{} = place) do
     address = Repo.get(Address, place.address_id)
     multi =
-      Multi.new
+      Multi.new()
       |> Multi.delete(:place, place)
       |> Multi.delete(:address, address)
     case Repo.transaction(multi) do

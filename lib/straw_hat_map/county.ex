@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.County do
-  alias StrawHat.Map.Query.County, as: CountyQuery
+  alias StrawHat.Map.Query.CountyQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.County

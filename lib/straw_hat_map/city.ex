@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.City do
-  alias StrawHat.Map.Query.City, as: CityQuery
+  alias StrawHat.Map.Query.CityQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.City

@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.Address do
-  alias StrawHat.Map.Query.Address, as: AddressQuery
+  alias StrawHat.Map.Query.AddressQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Address

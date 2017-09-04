@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.State do
-  alias StrawHat.Map.Query.State, as: StateQuery
+  alias StrawHat.Map.Query.StateQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.State

@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Query.Country do
+defmodule StrawHat.Map.Query.CountryQuery do
   @moduledoc false
 
   import Ecto.Query, only: [from: 2]

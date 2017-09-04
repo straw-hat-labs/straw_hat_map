@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.Country do
-  alias StrawHat.Map.Query.Country, as: CountryQuery
+  alias StrawHat.Map.Query.CountryQuery
   alias StrawHat.Error
   alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Country

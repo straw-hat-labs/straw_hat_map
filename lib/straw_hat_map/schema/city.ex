@@ -1,10 +1,8 @@
 defmodule StrawHat.Map.Schema.City do
   @moduledoc false
 
-  use Ecto.Schema
-  import Ecto.Changeset
-  alias StrawHat.Map.Schema.County
-  alias StrawHat.Map.Schema.State
+  use StrawHat.Map.Schema
+  alias StrawHat.Map.Schema.{County, State}
 
   @required_fields ~w(code name)a
   @optional_fields ~w(state_id county_id)a

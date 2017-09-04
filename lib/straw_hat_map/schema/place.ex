@@ -1,8 +1,7 @@
 defmodule StrawHat.Map.Schema.Place do
   @moduledoc false
 
-  use Ecto.Schema
-  import Ecto.Changeset
+  use StrawHat.Map.Schema
 
   alias StrawHat.Error
   alias StrawHat.Map.Schema.Address

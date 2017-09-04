@@ -1,8 +1,7 @@
 defmodule StrawHat.Map.Schema.Country do
   @moduledoc false
 
-  use Ecto.Schema
-  import Ecto.Changeset
+  use StrawHat.Map.Schema
 
   @required_fields ~w(code name)a
 

@@ -1,8 +1,7 @@
 defmodule StrawHat.Map.Schema.Address do
   @moduledoc false
 
-  use Ecto.Schema
-  import Ecto.Changeset
+  use StrawHat.Map.Schema
   alias StrawHat.Map.Schema.City
 
   @required_fields ~w(line_one city_id)a

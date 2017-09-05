@@ -12,9 +12,9 @@ defmodule StrawHat.Map.Country do
     |> Repo.insert()
   end
 
-  def update_country(%Country{} = country, params) do
+  def update_country(%Country{} = country, country_attrs) do
     country
-    |> Country.changeset(params)
+    |> Country.changeset(country_attrs)
     |> Repo.update()
   end
 

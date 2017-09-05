@@ -1,43 +1,45 @@
 defmodule StrawHat.Map.State do
+  use StrawHat.Map.Interactor
+
   alias StrawHat.Map.Query.StateQuery
-  alias StrawHat.Error
-  alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.State
 
-  def list_states(params), do: Repo.paginate(State, params)
+  def list_states(pagination \\ []), do: Repo.paginate(State, pagination)
 
-  def create_state(params) do
+  def create_state(state_attrs) do
     %State{}
-    |> State.changeset(params)
+    |> State.changeset(state_attrs)
     |> Repo.insert()
   end
 
-  def update_state(%State{} = state, params) do
+  def update_state(%State{} = state, state_attrs) do
     state
-    |> State.changeset(params)
+    |> State.changeset(state_attrs)
     |> Repo.update()
   end
 
   def destroy_state(%State{} = state), do: Repo.delete(state)
 
-  def find_state(id) do
-    case get_state(id) do
-      nil -> {:error, Error.new("map.state.not_found", metadata: [id: id])}
+  def find_state(state_id) do
+    case get_state(state_id) do
+      nil ->
+        error = Error.new("map.state.not_found", metadata: [state_id: state_id])
+        {:error, error}
       state -> {:ok, state}
     end
   end
 
-  def get_state(id), do: Repo.get(State, id)
+  def get_state(state_id), do: Repo.get(State, state_id)
 
-  def state_by_ids(state_ids) do
+  def get_states_by_ids(state_ids) do
     State
     |> StateQuery.by_ids(state_ids)
     |> Repo.all()
   end
 
-  def states_by_countries(ids) do
+  def get_states_by_countries(country_ids) do
     State
-    |> StateQuery.by_countries(ids)
+    |> StateQuery.by_countries(country_ids)
     |> Repo.all()
   end
 end

@@ -4,7 +4,8 @@ defmodule StrawHat.Map.Schema.State do
   use StrawHat.Map.Schema
   alias StrawHat.Map.Schema.Country
 
-  @required_fields ~w(code name country_id)a
+  @required_fields ~w(name country_id)a
+  @optional_fields ~w(code)a
 
   schema "states" do
     field(:code, :string)
@@ -14,9 +15,9 @@ defmodule StrawHat.Map.Schema.State do
 
   def changeset(state, params \\ %{}) do
     state
-    |> cast(params, @required_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
-    |> unique_constraint(:code, name: :states_code_index)
+    |> unique_constraint(:code, name: :states_code_country_id_index)
     |> unique_constraint(:name, name: :states_name_country_id_index)
     |> assoc_constraint(:country)
   end

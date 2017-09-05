@@ -12,7 +12,7 @@ defmodule StrawHat.Map.Schema.Address do
     field(:line_two, :string)
     field(:postal_code, :string)
     belongs_to(:city, City)
-    has_one(:place, Place, on_delete: :delete_all)
+    has_many(:places, Place)
   end
 
   def changeset(address, params \\ %{}) do

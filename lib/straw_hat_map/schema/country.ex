@@ -2,7 +2,9 @@ defmodule StrawHat.Map.Schema.Country do
   @moduledoc false
 
   use StrawHat.Map.Schema
+
   alias StrawHat.Map.Continent
+  alias StrawHat.Map.Schema.State
 
   @continent_codes Continent.get_continent_codes()
   @required_fields ~w(name iso_two iso_three iso_numeric continent)a
@@ -15,6 +17,7 @@ defmodule StrawHat.Map.Schema.Country do
     field(:iso_numeric, :string)
     field(:continent, :string)
     field(:has_counties, :boolean)
+    has_many(:states, State)
   end
 
   def changeset(country, params \\ %{}) do

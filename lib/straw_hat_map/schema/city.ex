@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Schema.City do
   @moduledoc false
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{County, State}
+  alias StrawHat.Map.Schema.{County, State, Address}
 
   @required_fields ~w(name state_id)a
   @optional_fields ~w(county_id)a
@@ -11,6 +11,7 @@ defmodule StrawHat.Map.Schema.City do
     field(:name, :string)
     belongs_to(:state, State)
     belongs_to(:county, County)
+    has_many(:addresses, Address)
   end
 
   def changeset(city, params \\ %{}) do

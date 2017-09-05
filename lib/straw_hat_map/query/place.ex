@@ -8,8 +8,8 @@ defmodule StrawHat.Map.Query.PlaceQuery do
       where: place.id in ^ids
   end
 
-  def by_account(query, id) do
+  def by_owner(query, id) do
     from p in query,
-      where: [account_id: ^id]
+      where: [owner_id: ^id]
   end
 end

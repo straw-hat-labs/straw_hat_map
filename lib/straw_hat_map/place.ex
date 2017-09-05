@@ -1,77 +1,44 @@
 defmodule StrawHat.Map.Place do
-  alias StrawHat.Map.Query.PlaceQuery
-  alias StrawHat.Map.Query.AddressQuery
-  alias StrawHat.Error
+  use StrawHat.Map.Interactor
+
   alias Ecto.Multi
-  alias StrawHat.Map.Repo
+  alias StrawHat.Map.Query.{PlaceQuery, AddressQuery}
   alias StrawHat.Map.Schema.Place
-  alias StrawHat.Map.Schema.Address
 
-  def list_places(paginate), do: Repo.paginate(Place, paginate)
+  def get_places(pagination), do: Repo.paginate(Place, pagination)
 
-  def create_place(params) do
+  def create_place(place_attrs) do
     %Place{}
-    |> Place.changeset(params)
+    |> Place.changeset(place_attrs)
     |> Repo.insert()
   end
 
-  def update_place(%Place{} = place, params) do
+  def update_place(%Place{} = place, place_attrs) do
     place
-    |> Place.changeset(params)
+    |> Place.changeset(place_attrs)
     |> Repo.update()
   end
 
-  def destroy_place(%Place{} = place) do
-    address = Repo.get(Address, place.address_id)
-    multi =
-      Multi.new()
-      |> Multi.delete(:place, place)
-      |> Multi.delete(:address, address)
-    case Repo.transaction(multi) do
-      {:ok, result} -> {:ok, result[:place]}
-      _ -> {:error, Error.new("map.place.destroy_failed", metadata: [id: place.id])}
-    end
-  end
+  def destroy_place(%Place{} = place), do: Repo.delete(place)
 
-  def destroy_places(place_ids) do
-    place_query = PlaceQuery.by_ids(Place, place_ids)
-    places = Repo.all(place_query)
-
-    address_ids = Enum.map(places, fn(place) -> place.address_id end)
-    address_query = AddressQuery.by_ids(Address, address_ids)
-
-    transaction =
-      Multi.new()
-      |> Multi.delete_all(:place, place_query)
-      |> Multi.delete_all(:address, address_query)
-    case Repo.transaction(transaction) do
-      {:ok, places} -> {:ok, places}
-      {:error, _failed_operation, failed_value, _changes_so_far} ->
-        {:error, Error.new("map.place.destroy_places_failed", metadata: [failed_value: failed_value])}
-    end
-  end
-
-  def find_place(id) do
-    case get_place(id) do
-      nil -> {:error, Error.new("map.place.not_found", metadata: [id: id])}
+  def find_place(place_id) do
+    case get_place(place_id) do
+      nil ->
+        error = Error.new("map.place.not_found", metadata: [place_id: place_id])
+        {:error, error}
       place -> {:ok, place}
     end
   end
 
-  def get_place(id), do: Repo.get(Place, id)
+  def get_place(place_id), do: Repo.get(Place, place_id)
 
-  def get_places_by_account(id)do
+  def get_places_by_owner(owner_id, pagination \\ []) do
     Place
-    |> PlaceQuery.by_account(id)
-    |> Repo.all()
-  end
-  def get_places_by_account(id, paginate)do
-    Place
-    |> PlaceQuery.by_account(id)
-    |> Repo.paginate(paginate)
+    |> PlaceQuery.by_owner(owner_id)
+    |> Repo.paginate(pagination)
   end
 
-  def place_by_ids(place_ids) do
+  def get_places_by_ids(place_ids) do
     Place
     |> PlaceQuery.by_ids(place_ids)
     |> Repo.all()

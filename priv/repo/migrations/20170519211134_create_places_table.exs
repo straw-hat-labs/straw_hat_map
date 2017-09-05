@@ -7,8 +7,9 @@ defmodule Cargo.Repo.Migrations.CreatePlacesTable do
       add(:longitude, :float)
       add(:latitude, :float)
       add(:active, :boolean, null: false, default: true)
-      add(:account_id, :integer, null: false)
-      add(:address_id, references(:addresses), null: false)
+
+      add(:owner_id, :string, null: false)
+      add(:address_id, references(:addresses), null: false, on_delete: :delete_all)
     end
 
     create index(:places, [:name, :address_id], unique: true)

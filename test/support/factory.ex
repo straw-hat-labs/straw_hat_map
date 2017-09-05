@@ -57,9 +57,9 @@ defmodule StrawHatMapTest.Factory do
     %Place{
       name: base64(4),
       longitude: 22.34,
-      latitude:  78.45,
+      latitude: 78.45,
       active: true,
-      account_id:  1,
+      owner_id:  "1",
       address: build(:address)}
   end
 end

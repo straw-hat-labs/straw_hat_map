@@ -2,11 +2,9 @@ defmodule StrawHat.Map.Schema.Place do
   @moduledoc false
 
   use StrawHat.Map.Schema
-
-  alias StrawHat.Error
   alias StrawHat.Map.Schema.Address
 
-  @required_fields ~w(name account_id address_id)a
+  @required_fields ~w(name owner_id address_id)a
   @optional_fields ~w(longitude latitude active)a
 
   schema "places" do
@@ -14,7 +12,7 @@ defmodule StrawHat.Map.Schema.Place do
     field(:longitude, :float, default: 0.0)
     field(:latitude, :float, default: 0.0)
     field(:active, :boolean, default: true)
-    field(:account_id, :integer)
+    field(:owner_id, :string)
     belongs_to(:address, Address)
   end
 
@@ -24,12 +22,5 @@ defmodule StrawHat.Map.Schema.Place do
     |> validate_required(@required_fields)
     |> unique_constraint(:name, name: :places_name_address_id_index)
     |> assoc_constraint(:address)
-  end
-
-  def validate_address(params) do
-    case Map.get(params, :address, :error) do
-      :error  -> {:error, Error.new("map.place.not_found_field", metadata: [name: :address])}
-      address -> {:ok, address}
-    end
   end
 end

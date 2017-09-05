@@ -1,0 +1,7 @@
+{
+  "skip_files": [
+    "lib/straw_hat_map/schema",
+    "lib/straw_hat_map/query",
+    "test/support"
+  ]
+}

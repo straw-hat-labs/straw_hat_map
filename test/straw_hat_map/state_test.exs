@@ -14,12 +14,12 @@ defmodule StrawHatMapTest.StateTest do
 
   test "list of states" do
     insert_list(10, :state)
-    state = State.list_states(%{page: 2, page_size: 5})
+    state_page = State.list_states(%{page: 2, page_size: 5})
 
-    assert state.total_entries == 10
+    assert state_page.total_entries == 10
   end
 
-  describe "create states" do
+  describe "create state" do
     test "valid case" do
       country = insert(:country)
       params = params_for(:state, %{country_id: country.id})
@@ -29,15 +29,16 @@ defmodule StrawHatMapTest.StateTest do
     end
   end
 
-  test "update by state" do
+  test "update state" do
     state = insert(:state)
     {:ok, state} = State.update_state(state, %{"name": "Havana"})
 
     assert state.name == "Havana"
   end
 
-  test "delete by state" do
+  test "delete state" do
     state = insert(:state)
+
     assert {:ok, _} = State.destroy_state(state)
   end
 

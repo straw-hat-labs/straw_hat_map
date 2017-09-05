@@ -35,7 +35,6 @@ defmodule StrawHatMapTest.Factory do
 
   def county_factory do
     %County{
-      code: base64(4),
       name: base64(8),
       state: build(:state)}
   end

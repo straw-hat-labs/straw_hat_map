@@ -14,9 +14,9 @@ defmodule StrawHatMapTest.CountryTest do
 
   test "list of countries" do
     insert_list(10, :country)
-    country = Country.country_list(%{page: 2, page_size: 5})
+    country_page = Country.country_list(%{page: 2, page_size: 5})
 
-    assert country.total_entries == 10
+    assert country_page.total_entries == 10
   end
 
   test "list of countries by ids" do
@@ -31,7 +31,7 @@ defmodule StrawHatMapTest.CountryTest do
     assert List.last(countries).id == List.last(ids)
   end
 
-  test "create" do
+  test "create country" do
     params = %{
       name: "Cuba",
       iso_two: "CU",
@@ -43,7 +43,7 @@ defmodule StrawHatMapTest.CountryTest do
     assert {:ok, _country} = Country.create_country(params)
   end
 
-  test "update by country" do
+  test "update country" do
     country = insert(:country)
     {:ok, country} = Country.update_country(country, %{"name": "Cuba"})
 

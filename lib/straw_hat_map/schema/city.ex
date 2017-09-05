@@ -4,11 +4,10 @@ defmodule StrawHat.Map.Schema.City do
   use StrawHat.Map.Schema
   alias StrawHat.Map.Schema.{County, State}
 
-  @required_fields ~w(code name)a
-  @optional_fields ~w(state_id county_id)a
+  @required_fields ~w(name state_id)a
+  @optional_fields ~w(county_id)a
 
   schema "cities" do
-    field(:code, :string)
     field(:name, :string)
     belongs_to(:state, State)
     belongs_to(:county, County)
@@ -18,6 +17,6 @@ defmodule StrawHat.Map.Schema.City do
     city
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
-    |> unique_constraint(:code, name: :cities_code_index)
+    |> unique_constraint(:name, name: :cities_name_state_id_index)
   end
 end

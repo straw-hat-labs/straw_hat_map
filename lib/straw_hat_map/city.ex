@@ -1,55 +1,57 @@
 defmodule StrawHat.Map.City do
+  use StrawHat.Map.Interactor
+
   alias StrawHat.Map.Query.CityQuery
-  alias StrawHat.Error
-  alias StrawHat.Map.Repo
-  alias StrawHat.Map.Schema.City
+  alias StrawHat.Map.Schema.{State, City}
 
-  def list_cities(paginate), do: Repo.paginate(City, paginate)
+  def city_list(pagination \\ []), do: Repo.paginate(City, pagination)
 
-  def create_city(params) do
+  def create_city(city_attrs) do
     %City{}
-    |> City.changeset(params)
+    |> City.changeset(city_attrs)
     |> Repo.insert()
   end
 
-  def update_city(%City{} = city, params) do
+  def update_city(%City{} = city, city_attrs) do
     city
-    |> City.changeset(params)
+    |> City.changeset(city_attrs)
     |> Repo.update()
   end
 
   def destroy_city(%City{} = city), do: Repo.delete(city)
 
-  def find_city(id) do
-    case get_city(id) do
-      nil -> {:error, Error.new("map.city.not_found", metadata: [id: id])}
+  def find_city(city_id) do
+    case get_city(city_id) do
+      nil ->
+        error = Error.new("map.city.not_found", metadata: [city_id: city_id])
+        {:error, error}
       city -> {:ok, city}
     end
   end
 
-  def get_city(id), do: Repo.get(City, id)
+  def get_city(city_id), do: Repo.get(City, city_id)
 
-  def city_by_ids(city_ids) do
+  def get_cities_by_ids(city_ids) do
     City
     |> CityQuery.by_ids(city_ids)
     |> Repo.all()
   end
 
-  def cities_by_state(id) do
+  def get_cities_by_state(%City{} = state) do
     City
-    |> CityQuery.by_state(id)
+    |> CityQuery.by_state(state.id)
     |> Repo.all()
   end
 
-  def cities_by_states(ids) do
+  def cities_by_states(state_ids) do
     City
-    |> CityQuery.by_states(ids)
+    |> CityQuery.by_states(state_ids)
     |> Repo.all()
   end
 
-  def cities_by_counties(ids) do
+  def cities_by_counties(county_ids) do
     City
-    |> CityQuery.by_countries(ids)
+    |> CityQuery.by_counties(county_ids)
     |> Repo.all()
   end
 end

@@ -2,8 +2,10 @@ defmodule StrawHat.Map.Schema.Country do
   @moduledoc false
 
   use StrawHat.Map.Schema
+  alias StrawHat.Map.Continent
 
-  @required_fields ~w(name iso_two iso_three iso_numeric)a
+  @continent_codes Continent.continent_codes()
+  @required_fields ~w(name iso_two iso_three iso_numeric continent)a
   @optional_fields ~w(has_counties)a
 
   schema "countries" do
@@ -11,6 +13,7 @@ defmodule StrawHat.Map.Schema.Country do
     field(:iso_two, :string)
     field(:iso_three, :string)
     field(:iso_numeric, :string)
+    field(:continent, :string)
     field(:has_counties, :boolean)
   end
 
@@ -22,6 +25,7 @@ defmodule StrawHat.Map.Schema.Country do
     |> validate_iso_two()
     |> validate_iso_three()
     |> validate_iso_numeric()
+    |> validate_inclusion(:continent, @continent_codes)
   end
 
   defp validate_name(changeset) do

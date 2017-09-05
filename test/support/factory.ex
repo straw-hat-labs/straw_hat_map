@@ -2,6 +2,7 @@ defmodule StrawHatMapTest.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
   alias StrawHat.Map.Schema.{Country, State, County, City, Address, Place}
+  alias StrawHat.Map.Continent
 
   def base64(length \\ 8) do
     length
@@ -11,12 +12,18 @@ defmodule StrawHatMapTest.Factory do
   end
 
   def country_factory do
+    continent =
+      Continent.continent_codes()
+      |> Enum.shuffle()
+      |> hd()
+
     %Country{
       name: base64(10),
       iso_two: base64(2),
       iso_three: base64(3),
       iso_numeric: base64(3),
-      has_counties: true}
+      has_counties: true,
+      continent: continent}
   end
 
   def state_factory do

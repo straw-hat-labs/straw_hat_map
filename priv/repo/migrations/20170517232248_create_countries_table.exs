@@ -9,6 +9,7 @@ defmodule StrawHat.Map.Repo.Migrations.CreateCountriesTable do
       add(:iso_three, :string, null: false, size: 3)
       add(:iso_numeric, :string, null: false, size: 3)
 
+      add(:continent, :string, null: false, size: 2)
       add(:has_counties, :boolean, default: false)
     end
 

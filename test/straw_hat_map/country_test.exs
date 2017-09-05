@@ -23,6 +23,7 @@ defmodule StrawHatMapTest.CountryTest do
       iso_two: "CU",
       iso_three: "CUB",
       iso_numeric: "192",
+      continent: "NA",
       has_county: true}
 
     assert {:ok, _country} = Country.create_country(params)

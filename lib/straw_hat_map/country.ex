@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Country do
   alias StrawHat.Map.Query.CountryQuery
   alias StrawHat.Map.Schema.Country
 
-  def country_list(pagination \\ []), do: Repo.paginate(Country, pagination)
+  def get_countries(pagination \\ []), do: Repo.paginate(Country, pagination)
 
   def create_country(country_attrs) do
     %Country{}

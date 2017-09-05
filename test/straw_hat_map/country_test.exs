@@ -14,7 +14,7 @@ defmodule StrawHatMapTest.CountryTest do
 
   test "list of countries" do
     insert_list(10, :country)
-    country_page = Country.country_list(%{page: 2, page_size: 5})
+    country_page = Country.get_countries(%{page: 2, page_size: 5})
 
     assert country_page.total_entries == 10
   end

@@ -14,7 +14,7 @@ defmodule StrawHatMapTest.CityTest do
 
   test "list of cities" do
     insert_list(10, :city)
-    city_page = City.city_list(%{page: 2, page_size: 5})
+    city_page = City.get_cities(%{page: 2, page_size: 5})
 
     assert city_page.total_entries == 10
   end

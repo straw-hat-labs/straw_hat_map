@@ -4,7 +4,7 @@ defmodule StrawHat.Map.City do
   alias StrawHat.Map.Query.CityQuery
   alias StrawHat.Map.Schema.{State, City}
 
-  def city_list(pagination \\ []), do: Repo.paginate(City, pagination)
+  def get_cities(pagination \\ []), do: Repo.paginate(City, pagination)
 
   def create_city(city_attrs) do
     %City{}

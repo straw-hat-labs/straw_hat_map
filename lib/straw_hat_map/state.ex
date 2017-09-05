@@ -4,7 +4,7 @@ defmodule StrawHat.Map.State do
   alias StrawHat.Map.Query.{StateQuery, CityQuery}
   alias StrawHat.Map.Schema.{State, City}
 
-  def state_list(pagination \\ []), do: Repo.paginate(State, pagination)
+  def get_states(pagination \\ []), do: Repo.paginate(State, pagination)
 
   def create_state(state_attrs) do
     %State{}

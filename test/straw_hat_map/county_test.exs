@@ -14,7 +14,7 @@ defmodule StrawHatMapTest.CountyTest do
 
   test "list of counties" do
     insert_list(10, :county)
-    county_page = County.counties_list(%{page: 2, page_size: 5})
+    county_page = County.get_counties(%{page: 2, page_size: 5})
 
     assert county_page.total_entries == 10
   end

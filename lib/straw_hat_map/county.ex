@@ -4,7 +4,7 @@ defmodule StrawHat.Map.County do
   alias StrawHat.Map.Query.CountyQuery
   alias StrawHat.Map.Schema.County
 
-  def counties_list(pagination \\ []), do: Repo.paginate(County, pagination)
+  def get_counties(pagination \\ []), do: Repo.paginate(County, pagination)
 
   def create_county(county_attrs) do
     %County{}

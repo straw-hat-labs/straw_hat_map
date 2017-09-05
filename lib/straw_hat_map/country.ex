@@ -4,11 +4,11 @@ defmodule StrawHat.Map.Country do
   alias StrawHat.Map.Query.CountryQuery
   alias StrawHat.Map.Schema.Country
 
-  def list_countries(params \\ []), do: Repo.paginate(Country, params)
+  def list_countries(pagination \\ []), do: Repo.paginate(Country, pagination)
 
-  def create_country(params) do
+  def create_country(country_attrs) do
     %Country{}
-    |> Country.changeset(params)
+    |> Country.changeset(country_attrs)
     |> Repo.insert()
   end
 
@@ -20,16 +20,16 @@ defmodule StrawHat.Map.Country do
 
   def destroy_country(%Country{} = country), do: Repo.delete(country)
 
-  def find_country(id) do
-    case get_country(id) do
+  def find_country(country_id) do
+    case get_country(country_id) do
       nil ->
-        error = Error.new("map.country.not_found", metadata: [country_id: id])
+        error = Error.new("map.country.not_found", metadata: [country_id: country_id])
         {:error, error}
       country -> {:ok, country}
     end
   end
 
-  def get_country(id), do: Repo.get(Country, id)
+  def get_country(country_id), do: Repo.get(Country, country_id)
 
   def get_countries_by_ids(country_ids) do
     Country

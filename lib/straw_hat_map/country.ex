@@ -1,8 +1,8 @@
 defmodule StrawHat.Map.Country do
   use StrawHat.Map.Interactor
 
-  alias StrawHat.Map.Query.CountryQuery
-  alias StrawHat.Map.Schema.Country
+  alias StrawHat.Map.Query.{CountryQuery, StateQuery}
+  alias StrawHat.Map.Schema.{Country, State}
 
   def get_countries(pagination \\ []), do: Repo.paginate(Country, pagination)
 
@@ -34,6 +34,12 @@ defmodule StrawHat.Map.Country do
   def get_countries_by_ids(country_ids) do
     Country
     |> CountryQuery.by_ids(country_ids)
+    |> Repo.all()
+  end
+
+  def get_states_by_countries(country_ids) do
+    State
+    |> StateQuery.by_countries(country_ids)
     |> Repo.all()
   end
 end

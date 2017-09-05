@@ -54,26 +54,41 @@ defmodule StrawHatMapTest.StateTest do
     assert List.last(states).id == List.last(ids)
   end
 
-  test "list of states by country ids" do
-    countries = insert_list(2, :country)
-
-    insert_list(2, :state, %{country: List.first(countries)})
-    insert_list(2, :state, %{country: List.last(countries)})
-
-    ids =
-      countries
-      |> Enum.map(fn country -> country.id end)
-
-    states = State.get_states_by_countries(ids)
-
-    assert length(states) ==  4
-  end
-
   test "list of cities" do
     state = insert(:state)
     insert_list(3, :city, %{state: state})
     cities = State.get_cities(state)
 
     assert length(cities) ==  3
+  end
+
+  test "list of cities by state ids" do
+    states = insert_list(2, :state)
+
+    insert_list(2, :city, %{state: List.first(states)})
+    insert_list(2, :city, %{state: List.last(states)})
+
+    ids =
+      states
+      |> Enum.map(fn state -> state.id end)
+
+    cities = State.get_cities_by_states(ids)
+
+    assert length(cities) ==  4
+  end
+
+  test "list of counties by state ids" do
+    states = insert_list(2, :state)
+
+    insert_list(2, :county, %{state: List.first(states)})
+    insert_list(2, :county, %{state: List.last(states)})
+
+    ids =
+      states
+      |> Enum.map(fn state -> state.id end)
+
+    counties = State.get_counties_by_states(ids)
+
+    assert length(counties) ==  4
   end
 end

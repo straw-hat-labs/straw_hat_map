@@ -55,4 +55,19 @@ defmodule StrawHatMapTest.CountryTest do
 
     assert {:ok, _} = Country.destroy_country(country)
   end
+
+  test "list of states by country ids" do
+    countries = insert_list(2, :country)
+
+    insert_list(2, :state, %{country: List.first(countries)})
+    insert_list(2, :state, %{country: List.last(countries)})
+
+    ids =
+      countries
+      |> Enum.map(fn country -> country.id end)
+
+    states = Country.get_states_by_countries(ids)
+
+    assert length(states) ==  4
+  end
 end

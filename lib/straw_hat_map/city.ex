@@ -36,16 +36,4 @@ defmodule StrawHat.Map.City do
     |> CityQuery.by_ids(city_ids)
     |> Repo.all()
   end
-
-  def get_cities_by_states(state_ids) do
-    City
-    |> CityQuery.by_states(state_ids)
-    |> Repo.all()
-  end
-
-  def get_cities_by_counties(county_ids) do
-    City
-    |> CityQuery.by_counties(county_ids)
-    |> Repo.all()
-  end
 end

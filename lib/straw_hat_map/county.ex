@@ -1,8 +1,8 @@
 defmodule StrawHat.Map.County do
   use StrawHat.Map.Interactor
 
-  alias StrawHat.Map.Query.CountyQuery
-  alias StrawHat.Map.Schema.County
+  alias StrawHat.Map.Query.{CountyQuery, CityQuery}
+  alias StrawHat.Map.Schema.{County, City}
 
   def get_counties(pagination \\ []), do: Repo.paginate(County, pagination)
 
@@ -37,9 +37,9 @@ defmodule StrawHat.Map.County do
     |> Repo.all()
   end
 
-  def get_counties_by_states(state_ids) do
-    County
-    |> CountyQuery.by_states(state_ids)
+  def get_cities_by_counties(county_ids) do
+    City
+    |> CityQuery.by_counties(county_ids)
     |> Repo.all()
   end
 end

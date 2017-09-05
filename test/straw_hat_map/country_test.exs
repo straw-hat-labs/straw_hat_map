@@ -18,7 +18,13 @@ defmodule StrawHatMapTest.CountryTest do
   end
 
   test "create" do
-    params = %{code: "001", name: "Cuba"}
+    params = %{
+      name: "Cuba",
+      iso_two: "CU",
+      iso_three: "CUB",
+      iso_numeric: "192",
+      has_county: true}
+
     assert {:ok, _country} = Country.create_country(params)
   end
 

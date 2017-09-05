@@ -3,15 +3,20 @@ defmodule StrawHatMapTest.Factory do
 
   alias StrawHat.Map.Schema.{Country, State, County, City, Address, Place}
 
-  def base64(length \\ 5) do
-    :crypto.strong_rand_bytes(length)
-    |> Base.encode64
+  def base64(length \\ 8) do
+    length
+    |> :crypto.strong_rand_bytes()
+    |> Base.encode64()
+    |> binary_part(0, length)
   end
 
   def country_factory do
     %Country{
-      code: base64(4),
-      name: base64(8)}
+      name: base64(10),
+      iso_two: base64(2),
+      iso_three: base64(3),
+      iso_numeric: base64(3),
+      has_county: true}
   end
 
   def state_factory do

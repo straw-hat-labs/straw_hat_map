@@ -1,35 +1,37 @@
 defmodule StrawHat.Map.Address do
+  use StrawHat.Map.Interactor
+
   alias StrawHat.Map.Query.AddressQuery
-  alias StrawHat.Error
-  alias StrawHat.Map.Repo
   alias StrawHat.Map.Schema.Address
 
-  def list_adresses(paginate), do: Repo.paginate(Address, paginate)
+  def get_addresses(pagination), do: Repo.paginate(Address, pagination)
 
-  def create_address(params) do
+  def create_address(address_attrs) do
     %Address{}
-    |> Address.changeset(params)
+    |> Address.changeset(address_attrs)
     |> Repo.insert()
   end
 
-  def update_address(%Address{} = address, params) do
+  def update_address(%Address{} = address, address_attrs) do
     address
-    |> Address.changeset(params)
+    |> Address.changeset(address_attrs)
     |> Repo.update()
   end
 
   def destroy_address(%Address{} = address), do: Repo.delete(address)
 
-  def find_address(id) do
-    case get_address(id) do
-      nil -> {:error, Error.new("map.address.not_found", metadata: [id: id])}
+  def find_address(address_id) do
+    case get_address(address_id) do
+      nil ->
+        error = Error.new("map.address.not_found", metadata: [address_id: address_id])
+        {:error, error}
       address ->  {:ok, address}
     end
   end
 
-  def get_address(id), do: Repo.get(Address, id)
+  def get_address(address_id), do: Repo.get(Address, address_id)
 
-  def address_by_ids(address_ids) do
+  def get_addresses_by_ids(address_ids) do
     Address
     |> AddressQuery.by_ids(address_ids)
     |> Repo.all()

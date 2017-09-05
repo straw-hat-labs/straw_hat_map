@@ -13,24 +13,40 @@ defmodule StrawHatMapTest.AddressTest do
 
   test "list per page" do
     insert_list(10, :address)
-    address = Address.list_adresses(%{page: 2, page_size: 5})
-    assert address.total_entries == 10
+    address_page = Address.get_addresses(%{page: 2, page_size: 5})
+
+    assert address_page.total_entries == 10
   end
 
   test "create" do
     city = insert(:city)
     params = %{line_one: "Main Street", line_two: "# 234A", postal_code: "12345", city_id: city.id}
+
     assert {:ok, _address} = Address.create_address(params)
   end
 
   test "update by address" do
     address = insert(:address)
     {:ok, address} = Address.update_address(address, %{"line_two": "PO BOX 123"})
+
     assert address.line_two == "PO BOX 123"
   end
 
   test "delete by address" do
     address = insert(:address)
+
     assert {:ok, _} = Address.destroy_address(address)
+  end
+
+  test "list of addresses by ids" do
+    available_addresses = insert_list(3, :address)
+    ids =
+      available_addresses
+      |> Enum.take(2)
+      |> Enum.map(fn address -> address.id end)
+    addresses = Address.get_addresses_by_ids(ids)
+
+    assert List.first(addresses).id == List.first(ids)
+    assert List.last(addresses).id == List.last(ids)
   end
 end

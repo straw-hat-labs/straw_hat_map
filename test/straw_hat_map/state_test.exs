@@ -14,7 +14,7 @@ defmodule StrawHatMapTest.StateTest do
 
   test "list of states" do
     insert_list(10, :state)
-    state_page = State.list_states(%{page: 2, page_size: 5})
+    state_page = State.state_list(%{page: 2, page_size: 5})
 
     assert state_page.total_entries == 10
   end
@@ -67,5 +67,13 @@ defmodule StrawHatMapTest.StateTest do
     states = State.get_states_by_countries(ids)
 
     assert length(states) ==  4
+  end
+
+  test "list of cities" do
+    state = insert(:state)
+    insert_list(3, :city, %{state: state})
+    cities = State.get_cities(state)
+
+    assert length(cities) ==  3
   end
 end

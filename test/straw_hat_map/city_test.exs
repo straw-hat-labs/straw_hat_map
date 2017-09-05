@@ -51,14 +51,6 @@ defmodule StrawHatMapTest.CityTest do
     assert List.last(cities).id == List.last(ids)
   end
 
-  test "list of cities by state" do
-    state = insert(:state)
-    insert_list(3, :city, %{state: state})
-    cities = City.get_cities_by_state(state)
-
-    assert length(cities) ==  3
-  end
-
   test "list of cities by state ids" do
     states = insert_list(2, :state)
 

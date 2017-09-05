@@ -3,8 +3,8 @@ defmodule StrawHat.Map.Query.AddressQuery do
 
   import Ecto.Query, only: [from: 2]
 
-  def by_ids(query, ids) do
+  def by_ids(query, address_ids) do
     from address in query,
-      where: address.id in ^ids
+      where: address.id in ^address_ids
   end
 end

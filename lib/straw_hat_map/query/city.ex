@@ -3,9 +3,9 @@ defmodule StrawHat.Map.Query.CityQuery do
 
   import Ecto.Query, only: [from: 2]
 
-  def by_ids(query, ids) do
+  def by_ids(query, city_ids) do
     from city in query,
-      where: city.id in ^ids
+      where: city.id in ^city_ids
   end
 
   def by_state(query, state_id) do

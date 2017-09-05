@@ -22,7 +22,9 @@ defmodule StrawHat.Map.Country do
 
   def find_country(id) do
     case get_country(id) do
-      nil -> {:error, Error.new("map.country.not_found", metadata: [id: id])}
+      nil ->
+        error = Error.new("map.country.not_found", metadata: [country_id: id])
+        {:error, error}
       country -> {:ok, country}
     end
   end

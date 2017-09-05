@@ -20,8 +20,7 @@ defmodule StrawHatMapTest.CountyTest do
   end
 
   test "create county" do
-    state = insert(:state)
-    params = %{name: "Havana", state_id: state.id}
+    params = params_with_assocs(:county)
 
     assert {:ok, _county} = County.create_county(params)
   end

@@ -20,8 +20,7 @@ defmodule StrawHatMapTest.PlaceTest do
   end
 
   test "create place" do
-    address = insert(:address)
-    params = %{name: "Home", owner_id: "1", address_id: address.id}
+    params = params_with_assocs(:place)
 
     assert {:ok, _place} = Place.create_place(params)
   end

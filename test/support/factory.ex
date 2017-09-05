@@ -12,6 +12,10 @@ defmodule StrawHatMapTest.Factory do
   end
 
   def country_factory do
+    iso_numeric =
+      111..999
+      |> Enum.random()
+      |> to_string()
     continent =
       Continent.get_continent_codes()
       |> Enum.shuffle()
@@ -21,7 +25,7 @@ defmodule StrawHatMapTest.Factory do
       name: base64(10),
       iso_two: base64(2),
       iso_three: base64(3),
-      iso_numeric: base64(3),
+      iso_numeric: iso_numeric,
       has_counties: true,
       continent: continent}
   end

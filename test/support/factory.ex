@@ -16,7 +16,7 @@ defmodule StrawHatMapTest.Factory do
       iso_two: base64(2),
       iso_three: base64(3),
       iso_numeric: base64(3),
-      has_county: true}
+      has_counties: true}
   end
 
   def state_factory do

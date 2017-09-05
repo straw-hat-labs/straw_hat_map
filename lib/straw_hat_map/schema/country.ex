@@ -4,18 +4,19 @@ defmodule StrawHat.Map.Schema.Country do
   use StrawHat.Map.Schema
 
   @required_fields ~w(name iso_two iso_three iso_numeric)a
+  @optional_fields ~w(has_counties)a
 
   schema "countries" do
     field(:name, :string)
     field(:iso_two, :string)
     field(:iso_three, :string)
     field(:iso_numeric, :string)
-    field(:has_county, :boolean)
+    field(:has_counties, :boolean)
   end
 
   def changeset(country, params \\ %{}) do
     country
-    |> cast(params, @required_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_name()
     |> validate_iso_two()

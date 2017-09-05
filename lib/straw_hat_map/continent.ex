@@ -11,7 +11,7 @@ defmodule StrawHat.Map.Continent do
     "SA" => %Continent{code: "SA", name: "South America"}
   }
 
-  def continent_codes, do: Map.keys(@continents)
+  def get_continent_codes, do: Map.keys(@continents)
 
-  def continents, do: @continents
+  def get_continents, do: @continents
 end

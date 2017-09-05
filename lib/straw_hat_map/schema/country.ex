@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Schema.Country do
   use StrawHat.Map.Schema
   alias StrawHat.Map.Continent
 
-  @continent_codes Continent.continent_codes()
+  @continent_codes Continent.get_continent_codes()
   @required_fields ~w(name iso_two iso_three iso_numeric continent)a
   @optional_fields ~w(has_counties)a
 

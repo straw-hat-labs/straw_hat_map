@@ -13,7 +13,7 @@ defmodule StrawHatMapTest.Factory do
 
   def country_factory do
     continent =
-      Continent.continent_codes()
+      Continent.get_continent_codes()
       |> Enum.shuffle()
       |> hd()
 

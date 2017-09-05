@@ -13,7 +13,7 @@ defmodule StrawHatMapTest.CountryTest do
 
   test "list countries with pagination" do
     insert_list(10, :country)
-    country = Country.list_countries(%{page: 2, page_size: 5})
+    country = Country.country_list(%{page: 2, page_size: 5})
     assert country.total_entries == 10
   end
 

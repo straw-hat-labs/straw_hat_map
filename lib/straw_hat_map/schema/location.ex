@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Schema.Location do
   @moduledoc false
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.Address
+  alias StrawHat.Map.Schema.{Address, Place}
 
   @optional_fields ~w(longitude latitude address_id)a
 
@@ -10,11 +10,12 @@ defmodule StrawHat.Map.Schema.Location do
     field(:longitude, :float, default: 0.0)
     field(:latitude, :float, default: 0.0)
     belongs_to(:address, Address)
+    has_one(:place, Place)
   end
 
   def changeset(location, params \\ %{}) do
     location
     |> cast(params, @optional_fields)
-    |> assoc_constraint(:address)
+    |> cast_assoc(:address)
   end
 end

@@ -19,10 +19,42 @@ defmodule StrawHatMapTest.PlaceTest do
     assert length(place.entries) == 2
   end
 
-  test "create place" do
-    params = params_with_assocs(:place)
+  describe "create a place" do
+    test "with location" do
+      location = params_for(:location)
+      params = %{
+        name: base64(4),
+        active: true,
+        owner_id: "1",
+        location: location}
 
-    assert {:ok, _place} = Place.create_place(params)
+      assert {:ok, place} = Place.create_place(params)
+      assert place.location.id != nil
+    end
+
+    test "with location and address" do
+      address = params_with_assocs(:address)
+      location = params_for(:location, %{address: address})
+
+      params = %{
+        name: base64(4),
+        active: true,
+        owner_id: "1",
+        location: location}
+
+      assert {:ok, place} = Place.create_place(params)
+      assert place.location.id != nil
+      assert place.location.address.id != nil
+    end
+
+    test "without location" do
+      params = %{
+        name: base64(4),
+        active: true,
+        owner_id: "1"}
+
+      assert {:error, _place} = Place.create_place(params)
+    end
   end
 
   test "update place" do

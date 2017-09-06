@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Schema.Address do
   @moduledoc false
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{City, Place}
+  alias StrawHat.Map.Schema.{City, Location}
 
   @required_fields ~w(line_one city_id)a
   @optional_fields ~w(line_two postal_code)a
@@ -12,7 +12,7 @@ defmodule StrawHat.Map.Schema.Address do
     field(:line_two, :string)
     field(:postal_code, :string)
     belongs_to(:city, City)
-    has_many(:places, Place)
+    has_many(:location, Location)
   end
 
   def changeset(address, params \\ %{}) do

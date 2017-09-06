@@ -1,7 +1,8 @@
 defmodule StrawHatMapTest.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
-  alias StrawHat.Map.Schema.{Country, State, County, City, Address, Place}
+  alias StrawHat.Map.Schema.{
+    Country, State, County, City, Address, Place, Location}
   alias StrawHat.Map.Continent
 
   def base64(length \\ 8) do
@@ -57,13 +58,18 @@ defmodule StrawHatMapTest.Factory do
       city: build(:city)}
   end
 
+  def location_factory do
+    %Location{
+      longitude: 22.34,
+      latitude: 78.45,
+      address: build(:address)}
+  end
+
   def place_factory do
     %Place{
       name: base64(4),
-      longitude: 22.34,
-      latitude: 78.45,
       active: true,
       owner_id:  "1",
-      address: build(:address)}
+      location: build(:location)}
   end
 end

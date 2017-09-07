@@ -1,8 +1,7 @@
 defmodule StrawHat.Map.Place do
   use StrawHat.Map.Interactor
 
-  alias Ecto.Multi
-  alias StrawHat.Map.Query.{PlaceQuery, AddressQuery}
+  alias StrawHat.Map.Query.PlaceQuery
   alias StrawHat.Map.Schema.Place
 
   def get_places(pagination), do: Repo.paginate(Place, pagination)

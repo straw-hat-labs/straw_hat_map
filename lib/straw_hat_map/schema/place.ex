@@ -12,7 +12,7 @@ defmodule StrawHat.Map.Schema.Place do
     field(:longitude, :float, default: 0.0)
     field(:latitude, :float, default: 0.0)
     field(:active, :boolean, default: true)
-    field(:owner_id, :string)
+    field(:owner_id, :integer)
     belongs_to(:address, Address)
   end
 

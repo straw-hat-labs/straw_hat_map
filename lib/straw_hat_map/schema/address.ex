@@ -15,9 +15,9 @@ defmodule StrawHat.Map.Schema.Address do
     has_many(:location, Location)
   end
 
-  def changeset(address, params \\ %{}) do
+  def changeset(address, address_attrs) do
     address
-    |> cast(params, @required_fields ++ @optional_fields)
+    |> cast(address_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> assoc_constraint(:city)
   end

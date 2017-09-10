@@ -13,9 +13,9 @@ defmodule StrawHat.Map.Schema.Location do
     has_one(:place, Place)
   end
 
-  def changeset(location, params \\ %{}) do
+  def changeset(location, location_attrs) do
     location
-    |> cast(params, @optional_fields)
+    |> cast(location_attrs, @optional_fields)
     |> cast_assoc(:address)
   end
 end

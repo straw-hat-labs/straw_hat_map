@@ -23,13 +23,12 @@ defmodule StrawHatMapTest.PlaceTest do
     test "with location" do
       location = params_for(:location)
       params = %{
-        name: base64(4),
+        name: Faker.String.base64(4),
         active: true,
         owner_id: "1",
         location: location}
 
       assert {:ok, place} = Place.create_place(params)
-      assert place.location.id != nil
     end
 
     test "with location and address" do
@@ -37,19 +36,17 @@ defmodule StrawHatMapTest.PlaceTest do
       location = params_for(:location, %{address: address})
 
       params = %{
-        name: base64(4),
+        name: Faker.String.base64(4),
         active: true,
         owner_id: "1",
         location: location}
 
       assert {:ok, place} = Place.create_place(params)
-      assert place.location.id != nil
-      assert place.location.address.id != nil
     end
 
     test "without location" do
       params = %{
-        name: base64(4),
+        name: Faker.String.base64(4),
         active: true,
         owner_id: "1"}
 

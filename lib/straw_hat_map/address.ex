@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Address do
   alias StrawHat.Map.Query.AddressQuery
   alias StrawHat.Map.Schema.Address
 
-  def get_addresses(pagination), do: Repo.paginate(Address, pagination)
+  def get_addresses(pagination \\ []), do: Repo.paginate(Address, pagination)
 
   def create_address(address_attrs) do
     %Address{}

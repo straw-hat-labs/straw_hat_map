@@ -37,7 +37,7 @@ defmodule StrawHat.Map.Country do
     |> Repo.all()
   end
 
-  def get_states_by_countries(country_ids) do
+  def get_states(country_ids) when is_list(country_ids) do
     State
     |> StateQuery.by_countries(country_ids)
     |> Repo.all()

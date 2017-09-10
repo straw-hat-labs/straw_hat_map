@@ -59,7 +59,7 @@ defmodule StrawHatMapTest.CountyTest do
       counties
       |> Enum.map(fn county -> county.id end)
 
-    cities = County.get_cities_by_counties(ids)
+    cities = County.get_cities(ids)
 
     assert length(cities) ==  4
   end

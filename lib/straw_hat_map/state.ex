@@ -43,13 +43,13 @@ defmodule StrawHat.Map.State do
     |> Repo.all()
   end
 
-  def get_cities_by_states(state_ids) do
+  def get_cities(state_ids) when is_list(state_ids) do
     City
     |> CityQuery.by_states(state_ids)
     |> Repo.all()
   end
 
-  def get_counties_by_states(state_ids) do
+  def get_counties(state_ids) when is_list(state_ids) do
     County
     |> CountyQuery.by_states(state_ids)
     |> Repo.all()

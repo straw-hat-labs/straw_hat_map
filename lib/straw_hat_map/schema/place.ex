@@ -10,14 +10,9 @@ defmodule StrawHat.Map.Schema.Place do
   schema "places" do
     field(:name, :string)
     field(:active, :boolean, default: true)
-<<<<<<< HEAD
-    field(:owner_id, :integer)
-    belongs_to(:address, Address)
-=======
     field(:owner_id, :string)
     belongs_to(:place, Place)
     belongs_to(:location, Location)
->>>>>>> develop
   end
 
   def changeset(place, place_attrs) do

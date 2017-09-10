@@ -8,13 +8,13 @@ defmodule StrawHat.Map.Place do
 
   def create_place(place_attrs) do
     %Place{}
-    |> Place.changeset(place_attrs)
+    |> Place.create_changeset(place_attrs)
     |> Repo.insert()
   end
 
   def update_place(%Place{} = place, place_attrs) do
     place
-    |> Place.changeset(place_attrs)
+    |> Place.update_changeset(place_attrs)
     |> Repo.update()
   end
 

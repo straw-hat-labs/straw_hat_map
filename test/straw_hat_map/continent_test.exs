@@ -9,9 +9,8 @@ defmodule StrawHatMapTest.ContinentTest do
   end
 
   test "get continents" do
-    continent_codes = Continent.get_continent_codes()
     continents = Continent.get_continents()
 
-    assert Map.keys(continents) == continent_codes
+    assert length(continents) == 7
   end
 end

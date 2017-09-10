@@ -20,9 +20,9 @@ defmodule StrawHat.Map.Schema.Country do
     has_many(:states, State)
   end
 
-  def changeset(country, params \\ %{}) do
+  def changeset(country, country_attrs) do
     country
-    |> cast(params, @required_fields ++ @optional_fields)
+    |> cast(country_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_name()
     |> validate_iso_two()

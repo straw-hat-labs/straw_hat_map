@@ -37,7 +37,7 @@ defmodule StrawHat.Map.County do
     |> Repo.all()
   end
 
-  def get_cities_by_counties(county_ids) do
+  def get_cities(county_ids) when is_list(county_ids) do
     City
     |> CityQuery.by_counties(county_ids)
     |> Repo.all()

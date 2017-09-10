@@ -20,8 +20,7 @@ defmodule StrawHatMapTest.CityTest do
   end
 
   test "create city" do
-    state = insert(:state)
-    params = %{name: "Havana", state_id: state.id}
+    params = params_with_assocs(:city)
 
     assert {:ok, _city} = City.create_city(params)
   end

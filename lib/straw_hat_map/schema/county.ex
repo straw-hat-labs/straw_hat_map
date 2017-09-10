@@ -11,9 +11,9 @@ defmodule StrawHat.Map.Schema.County do
     belongs_to(:state, State)
   end
 
-  def changeset(city, params \\ %{}) do
+  def changeset(city, county_attrs) do
     city
-    |> cast(params, @required_fields)
+    |> cast(county_attrs, @required_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:name, name: :conunties_name_state_id_index)
     |> assoc_constraint(:state)

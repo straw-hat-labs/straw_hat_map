@@ -20,8 +20,7 @@ defmodule StrawHatMapTest.CountyTest do
   end
 
   test "create county" do
-    state = insert(:state)
-    params = %{name: "Havana", state_id: state.id}
+    params = params_with_assocs(:county)
 
     assert {:ok, _county} = County.create_county(params)
   end
@@ -60,7 +59,7 @@ defmodule StrawHatMapTest.CountyTest do
       counties
       |> Enum.map(fn county -> county.id end)
 
-    cities = County.get_cities_by_counties(ids)
+    cities = County.get_cities(ids)
 
     assert length(cities) ==  4
   end

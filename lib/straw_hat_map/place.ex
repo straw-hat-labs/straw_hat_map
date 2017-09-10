@@ -4,17 +4,17 @@ defmodule StrawHat.Map.Place do
   alias StrawHat.Map.Query.PlaceQuery
   alias StrawHat.Map.Schema.Place
 
-  def get_places(pagination), do: Repo.paginate(Place, pagination)
+  def get_places(pagination \\ []), do: Repo.paginate(Place, pagination)
 
   def create_place(place_attrs) do
     %Place{}
-    |> Place.changeset(place_attrs)
+    |> Place.create_changeset(place_attrs)
     |> Repo.insert()
   end
 
   def update_place(%Place{} = place, place_attrs) do
     place
-    |> Place.changeset(place_attrs)
+    |> Place.update_changeset(place_attrs)
     |> Repo.update()
   end
 

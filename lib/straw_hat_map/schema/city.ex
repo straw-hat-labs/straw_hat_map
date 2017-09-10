@@ -14,9 +14,9 @@ defmodule StrawHat.Map.Schema.City do
     has_many(:addresses, Address)
   end
 
-  def changeset(city, params \\ %{}) do
+  def changeset(city, city_attrs) do
     city
-    |> cast(params, @required_fields ++ @optional_fields)
+    |> cast(city_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:name, name: :cities_name_state_id_index)
   end

@@ -19,8 +19,7 @@ defmodule StrawHatMapTest.AddressTest do
   end
 
   test "create" do
-    city = insert(:city)
-    params = %{line_one: "Main Street", line_two: "# 234A", postal_code: "12345", city_id: city.id}
+    params = params_with_assocs(:address)
 
     assert {:ok, _address} = Address.create_address(params)
   end

@@ -1,10 +1,11 @@
 {
   "skip_files": [
+    "lib/straw_hat_map.ex",
     "lib/straw_hat_map/application.ex",
     "lib/straw_hat_map/interactor.ex",
     "lib/straw_hat_map/repo.ex",
     "lib/straw_hat_map/schema.ex",
-    
+
     "lib/straw_hat_map/schema",
     "lib/straw_hat_map/query",
     "test/support"

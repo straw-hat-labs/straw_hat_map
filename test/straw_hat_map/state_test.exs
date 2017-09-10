@@ -72,7 +72,7 @@ defmodule StrawHatMapTest.StateTest do
       states
       |> Enum.map(fn state -> state.id end)
 
-    cities = State.get_cities_by_states(ids)
+    cities = State.get_cities(ids)
 
     assert length(cities) ==  4
   end
@@ -87,7 +87,7 @@ defmodule StrawHatMapTest.StateTest do
       states
       |> Enum.map(fn state -> state.id end)
 
-    counties = State.get_counties_by_states(ids)
+    counties = State.get_counties(ids)
 
     assert length(counties) ==  4
   end

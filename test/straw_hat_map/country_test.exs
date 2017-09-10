@@ -13,10 +13,11 @@ defmodule StrawHatMapTest.CountryTest do
   end
 
   test "list of countries" do
-    insert_list(10, :country)
+    insert_list(6, :country)
     country_page = Country.get_countries(%{page: 2, page_size: 5})
 
-    assert country_page.total_entries == 10
+    assert country_page.total_entries == 6
+    assert length(country_page.entries) == 1
   end
 
   test "list of countries by ids" do
@@ -32,13 +33,7 @@ defmodule StrawHatMapTest.CountryTest do
   end
 
   test "create country" do
-    params = %{
-      name: "Cuba",
-      iso_two: "CU",
-      iso_three: "CUB",
-      iso_numeric: "192",
-      continent: "NA",
-      has_county: true}
+    params = params_for(:country)
 
     assert {:ok, _country} = Country.create_country(params)
   end
@@ -66,7 +61,7 @@ defmodule StrawHatMapTest.CountryTest do
       countries
       |> Enum.map(fn country -> country.id end)
 
-    states = Country.get_states_by_countries(ids)
+    states = Country.get_states(ids)
 
     assert length(states) ==  4
   end

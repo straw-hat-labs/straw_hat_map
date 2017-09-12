@@ -1,4 +1,4 @@
-defmodule StrawHatMapTest.Factory do
+defmodule StrawHat.Map.Test.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
   alias StrawHat.Map.Schema.{

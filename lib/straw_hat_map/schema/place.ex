@@ -10,7 +10,7 @@ defmodule StrawHat.Map.Schema.Place do
   schema "places" do
     field(:name, :string)
     field(:active, :boolean, default: true)
-    field(:owner_id, :string)
+    field(:owner_id, :integer)
     belongs_to(:place, Place)
     belongs_to(:location, Location)
   end

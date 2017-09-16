@@ -5,7 +5,7 @@ defmodule Cargo.Repo.Migrations.CreatePlacesTable do
     create table(:places) do
       add(:name, :string, null: false)
       add(:active, :boolean, null: false, default: true)
-      add(:owner_id, :integer, null: false)
+      add(:owner_id, :string, null: false)
 
       add(:place_id, references(:places), null: true)
       add(:location_id, references(:locations), null: true)

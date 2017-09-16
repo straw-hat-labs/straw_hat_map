@@ -13,7 +13,7 @@ defmodule StrawHat.Map.Query.PlaceQuery do
       where: place.owner_id == ^owner_id
   end
 
-  def with_location_and_address(query) do
+  def with_location(query) do
     from place in query,
       left_join: location in assoc(place, :location),
       left_join: address in assoc(location, :address),

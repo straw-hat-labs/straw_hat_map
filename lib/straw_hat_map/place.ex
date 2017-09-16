@@ -31,7 +31,7 @@ defmodule StrawHat.Map.Place do
 
   def get_place(place_id) do
     Place
-    |> PlaceQuery.with_location_and_address()
+    |> PlaceQuery.with_location()
     |> Repo.get(place_id)
   end
 

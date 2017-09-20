@@ -29,7 +29,11 @@ defmodule StrawHat.Map.Place do
     end
   end
 
-  def get_place(place_id), do: Repo.get(Place, place_id)
+  def get_place(place_id) do
+    Place
+    |> PlaceQuery.with_location()
+    |> Repo.get(place_id)
+  end
 
   def get_places_by_owner(owner_id, pagination \\ []) do
     Place

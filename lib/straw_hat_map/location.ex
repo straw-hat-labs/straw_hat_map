@@ -1,4 +1,5 @@
 defmodule StrawHat.Map.Location do
+  @moduledoc false
   use StrawHat.Map.Interactor
 
   alias StrawHat.Map.Query.LocationQuery

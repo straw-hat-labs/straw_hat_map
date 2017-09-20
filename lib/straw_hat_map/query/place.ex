@@ -12,4 +12,11 @@ defmodule StrawHat.Map.Query.PlaceQuery do
     from place in query,
       where: place.owner_id == ^owner_id
   end
+
+  def with_location(query) do
+    from place in query,
+      left_join: location in assoc(place, :location),
+      left_join: address in assoc(location, :address),
+      preload: [location: {location, address: address}]
+  end
 end

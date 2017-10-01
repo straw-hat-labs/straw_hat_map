@@ -35,6 +35,15 @@ defmodule StrawHat.Map.Place do
     |> Repo.get(place_id)
   end
 
+  def get_places_by_owner(owner_id) do
+    Place
+    |> PlaceQuery.by_owner(owner_id)
+    |> Repo.all()
+  end
+
+  @doc """
+    @Deprecated
+  """
   def get_places_by_owner(owner_id, pagination \\ []) do
     Place
     |> PlaceQuery.by_owner(owner_id)

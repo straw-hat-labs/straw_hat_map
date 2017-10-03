@@ -1,5 +1,5 @@
-defmodule StrawHatMapTest.LocationTest do
-  use StrawHatMapTest.DataCase, async: true
+defmodule StrawHat.Map.Test.LocationTest do
+  use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Location
 
   test "get locations by ids" do

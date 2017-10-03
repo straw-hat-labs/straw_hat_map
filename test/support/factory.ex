@@ -38,8 +38,14 @@ defmodule StrawHatMapTest.Factory do
   end
 
   def city_factory do
+    capital? =
+      [true, false]
+      |> Enum.take_random(1)
+      |> List.first()
+
     %City{
       name: Faker.String.base64(8),
+      capital: capital?,
       state: build(:state)}
   end
 

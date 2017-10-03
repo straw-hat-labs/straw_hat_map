@@ -2,17 +2,19 @@ defmodule StrawHat.Map.Test.PlaceTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Place
 
-  test "get place by id" do
-    place = insert(:place)
+  describe "get place by id" do
+    test "with valid id" do
+      place = insert(:place)
 
-    assert {:ok, _place} = Place.find_place(place.id)
+      assert {:ok, _place} = Place.find_place(place.id)
+    end
+
+    test "with invalid id" do
+      assert {:error, _reason} = Place.find_place(8745)
+    end
   end
 
-  test "get place by invalid id" do
-    assert {:error, _reason} = Place.find_place(8745)
-  end
-
-  test "places list" do
+  test "get list of places" do
     insert_list(7, :place)
     place = Place.get_places(%{page: 2, page_size: 5})
 
@@ -61,7 +63,7 @@ defmodule StrawHat.Map.Test.PlaceTest do
     assert place.name == "Home"
   end
 
-  test "delete place" do
+  test "destroy place" do
     place = insert(:place)
 
     assert {:ok, _} = Place.destroy_place(place)

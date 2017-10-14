@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Mixfile do
 
   @organization "straw_hat"
   @name :straw_hat_map
-  @version "0.2.2"
+  @version "0.2.3"
   @elixir_version "~> 1.5"
 
   @description """
@@ -50,7 +50,7 @@ defmodule StrawHat.Map.Mixfile do
 
   defp deps do
     [
-      {:straw_hat, "~> 0.1.2"},
+      {:straw_hat, "~> 0.1.3"},
 
       {:postgrex, "~> 0.13.2"},
       {:ecto, "~> 2.2"},

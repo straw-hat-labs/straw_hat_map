@@ -2,17 +2,19 @@ defmodule StrawHat.Map.Test.CityTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.City
 
-  test "get city by id" do
-    city = insert(:city)
+  describe "get city by id" do
+    test "with valid id" do
+      city = insert(:city)
 
-    assert {:ok, _city} = City.find_city(city.id)
+      assert {:ok, _city} = City.find_city(city.id)
+    end
+
+    test "with invalid id" do
+      assert {:error, _reason} = City.find_city(8745)
+    end
   end
 
-  test "get city with invalid id" do
-    assert {:error, _reason} = City.find_city(8745)
-  end
-
-  test "list of cities" do
+  test "get list of cities" do
     insert_list(10, :city)
     city_page = City.get_cities(%{page: 2, page_size: 5})
 
@@ -32,13 +34,13 @@ defmodule StrawHat.Map.Test.CityTest do
     assert city.name == "Havana"
   end
 
-  test "delete city" do
+  test "destroy city" do
     city = insert(:city)
 
     assert {:ok, _} = City.destroy_city(city)
   end
 
-  test "list of cities by ids" do
+  test "get list of cities by ids" do
     available_cities = insert_list(3, :city)
     ids =
       available_cities

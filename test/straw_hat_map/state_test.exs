@@ -2,17 +2,19 @@ defmodule StrawHat.Map.Test.StateTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.State
 
-  test "get state by id" do
-    state = insert(:state)
+  describe "get state by id" do
+    test "with valid id" do
+      state = insert(:state)
 
-    assert {:ok, _state} = State.find_state(state.id)
+      assert {:ok, _state} = State.find_state(state.id)
+    end
+
+    test "with invalid id" do
+      assert {:error, _reason} = State.find_state(8745)
+    end
   end
 
-  test "get state by invalid id" do
-    assert {:error, _reason} = State.find_state(8745)
-  end
-
-  test "list of states" do
+  test "get list of states" do
     insert_list(10, :state)
     state_page = State.get_states(%{page: 2, page_size: 5})
 
@@ -20,7 +22,7 @@ defmodule StrawHat.Map.Test.StateTest do
   end
 
   describe "create state" do
-    test "valid case" do
+    test "with valid case" do
       country = insert(:country)
       params = params_for(:state, %{country_id: country.id})
 
@@ -36,7 +38,7 @@ defmodule StrawHat.Map.Test.StateTest do
     assert state.name == "Havana"
   end
 
-  test "delete state" do
+  test "destroy state" do
     state = insert(:state)
 
     assert {:ok, _} = State.destroy_state(state)
@@ -68,10 +70,7 @@ defmodule StrawHat.Map.Test.StateTest do
     insert_list(2, :city, %{state: List.first(states)})
     insert_list(2, :city, %{state: List.last(states)})
 
-    ids =
-      states
-      |> Enum.map(fn state -> state.id end)
-
+    ids = Enum.map(states, fn state -> state.id end)
     cities = State.get_cities(ids)
 
     assert length(cities) ==  4
@@ -83,10 +82,7 @@ defmodule StrawHat.Map.Test.StateTest do
     insert_list(2, :county, %{state: List.first(states)})
     insert_list(2, :county, %{state: List.last(states)})
 
-    ids =
-      states
-      |> Enum.map(fn state -> state.id end)
-
+    ids = Enum.map(states, fn state -> state.id end)
     counties = State.get_counties(ids)
 
     assert length(counties) ==  4

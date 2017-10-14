@@ -5,10 +5,11 @@ defmodule StrawHat.Map.Schema.City do
   alias StrawHat.Map.Schema.{County, State, Address}
 
   @required_fields ~w(name state_id)a
-  @optional_fields ~w(county_id)a
+  @optional_fields ~w(county_id capital)a
 
   schema "cities" do
     field(:name, :string)
+    field(:capital, :boolean)
     belongs_to(:state, State)
     belongs_to(:county, County)
     has_many(:addresses, Address)

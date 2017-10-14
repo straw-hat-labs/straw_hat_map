@@ -2,42 +2,45 @@ defmodule StrawHat.Map.Test.AddressTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Address
 
-  test "get by id" do
-    address = insert(:address)
-    assert {:ok, _address} = Address.find_address(address.id)
+
+  describe "get address by id" do
+    test "with valid id" do
+      address = insert(:address)
+      assert {:ok, _address} = Address.find_address(address.id)
+    end
+
+    test "with invalid id" do
+      assert {:error, _reason} = Address.find_address(8745)
+    end
   end
 
-  test "invalid id" do
-    assert {:error, _reason} = Address.find_address(8745)
-  end
-
-  test "list per page" do
+  test "get list of addresses" do
     insert_list(10, :address)
     address_page = Address.get_addresses(%{page: 2, page_size: 5})
 
     assert address_page.total_entries == 10
   end
 
-  test "create" do
+  test "create address" do
     params = params_with_assocs(:address)
 
     assert {:ok, _address} = Address.create_address(params)
   end
 
-  test "update by address" do
+  test "update address" do
     address = insert(:address)
     {:ok, address} = Address.update_address(address, %{"line_two": "PO BOX 123"})
 
     assert address.line_two == "PO BOX 123"
   end
 
-  test "delete by address" do
+  test "destroy address" do
     address = insert(:address)
 
     assert {:ok, _} = Address.destroy_address(address)
   end
 
-  test "list of addresses by ids" do
+  test "get list of addresses by ids" do
     available_addresses = insert_list(3, :address)
     ids =
       available_addresses

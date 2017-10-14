@@ -12,7 +12,7 @@ defmodule StrawHat.Map.Continent do
   ]
 
   def get_continent_codes do
-    @continents |> Enum.map(fn continent -> continent.code end)
+    Enum.map(@continents, fn continent -> continent.code end)
   end
 
   def get_continents, do: @continents

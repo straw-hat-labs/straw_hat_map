@@ -2,17 +2,19 @@ defmodule StrawHat.Map.Test.CountyTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.County
 
-  test "get county by id" do
-    county = insert(:county)
+  describe "get county by id" do
+    test "with valid id" do
+      county = insert(:county)
 
-    assert {:ok, _county} = County.find_county(county.id)
+      assert {:ok, _county} = County.find_county(county.id)
+    end
+
+    test "with invalid id" do
+      assert {:error, _reason} = County.find_county(8745)
+    end
   end
 
-  test "get county by invalid id" do
-    assert {:error, _reason} = County.find_county(8745)
-  end
-
-  test "list of counties" do
+  test "get list of counties" do
     insert_list(10, :county)
     county_page = County.get_counties(%{page: 2, page_size: 5})
 
@@ -25,15 +27,16 @@ defmodule StrawHat.Map.Test.CountyTest do
     assert {:ok, _county} = County.create_county(params)
   end
 
-  test "update by county" do
+  test "update county" do
     county = insert(:county)
     {:ok, county} = County.update_county(county, %{"name": "Havana"})
 
     assert county.name == "Havana"
   end
 
-  test "delete by county" do
+  test "destroy county" do
     county = insert(:county)
+
     assert {:ok, _} = County.destroy_county(county)
   end
 
@@ -55,10 +58,7 @@ defmodule StrawHat.Map.Test.CountyTest do
     insert_list(2, :city, %{county_id: List.first(counties).id})
     insert_list(2, :city, %{county_id: List.last(counties).id})
 
-    ids =
-      counties
-      |> Enum.map(fn county -> county.id end)
-
+    ids = Enum.map(counties, fn county -> county.id end)
     cities = County.get_cities(ids)
 
     assert length(cities) ==  4

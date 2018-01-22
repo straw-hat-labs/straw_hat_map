@@ -50,7 +50,7 @@ defmodule StrawHat.Map.Mixfile do
 
   defp deps do
     [
-      {:straw_hat, "~> 0.1.3"},
+      {:straw_hat, "~> 0.2.1"},
 
       {:postgrex, "~> 0.13.2"},
       {:ecto, "~> 2.2"},

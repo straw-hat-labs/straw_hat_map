@@ -33,7 +33,7 @@ defmodule StrawHat.Map.Test.StateTest do
 
   test "update state" do
     state = insert(:state)
-    {:ok, state} = State.update_state(state, %{"name": "Havana"})
+    {:ok, state} = State.update_state(state, %{name: "Havana"})
 
     assert state.name == "Havana"
   end
@@ -46,10 +46,12 @@ defmodule StrawHat.Map.Test.StateTest do
 
   test "list of states by ids" do
     available_states = insert_list(3, :state)
+
     ids =
       available_states
       |> Enum.take(2)
       |> Enum.map(fn state -> state.id end)
+
     states = State.get_states_by_ids(ids)
 
     assert List.first(states).id == List.first(ids)
@@ -61,7 +63,7 @@ defmodule StrawHat.Map.Test.StateTest do
     insert_list(3, :city, %{state: state})
     cities = State.get_cities(state)
 
-    assert length(cities) ==  3
+    assert length(cities) == 3
   end
 
   test "list of cities by state ids" do
@@ -73,7 +75,7 @@ defmodule StrawHat.Map.Test.StateTest do
     ids = Enum.map(states, fn state -> state.id end)
     cities = State.get_cities(ids)
 
-    assert length(cities) ==  4
+    assert length(cities) == 4
   end
 
   test "list of counties by state ids" do
@@ -85,6 +87,6 @@ defmodule StrawHat.Map.Test.StateTest do
     ids = Enum.map(states, fn state -> state.id end)
     counties = State.get_counties(ids)
 
-    assert length(counties) ==  4
+    assert length(counties) == 4
   end
 end

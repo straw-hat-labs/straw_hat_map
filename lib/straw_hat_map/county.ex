@@ -25,7 +25,9 @@ defmodule StrawHat.Map.County do
       nil ->
         error = Error.new("map.county.not_found", metadata: [county_id: county_id])
         {:error, error}
-      county -> {:ok, county}
+
+      county ->
+        {:ok, county}
     end
   end
 

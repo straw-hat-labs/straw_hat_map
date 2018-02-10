@@ -25,7 +25,9 @@ defmodule StrawHat.Map.Address do
       nil ->
         error = Error.new("map.address.not_found", metadata: [address_id: address_id])
         {:error, error}
-      address ->  {:ok, address}
+
+      address ->
+        {:ok, address}
     end
   end
 

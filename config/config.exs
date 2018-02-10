@@ -1,7 +1,6 @@
 use Mix.Config
 
-config :straw_hat_map,
-  ecto_repos: [StrawHat.Map.Repo]
+config :straw_hat_map, ecto_repos: [StrawHat.Map.Repo]
 
 config :straw_hat_map, StrawHat.Map.Repo,
   adapter: Ecto.Adapters.Postgres,

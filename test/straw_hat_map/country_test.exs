@@ -24,10 +24,12 @@ defmodule StrawHat.Map.Test.CountryTest do
 
   test "get list of countries by ids" do
     available_countries = insert_list(3, :country)
+
     ids =
       available_countries
       |> Enum.take(2)
       |> Enum.map(fn country -> country.id end)
+
     countries = Country.get_countries_by_ids(ids)
 
     assert List.first(countries).id == List.first(ids)
@@ -42,7 +44,7 @@ defmodule StrawHat.Map.Test.CountryTest do
 
   test "update country" do
     country = insert(:country)
-    {:ok, country} = Country.update_country(country, %{"name": "Cuba"})
+    {:ok, country} = Country.update_country(country, %{name: "Cuba"})
 
     assert country.name == "Cuba"
   end
@@ -62,6 +64,6 @@ defmodule StrawHat.Map.Test.CountryTest do
     ids = Enum.map(countries, fn country -> country.id end)
     states = Country.get_states(ids)
 
-    assert length(states) ==  4
+    assert length(states) == 4
   end
 end

@@ -2,7 +2,6 @@ defmodule StrawHat.Map.Test.AddressTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Address
 
-
   describe "get address by id" do
     test "with valid id" do
       address = insert(:address)
@@ -29,7 +28,7 @@ defmodule StrawHat.Map.Test.AddressTest do
 
   test "update address" do
     address = insert(:address)
-    {:ok, address} = Address.update_address(address, %{"line_two": "PO BOX 123"})
+    {:ok, address} = Address.update_address(address, %{line_two: "PO BOX 123"})
 
     assert address.line_two == "PO BOX 123"
   end
@@ -42,10 +41,12 @@ defmodule StrawHat.Map.Test.AddressTest do
 
   test "get list of addresses by ids" do
     available_addresses = insert_list(3, :address)
+
     ids =
       available_addresses
       |> Enum.take(2)
       |> Enum.map(fn address -> address.id end)
+
     addresses = Address.get_addresses_by_ids(ids)
 
     assert List.first(addresses).id == List.first(ids)

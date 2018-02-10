@@ -12,25 +12,22 @@ defmodule StrawHat.Map.Mixfile do
   @source_url "https://github.com/straw-hat-team/straw_hat_map"
 
   def project do
-    production? = Mix.env == :prod
+    production? = Mix.env() == :prod
 
     [
       name: "StrawHat.Map",
       description: @description,
-
       app: @name,
       version: @version,
       elixir: @elixir_version,
-      elixirc_paths: elixirc_paths(Mix.env),
+      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
       aliases: aliases(),
-
       build_embedded: production?,
       start_permanent: production?,
-
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        "coveralls": :test,
+        coveralls: :test,
         "coveralls.html": :test
       ],
 
@@ -41,17 +38,15 @@ defmodule StrawHat.Map.Mixfile do
   end
 
   def application do
-    [mod: {StrawHat.Map.Application, []},
-     extra_applications: [:logger]]
+    [mod: {StrawHat.Map.Application, []}, extra_applications: [:logger]]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [
       {:straw_hat, "~> 0.1.3"},
-
       {:postgrex, "~> 0.13.2"},
       {:ecto, "~> 2.2"},
       {:scrivener_ecto, "~> 1.2"},
@@ -69,9 +64,11 @@ defmodule StrawHat.Map.Mixfile do
   end
 
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test --trace"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test --trace"]
+    ]
   end
 
   defp package do

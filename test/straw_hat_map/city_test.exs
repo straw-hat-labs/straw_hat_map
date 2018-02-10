@@ -29,7 +29,7 @@ defmodule StrawHat.Map.Test.CityTest do
 
   test "update city" do
     city = insert(:city)
-    {:ok, city} = City.update_city(city, %{"name": "Havana"})
+    {:ok, city} = City.update_city(city, %{name: "Havana"})
 
     assert city.name == "Havana"
   end
@@ -42,10 +42,12 @@ defmodule StrawHat.Map.Test.CityTest do
 
   test "get list of cities by ids" do
     available_cities = insert_list(3, :city)
+
     ids =
       available_cities
       |> Enum.take(2)
       |> Enum.map(fn city -> city.id end)
+
     cities = City.get_cities_by_ids(ids)
 
     assert List.first(cities).id == List.first(ids)

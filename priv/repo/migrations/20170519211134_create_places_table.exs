@@ -4,7 +4,6 @@ defmodule Cargo.Repo.Migrations.CreatePlacesTable do
   def change do
     create table(:places) do
       add(:name, :string, null: false)
-      add(:active, :boolean, null: false, default: true)
       add(:owner_id, :string, null: false)
 
       add(:place_id, references(:places), null: true)
@@ -12,5 +11,6 @@ defmodule Cargo.Repo.Migrations.CreatePlacesTable do
     end
 
     create index(:places, [:name, :place_id], unique: true)
+    create index(:places, [:name, :owner_id], unique: true)
   end
 end

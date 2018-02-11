@@ -5,11 +5,10 @@ defmodule StrawHat.Map.Schema.Place do
   alias StrawHat.Map.Schema.{Location, Place}
 
   @required_fields ~w(name owner_id)a
-  @optional_fields ~w(active place_id)a
+  @optional_fields ~w(place_id)a
 
   schema "places" do
     field(:name, :string)
-    field(:active, :boolean, default: true)
     field(:owner_id, :string)
     belongs_to(:place, Place)
     belongs_to(:location, Location)
@@ -20,6 +19,7 @@ defmodule StrawHat.Map.Schema.Place do
     |> cast(place_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:name, name: :places_name_place_id_index)
+    |> unique_constraint(:name, name: :places_name_owner_id_index)
     |> assoc_constraint(:place)
   end
 

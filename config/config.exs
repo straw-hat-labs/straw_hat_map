@@ -9,3 +9,5 @@ config :straw_hat_map, StrawHat.Map.Repo,
   password: "postgres",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :logger, level: :error

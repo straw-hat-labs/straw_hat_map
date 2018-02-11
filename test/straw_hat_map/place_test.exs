@@ -24,7 +24,7 @@ defmodule StrawHat.Map.Test.PlaceTest do
   describe "create a place" do
     test "with location" do
       location = params_for(:location)
-      params = %{name: Faker.String.base64(4), active: true, owner_id: "1", location: location}
+      params = %{name: Faker.String.base64(4), owner_id: "1", location: location}
 
       assert {:ok, place} = Place.create_place(params)
     end
@@ -33,13 +33,13 @@ defmodule StrawHat.Map.Test.PlaceTest do
       address = params_with_assocs(:address)
       location = params_for(:location, %{address: address})
 
-      params = %{name: Faker.String.base64(4), active: true, owner_id: "1", location: location}
+      params = %{name: Faker.String.base64(4), owner_id: "1", location: location}
 
       assert {:ok, place} = Place.create_place(params)
     end
 
     test "without location" do
-      params = %{name: Faker.String.base64(4), active: true, owner_id: "1"}
+      params = %{name: Faker.String.base64(4), owner_id: "1"}
 
       assert {:error, _place} = Place.create_place(params)
     end

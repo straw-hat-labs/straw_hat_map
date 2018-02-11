@@ -56,6 +56,6 @@ defmodule StrawHat.Map.Test.Factory do
   end
 
   def place_factory do
-    %Place{name: Faker.String.base64(4), active: true, owner_id: "1", location: build(:location)}
+    %Place{name: Faker.String.base64(4), owner_id: "1", location: build(:location)}
   end
 end

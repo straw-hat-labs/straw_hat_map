@@ -6,7 +6,7 @@ defmodule StrawHat.Map.Test.Factory do
 
   def country_factory do
     iso_numeric =
-      111..999
+      100..999
       |> Enum.random()
       |> to_string()
 

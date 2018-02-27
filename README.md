@@ -1,14 +1,70 @@
 # StrawHat.Map
 
-**TODO: Add description**
+Application for Addresses and Map information management.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `straw_hat_map` to your list of dependencies in `mix.exs`:
-
 ```elixir
 def deps do
-  [{:straw_hat_map, ">= 0.0.0"}]
+  [
+    {:straw_hat_map, "~> 0.2.0"}
+  ]
 end
 ```
+
+### Configuration
+
+```elixir
+# In your config files
+
+config :straw_hat_map, StrawHat.Map.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "straw_hat_map",
+  hostname: "localhost",
+  username: "postgres",
+  password: "postgres"
+```
+
+## Usage
+
+All the APIs are contain in the interactors. You would normally need to look up
+in the interactor modules for the funtionalities you will need.
+
+### Mix Aliases Task and Ecto
+
+If you are using `Ecto` in your application probably you have some mix aliases
+if not then just create it.
+
+```elixir
+# mix.exs
+
+defp aliases do
+  [
+    "ecto.setup": [
+      "ecto.create",
+      "ecto.migrate",
+      "run priv/repo/seeds.exs"
+    ],
+    "ecto.reset": [
+      "ecto.drop",
+      "ecto.setup"
+    ],
+    "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+  ]
+end
+```
+
+Then add `StrawHat.Map.Repo` to the list of ecto repos on your application
+in your config.
+
+```elixir
+# config/config.exs
+
+config :my_app,
+  ecto_repos: [
+    # ...
+    StrawHat.Map.Repo
+  ]
+```
+
+This way `ecto.create`, `ecto.migrate` and `ecto.drop` knows about the repo.

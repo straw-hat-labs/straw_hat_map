@@ -1,13 +1,12 @@
 defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
-  @organization "straw_hat"
   @name :straw_hat_map
   @version "0.2.3"
   @elixir_version "~> 1.5"
 
   @description """
-    World Map and Addresses Management.
+  Map Information and Addresses Management.
   """
   @source_url "https://github.com/straw-hat-team/straw_hat_map"
 
@@ -74,7 +73,6 @@ defmodule StrawHat.Map.Mixfile do
   defp package do
     [
       name: @name,
-      organization: @organization,
       files: [
         "lib",
         "priv",
@@ -82,7 +80,7 @@ defmodule StrawHat.Map.Mixfile do
         "README*",
         "LICENSE*"
       ],
-      maintainers: ["Yordis Prieto"],
+      maintainers: ["Yordis Prieto", "Osley Zorrilla"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
     ]
@@ -94,7 +92,29 @@ defmodule StrawHat.Map.Mixfile do
       homepage_url: @source_url,
       source_ref: "v#{@version}",
       source_url: @source_url,
-      extras: ["README.md"]
+      extras: ["README.md"],
+      groups_for_modules: [
+        Interactors: [
+          StrawHat.Map.Continent,
+          StrawHat.Map.Country,
+          StrawHat.Map.State,
+          StrawHat.Map.County,
+          StrawHat.Map.City,
+          StrawHat.Map.Location,
+          StrawHat.Map.Address,
+          StrawHat.Map.Place
+        ],
+        Schemas: [
+          StrawHat.Map.Schema.Continent,
+          StrawHat.Map.Schema.Country,
+          StrawHat.Map.Schema.State,
+          StrawHat.Map.Schema.County,
+          StrawHat.Map.Schema.City,
+          StrawHat.Map.Schema.Location,
+          StrawHat.Map.Schema.Address,
+          StrawHat.Map.Schema.Place
+        ]
+      ]
     ]
   end
 end

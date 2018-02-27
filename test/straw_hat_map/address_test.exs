@@ -14,10 +14,10 @@ defmodule StrawHat.Map.Test.AddressTest do
   end
 
   test "get list of addresses" do
-    insert_list(10, :address)
-    address_page = Address.get_addresses(%{page: 2, page_size: 5})
+    insert_list(4, :address)
+    address_page = Address.get_addresses(%{page: 2, page_size: 2})
 
-    assert address_page.total_entries == 10
+    assert length(address_page.entries) == 2
   end
 
   test "create address" do

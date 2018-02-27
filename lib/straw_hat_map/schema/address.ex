@@ -21,15 +21,15 @@ defmodule StrawHat.Map.Schema.Address do
           line_one: String.t(),
           line_two: String.t(),
           postal_code: String.t(),
-          city: City.t(),
+          city: City.t() | Ecto.Association.NotLoaded.t(),
           city_id: Integer.t(),
-          locations: [Location.t()]
+          locations: [Location.t()] | Ecto.Association.NotLoaded.t()
         }
 
   @typedoc """
   Check `t:t/0` type for more information about the keys.
   """
-  @type template_attrs :: %{
+  @type address_attrs :: %{
           line_one: String.t(),
           line_two: String.t(),
           postal_code: String.t(),

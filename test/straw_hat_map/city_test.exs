@@ -15,10 +15,10 @@ defmodule StrawHat.Map.Test.CityTest do
   end
 
   test "get list of cities" do
-    insert_list(10, :city)
-    city_page = City.get_cities(%{page: 2, page_size: 5})
+    insert_list(5, :city)
+    city_page = City.get_cities(%{page: 2, page_size: 2})
 
-    assert city_page.total_entries == 10
+    assert length(city_page.entries) == 2
   end
 
   test "create city" do

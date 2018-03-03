@@ -1,10 +1,44 @@
 defmodule StrawHat.Map.Schema.Country do
-  @moduledoc false
+  @moduledoc """
+  Represents a Country Ecto Schema with functionality about the data validation
+  for Country.
+  """
 
   use StrawHat.Map.Schema
-
   alias StrawHat.Map.Continent
   alias StrawHat.Map.Schema.State
+
+  @typedoc """
+  - `name`: Name of the country.
+  - `iso_two`: Two characters ISO code.
+  - `iso_three`: Three characters ISO code.
+  - `iso_numeric`: Numeric ISO code.
+  - `has_counties`: Defines if the country has counties.
+  - `continent`: Two characters continent code.
+  - `states`: List of `t:StrawHat.Map.Schema.States.t/0` associated with
+  the country.
+  """
+  @type t :: %__MODULE__{
+          name: String.t(),
+          iso_two: String.t(),
+          iso_three: String.t(),
+          iso_numeric: String.t(),
+          continent: String.t(),
+          has_counties: boolean(),
+          states: [State.t()] | Ecto.Association.NotLoaded.t()
+        }
+
+  @typedoc """
+  Check `t:t/0` type for more information about the keys.
+  """
+  @type country_attrs :: %{
+          name: String.t(),
+          iso_two: String.t(),
+          iso_three: String.t(),
+          iso_numeric: String.t(),
+          continent: String.t(),
+          has_counties: boolean()
+        }
 
   @continent_codes Continent.get_continent_codes()
   @required_fields ~w(name iso_two iso_three iso_numeric continent)a
@@ -20,6 +54,10 @@ defmodule StrawHat.Map.Schema.Country do
     has_many(:states, State)
   end
 
+  @doc """
+  Validate the attributes and return a Ecto.Changeset for the current Country.
+  """
+  @spec changeset(t, country_attrs) :: Ecto.Changeset.t()
   def changeset(country, country_attrs) do
     country
     |> cast(country_attrs, @required_fields ++ @optional_fields)
@@ -31,6 +69,7 @@ defmodule StrawHat.Map.Schema.Country do
     |> validate_inclusion(:continent, @continent_codes)
   end
 
+  @spec validate_name(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_name(changeset) do
     changeset
     |> update_change(:name, &String.trim/1)
@@ -38,6 +77,7 @@ defmodule StrawHat.Map.Schema.Country do
     |> unique_constraint(:name)
   end
 
+  @spec validate_iso_two(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_two(changeset) do
     changeset
     |> update_change(:iso_two, &String.trim/1)
@@ -46,6 +86,7 @@ defmodule StrawHat.Map.Schema.Country do
     |> unique_constraint(:iso_two)
   end
 
+  @spec validate_iso_three(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_three(changeset) do
     changeset
     |> update_change(:iso_three, &String.trim/1)
@@ -54,6 +95,7 @@ defmodule StrawHat.Map.Schema.Country do
     |> unique_constraint(:iso_three)
   end
 
+  @spec validate_iso_numeric(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_numeric(changeset) do
     changeset
     |> update_change(:iso_numeric, &String.trim/1)

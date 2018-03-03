@@ -10,4 +10,4 @@ config :straw_hat_map, StrawHat.Map.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :logger, level: :error
+config :logger, level: :warn

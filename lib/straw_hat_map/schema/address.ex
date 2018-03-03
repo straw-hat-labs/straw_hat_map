@@ -8,13 +8,13 @@ defmodule StrawHat.Map.Schema.Address do
   alias StrawHat.Map.Schema.{City, Location}
 
   @typedoc """
-  - **line_one:** Line one of the address.
-  - **line_two:** Line two of the address.
-  - **postal_code:** Postal Code or Zipcode of the address.
-  - **city:** `t:StrawHat.Map.Schema.City.t/0` associated with the address.
-  - **city_id:** `id` of `t:StrawHat.Map.Schema.City.t/0` associated with
+  - `line_one`: Line one of the address.
+  - `line_two`: Line two of the address.
+  - `postal_code`: Postal Code or Zipcode of the address.
+  - `city`: `t:StrawHat.Map.Schema.City.t/0` associated with the address.
+  - `city_id`: `id` of `t:StrawHat.Map.Schema.City.t/0` associated with
   the address.
-  - **locations:** List of `t:StrawHat.Map.Schema.Location.t/0` associated with
+  - `locations`: List of `t:StrawHat.Map.Schema.Location.t/0` associated with
   the address.
   """
   @type t :: %__MODULE__{

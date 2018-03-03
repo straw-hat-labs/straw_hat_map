@@ -8,15 +8,15 @@ defmodule StrawHat.Map.Schema.City do
   alias StrawHat.Map.Schema.{County, State, Address}
 
   @typedoc """
-  - **name:** Name of the city.
-  - **capital:** Defines the city as capital of the country.
-  - **state:** `t:StrawHat.Map.Schema.State.t/0` associated with the city.
-  - **state_id:** `id` of `t:StrawHat.Map.Schema.State.t/0` associated with
+  - `name`: Name of the city.
+  - `capital`: Defines the city as capital of the country.
+  - `state`: `t:StrawHat.Map.Schema.State.t/0` associated with the city.
+  - `state_id`: `id` of `t:StrawHat.Map.Schema.State.t/0` associated with
   the city.
-  - **county:** `t:StrawHat.Map.Schema.County.t/0` associated with the city.
-  - **county_id:** `id` of `t:StrawHat.Map.Schema.County.t/0` associated with
+  - `county`: `t:StrawHat.Map.Schema.County.t/0` associated with the city.
+  - `county_id`: `id` of `t:StrawHat.Map.Schema.County.t/0` associated with
   the city.
-  - **addresses:** List of `t:StrawHat.Map.Schema.Address.t/0` associated with
+  - `addresses`: List of `t:StrawHat.Map.Schema.Address.t/0` associated with
   the city.
   """
   @type t :: %__MODULE__{

@@ -5,10 +5,7 @@ defmodule StrawHat.Map.Test.Factory do
   alias StrawHat.Map.Continent
 
   def country_factory do
-    iso_numeric =
-      100..999
-      |> Enum.random()
-      |> to_string()
+    iso_numeric = "#{:rand.uniform(9)}#{:rand.uniform(9)}#{:rand.uniform(9)}"
 
     continent =
       Continent.get_continent_codes()

@@ -67,7 +67,7 @@ defmodule StrawHat.Map.City do
   @spec get_cities_by_ids([integer()]) :: [City.t()] | no_return()
   def get_cities_by_ids(city_ids) do
     City
-    |> CityQuery.by_ids(city_ids)
+    |> CityQuery.cities_by_ids(city_ids)
     |> Repo.all()
   end
 end

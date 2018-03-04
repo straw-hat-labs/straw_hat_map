@@ -69,7 +69,7 @@ defmodule StrawHat.Map.Country do
   @spec get_countries_by_ids([integer()]) :: [Country.t()] | no_return()
   def get_countries_by_ids(country_ids) do
     Country
-    |> CountryQuery.by_ids(country_ids)
+    |> CountryQuery.countries_by_ids(country_ids)
     |> Repo.all()
   end
 
@@ -79,7 +79,7 @@ defmodule StrawHat.Map.Country do
   @spec get_states([integer()]) :: [State.t()] | no_return()
   def get_states(country_ids) when is_list(country_ids) do
     State
-    |> StateQuery.by_countries(country_ids)
+    |> StateQuery.states_by_countries(country_ids)
     |> Repo.all()
   end
 end

@@ -62,14 +62,14 @@ defmodule StrawHat.Map.Place do
   @spec get_place(String.t()) :: Place.t() | nil | no_return
   def get_place(place_id) do
     Place
-    |> PlaceQuery.with_location()
+    |> PlaceQuery.places_with_location()
     |> Repo.get(place_id)
   end
 
   @spec get_places_by_owner(integer(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_places_by_owner(owner_id, pagination \\ []) do
     Place
-    |> PlaceQuery.by_owner(owner_id)
+    |> PlaceQuery.places_by_owner(owner_id)
     |> Repo.paginate(pagination)
   end
 
@@ -79,7 +79,7 @@ defmodule StrawHat.Map.Place do
   @spec get_places_by_ids([integer()]) :: [Place.t()] | no_return()
   def get_places_by_ids(place_ids) do
     Place
-    |> PlaceQuery.by_ids(place_ids)
+    |> PlaceQuery.places_by_ids(place_ids)
     |> Repo.all()
   end
 end

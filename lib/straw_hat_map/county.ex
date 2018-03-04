@@ -68,7 +68,7 @@ defmodule StrawHat.Map.County do
   @spec get_counties_by_ids([integer()]) :: [County.t()] | no_return()
   def get_counties_by_ids(county_ids) do
     County
-    |> CountyQuery.by_ids(county_ids)
+    |> CountyQuery.counties_by_ids(county_ids)
     |> Repo.all()
   end
 
@@ -78,7 +78,7 @@ defmodule StrawHat.Map.County do
   @spec get_cities([integer()]) :: [State.t()] | no_return()
   def get_cities(county_ids) when is_list(county_ids) do
     City
-    |> CityQuery.by_counties(county_ids)
+    |> CityQuery.cities_by_counties(county_ids)
     |> Repo.all()
   end
 end

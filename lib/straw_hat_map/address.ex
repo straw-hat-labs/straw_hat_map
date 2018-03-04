@@ -69,7 +69,7 @@ defmodule StrawHat.Map.Address do
   @spec get_addresses_by_ids([integer()]) :: [Address.t()] | no_return()
   def get_addresses_by_ids(address_ids) do
     Address
-    |> AddressQuery.by_ids(address_ids)
+    |> AddressQuery.addresses_by_ids(address_ids)
     |> Repo.all()
   end
 end

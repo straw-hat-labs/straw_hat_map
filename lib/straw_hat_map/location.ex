@@ -14,7 +14,7 @@ defmodule StrawHat.Map.Location do
   @spec get_locations_by_ids([integer()]) :: [Location.t()] | no_return()
   def get_locations_by_ids(location_ids) do
     Location
-    |> LocationQuery.by_ids(location_ids)
+    |> LocationQuery.locations_by_ids(location_ids)
     |> Repo.all()
   end
 end

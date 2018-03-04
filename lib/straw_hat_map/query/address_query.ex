@@ -5,8 +5,8 @@ defmodule StrawHat.Map.Query.AddressQuery do
 
   alias StrawHat.Map.Schema.Address
 
-  @spec by_ids(Address.t(), [integer()]) :: Ecto.Query.t()
-  def by_ids(query, address_ids) do
+  @spec addresses_by_ids(Address.t(), [integer()]) :: Ecto.Query.t()
+  def addresses_by_ids(query, address_ids) do
     from(address in query, where: address.id in ^address_ids)
   end
 end

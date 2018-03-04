@@ -5,8 +5,8 @@ defmodule StrawHat.Map.Query.CountryQuery do
 
   alias StrawHat.Map.Schema.Country
 
-  @spec by_ids(Country.t(), [integer()]) :: Ecto.Query.t()
-  def by_ids(query, country_ids) do
+  @spec countries_by_ids(Country.t(), [integer()]) :: Ecto.Query.t()
+  def countries_by_ids(query, country_ids) do
     from(country in query, where: country.id in ^country_ids)
   end
 end

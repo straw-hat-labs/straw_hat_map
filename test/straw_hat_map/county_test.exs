@@ -21,20 +21,20 @@ defmodule StrawHat.Map.Test.CountyTest do
     assert county_page.total_entries == 10
   end
 
-  test "create county" do
+  test "create a county" do
     params = params_with_assocs(:county)
 
     assert {:ok, _county} = County.create_county(params)
   end
 
-  test "update county" do
+  test "update a county" do
     county = insert(:county)
     {:ok, county} = County.update_county(county, %{name: "Havana"})
 
     assert county.name == "Havana"
   end
 
-  test "destroy county" do
+  test "destroy a county" do
     county = insert(:county)
 
     assert {:ok, _} = County.destroy_county(county)

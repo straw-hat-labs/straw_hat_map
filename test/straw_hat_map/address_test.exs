@@ -20,20 +20,20 @@ defmodule StrawHat.Map.Test.AddressTest do
     assert length(address_page.entries) == 2
   end
 
-  test "create address" do
+  test "create an address" do
     params = params_with_assocs(:address)
 
     assert {:ok, _address} = Address.create_address(params)
   end
 
-  test "update address" do
+  test "update an address" do
     address = insert(:address)
     {:ok, address} = Address.update_address(address, %{line_two: "PO BOX 123"})
 
     assert address.line_two == "PO BOX 123"
   end
 
-  test "destroy address" do
+  test "destroy an address" do
     address = insert(:address)
 
     assert {:ok, _} = Address.destroy_address(address)

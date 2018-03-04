@@ -21,7 +21,7 @@ defmodule StrawHat.Map.Test.StateTest do
     assert state_page.total_entries == 10
   end
 
-  describe "create state" do
+  describe "create a state" do
     test "with valid case" do
       country = insert(:country)
       params = params_for(:state, %{country_id: country.id})
@@ -31,14 +31,14 @@ defmodule StrawHat.Map.Test.StateTest do
     end
   end
 
-  test "update state" do
+  test "update a state" do
     state = insert(:state)
     {:ok, state} = State.update_state(state, %{name: "Havana"})
 
     assert state.name == "Havana"
   end
 
-  test "destroy state" do
+  test "destroy a state" do
     state = insert(:state)
 
     assert {:ok, _} = State.destroy_state(state)

@@ -21,20 +21,20 @@ defmodule StrawHat.Map.Test.CityTest do
     assert length(city_page.entries) == 2
   end
 
-  test "create city" do
+  test "create a city" do
     params = params_with_assocs(:city)
 
     assert {:ok, _city} = City.create_city(params)
   end
 
-  test "update city" do
+  test "update a city" do
     city = insert(:city)
     {:ok, city} = City.update_city(city, %{name: "Havana"})
 
     assert city.name == "Havana"
   end
 
-  test "destroy city" do
+  test "destroy a city" do
     city = insert(:city)
 
     assert {:ok, _} = City.destroy_city(city)

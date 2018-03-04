@@ -45,14 +45,14 @@ defmodule StrawHat.Map.Test.PlaceTest do
     end
   end
 
-  test "update place" do
+  test "update a place" do
     place = insert(:place)
     {:ok, place} = Place.update_place(place, %{name: "Home"})
 
     assert place.name == "Home"
   end
 
-  test "destroy place" do
+  test "destroy a place" do
     place = insert(:place)
 
     assert {:ok, _} = Place.destroy_place(place)

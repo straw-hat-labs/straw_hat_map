@@ -36,20 +36,20 @@ defmodule StrawHat.Map.Test.CountryTest do
     assert List.last(countries).id == List.last(ids)
   end
 
-  test "create country" do
+  test "create a country" do
     params = params_for(:country)
 
     assert {:ok, _country} = Country.create_country(params)
   end
 
-  test "update country" do
+  test "update a country" do
     country = insert(:country)
     {:ok, country} = Country.update_country(country, %{name: "Cuba"})
 
     assert country.name == "Cuba"
   end
 
-  test "destroy country" do
+  test "destroy a country" do
     country = insert(:country)
 
     assert {:ok, _} = Country.destroy_country(country)

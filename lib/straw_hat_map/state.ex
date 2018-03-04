@@ -27,7 +27,8 @@ defmodule StrawHat.Map.State do
   @doc """
   Update a state.
   """
-  @spec update_state(State.t(), State.state_attrs()) :: {:ok, State.t()} | {:error, Ecto.Changeset.t()}
+  @spec update_state(State.t(), State.state_attrs()) ::
+          {:ok, State.t()} | {:error, Ecto.Changeset.t()}
   def update_state(%State{} = state, state_attrs) do
     state
     |> State.changeset(state_attrs)

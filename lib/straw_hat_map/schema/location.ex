@@ -32,7 +32,6 @@ defmodule StrawHat.Map.Schema.Location do
           address_id: String.t()
         }
 
-
   @optional_fields ~w(longitude latitude address_id)a
 
   schema "locations" do

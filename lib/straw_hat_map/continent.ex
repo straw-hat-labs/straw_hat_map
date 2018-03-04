@@ -18,7 +18,7 @@ defmodule StrawHat.Map.Continent do
   @doc """
   Get list of continent codes.
   """
-  @spec get_continent_codes :: [String.t]
+  @spec get_continent_codes :: [String.t()]
   def get_continent_codes do
     Enum.map(@continents, fn continent -> continent.code end)
   end
@@ -26,6 +26,6 @@ defmodule StrawHat.Map.Continent do
   @doc """
   Get list of continents.
   """
-  @spec get_continents :: [Continent.t]
+  @spec get_continents :: [Continent.t()]
   def get_continents, do: @continents
 end

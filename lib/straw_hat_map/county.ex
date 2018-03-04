@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.County do
   @moduledoc """
-  Defines functionality for county management.
+  Defines functionality for counties management.
   """
 
   use StrawHat.Map.Interactor
@@ -17,8 +17,7 @@ defmodule StrawHat.Map.County do
   @doc """
   Create a county.
   """
-  @spec create_county(County.county_attrs()) ::
-          {:ok, County.t()} | {:error, Ecto.Changeset.t()}
+  @spec create_county(County.county_attrs()) :: {:ok, County.t()} | {:error, Ecto.Changeset.t()}
   def create_county(county_attrs) do
     %County{}
     |> County.changeset(county_attrs)

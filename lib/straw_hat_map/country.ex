@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Country do
   @moduledoc """
-  Defines functionality for country management.
+  Defines functionality for countries management.
   """
 
   use StrawHat.Map.Interactor

@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Schema.Continent do
   """
   @type t :: %__MODULE__{
           code: String.t(),
-          name: String.t(),
+          name: String.t()
         }
 
   @enforce_keys [:code]

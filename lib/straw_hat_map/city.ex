@@ -17,8 +17,7 @@ defmodule StrawHat.Map.City do
   @doc """
   Create a city.
   """
-  @spec create_city(City.city_attrs()) ::
-          {:ok, City.t()} | {:error, Ecto.Changeset.t()}
+  @spec create_city(City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
   def create_city(city_attrs) do
     %City{}
     |> City.changeset(city_attrs)
@@ -28,8 +27,7 @@ defmodule StrawHat.Map.City do
   @doc """
   Update a city.
   """
-  @spec update_city(City.t(), City.city_attrs()) ::
-          {:ok, City.t()} | {:error, Ecto.Changeset.t()}
+  @spec update_city(City.t(), City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
   def update_city(%City{} = city, city_attrs) do
     city
     |> City.changeset(city_attrs)

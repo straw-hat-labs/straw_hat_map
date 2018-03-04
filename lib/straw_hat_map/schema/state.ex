@@ -1,8 +1,41 @@
 defmodule StrawHat.Map.Schema.State do
-  @moduledoc false
+  @moduledoc """
+  Represents a State Ecto Schema with functionality about the data validation
+  for State.
+  """
 
   use StrawHat.Map.Schema
   alias StrawHat.Map.Schema.{Country, County, City}
+
+  @typedoc """
+  - `name`: Name of the state.
+  - `code`: Code of the state.
+  - `country`: `t:StrawHat.Map.Schema.Country.t/0` associated with the current
+  state.
+  - `country_id`: `id` of `t:StrawHat.Map.Schema.Country.t/0` associated with
+  the state.
+  - `counties`: List of `t:StrawHat.Map.Schema.County.t/0` associated with the
+  current state.
+  - `cities`: List of `t:StrawHat.Map.Schema.City.t/0` associated with the
+  current state.
+  """
+  @type t :: %__MODULE__{
+          name: String.t(),
+          code: String.t(),
+          country_id: String.t(),
+          country: State.t() | Ecto.Association.NotLoaded.t(),
+          counties: [County.t()] | Ecto.Association.NotLoaded.t(),
+          cities: [City.t()] | Ecto.Association.NotLoaded.t()
+        }
+
+  @typedoc """
+  Check `t:t/0` type for more information about the keys.
+  """
+  @type state_attrs :: %{
+          name: String.t(),
+          code: String.t(),
+          country_id: String.t()
+        }
 
   @required_fields ~w(name country_id)a
   @optional_fields ~w(code)a
@@ -15,6 +48,7 @@ defmodule StrawHat.Map.Schema.State do
     has_many(:cities, City)
   end
 
+  @spec changeset(t, state_attrs) :: Ecto.Changeset.t()
   def changeset(state, state_attrs) do
     state
     |> cast(state_attrs, @required_fields ++ @optional_fields)

@@ -6,7 +6,7 @@ defmodule StrawHat.Map.Mixfile do
   @elixir_version "~> 1.5"
 
   @description """
-  Map Information and Addresses Management.
+  Map and Addresses Management.
   """
   @source_url "https://github.com/straw-hat-team/straw_hat_map"
 

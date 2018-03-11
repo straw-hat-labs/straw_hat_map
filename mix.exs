@@ -50,6 +50,7 @@ defmodule StrawHat.Map.Mixfile do
       {:ecto, "~> 2.2"},
       {:scrivener_ecto, "~> 1.2"},
       {:geo_postgis, "~> 1.1"},
+      {:poison, "~> 3.1", optional: true},
 
       # Testing
       {:ex_machina, ">= 0.0.0", only: [:test]},

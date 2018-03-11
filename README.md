@@ -22,8 +22,12 @@ config :straw_hat_map, StrawHat.Map.Repo,
   database: "straw_hat_map",
   hostname: "localhost",
   username: "postgres",
-  password: "postgres"
+  password: "postgres",
+  types: StrawHat.Map.Ecto.AdapterTypes
 ```
+
+**Important:** Notice that we added `types: StrawHat.Map.Ecto.AdapterTypes`
+to repo configuration, this is required to make PostGis to work.
 
 ## Usage
 

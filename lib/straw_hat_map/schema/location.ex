@@ -8,16 +8,14 @@ defmodule StrawHat.Map.Schema.Location do
   alias StrawHat.Map.Schema.{Address, Place}
 
   @typedoc """
-  - `longitude`: Longitude of the location.
-  - `latitude`: Latitude of the location.
+  - `location`: the `Geo.Point.t/0` of the location of the Location.
   - `address`: `t:StrawHat.Map.Schema.Address.t/0` associated with the location.
   - `address_id`: `id` of `t:StrawHat.Map.Schema.Address.t/0` associated with
   the location.
   - `place`: `t:StrawHat.Map.Schema.Place.t/0` associated with the location.
   """
   @type t :: %__MODULE__{
-          longitude: float(),
-          latitude: float(),
+          location: Geo.Point.t(),
           address_id: String.t(),
           address: Address.t() | Ecto.Association.NotLoaded.t(),
           place: Place.t() | Ecto.Association.NotLoaded.t()
@@ -25,18 +23,18 @@ defmodule StrawHat.Map.Schema.Location do
 
   @typedoc """
   Check `t:t/0` type for more information about the keys.
+
+  - `location`: the GeoJSON Point structure for the location of the Location.
   """
   @type location_attrs :: %{
-          longitude: float(),
-          latitude: float(),
+          location: Map.t(),
           address_id: String.t()
         }
 
-  @optional_fields ~w(longitude latitude address_id)a
+  @optional_fields ~w(location address_id)a
 
   schema "locations" do
-    field(:longitude, :float, default: 0.0)
-    field(:latitude, :float, default: 0.0)
+    field(:location, Geo.Point)
     belongs_to(:address, Address)
     has_one(:place, Place)
   end

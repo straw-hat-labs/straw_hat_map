@@ -49,6 +49,7 @@ defmodule StrawHat.Map.Mixfile do
       {:postgrex, "~> 0.13.2"},
       {:ecto, "~> 2.2"},
       {:scrivener_ecto, "~> 1.2"},
+      {:geo_postgis, "~> 1.1"},
 
       # Testing
       {:ex_machina, ">= 0.0.0", only: [:test]},

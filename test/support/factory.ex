@@ -49,7 +49,10 @@ defmodule StrawHat.Map.Test.Factory do
   end
 
   def location_factory do
-    %Location{longitude: 22.34, latitude: 78.45, address: build(:address)}
+    %Location{
+      location: %Geo.Point{coordinates: {-83.550948, 22.3709423}},
+      address: build(:address)
+    }
   end
 
   def place_factory do

@@ -8,6 +8,7 @@ config :straw_hat_map, StrawHat.Map.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  types: StrawHat.Map.Ecto.AdapterTypes
 
 config :logger, level: :warn

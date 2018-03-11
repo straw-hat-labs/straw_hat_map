@@ -12,16 +12,16 @@ defmodule StrawHat.Map.Query.PlaceQuery do
 
   @spec places_by_owner(Place.t(), String.t()) :: Ecto.Query.t()
   def places_by_owner(query, owner_id) do
-    from(place in query, where: place.owner_id == ^owner_id)
+    place in query
+    |> from(where: place.owner_id == ^owner_id)
+    |> places_with_location()
   end
 
   @spec places_with_location(Ecto.Query.t()) :: Ecto.Query.t()
   def places_with_location(query) do
     from(
       place in query,
-      left_join: location in assoc(place, :location),
-      left_join: address in assoc(location, :address),
-      preload: [location: {location, address: address}]
+      preload: [:location]
     )
   end
 end

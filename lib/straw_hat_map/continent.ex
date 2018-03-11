@@ -6,13 +6,13 @@ defmodule StrawHat.Map.Continent do
   alias StrawHat.Map.Schema.Continent
 
   @continents [
-    %Continent{code: "AF", name: "Africa"},
-    %Continent{code: "AN", name: "Antarctica"},
-    %Continent{code: "AS", name: "Asia"},
-    %Continent{code: "EU", name: "Europe"},
-    %Continent{code: "NA", name: "North America"},
-    %Continent{code: "OC", name: "Oceania"},
-    %Continent{code: "SA", name: "South America"}
+    %Continent{code: "AF"},
+    %Continent{code: "AN"},
+    %Continent{code: "AS"},
+    %Continent{code: "EU"},
+    %Continent{code: "NA"},
+    %Continent{code: "OC"},
+    %Continent{code: "SA"}
   ]
 
   @doc """

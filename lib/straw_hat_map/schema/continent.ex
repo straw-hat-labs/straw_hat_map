@@ -4,14 +4,12 @@ defmodule StrawHat.Map.Schema.Continent do
   """
 
   @typedoc """
-  - `name`: Name of the continent.
   - `code`: Two characters code of the continent.
   """
   @type t :: %__MODULE__{
-          code: String.t(),
-          name: String.t()
+          code: String.t()
         }
 
   @enforce_keys [:code]
-  defstruct [:code, :name]
+  defstruct [:code]
 end

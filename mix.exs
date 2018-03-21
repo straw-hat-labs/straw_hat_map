@@ -97,6 +97,16 @@ defmodule StrawHat.Map.Mixfile do
       extras: ["README.md"],
       groups_for_modules: [
         Interactors: [
+          StrawHat.Map.Continents,
+          StrawHat.Map.Countries,
+          StrawHat.Map.States,
+          StrawHat.Map.Counties,
+          StrawHat.Map.Cities,
+          StrawHat.Map.Locations,
+          StrawHat.Map.Addresses,
+          StrawHat.Map.Places
+        ],
+        Schemas: [
           StrawHat.Map.Continent,
           StrawHat.Map.Country,
           StrawHat.Map.State,
@@ -105,16 +115,6 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Location,
           StrawHat.Map.Address,
           StrawHat.Map.Place
-        ],
-        Schemas: [
-          StrawHat.Map.Schema.Continent,
-          StrawHat.Map.Schema.Country,
-          StrawHat.Map.Schema.State,
-          StrawHat.Map.Schema.County,
-          StrawHat.Map.Schema.City,
-          StrawHat.Map.Schema.Location,
-          StrawHat.Map.Schema.Address,
-          StrawHat.Map.Schema.Place
         ]
       ]
     ]

@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.Continent do
+defmodule StrawHat.Map.Continent do
   @moduledoc """
   Represents a Content struct.
   """

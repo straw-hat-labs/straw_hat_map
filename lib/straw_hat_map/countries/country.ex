@@ -5,7 +5,7 @@ defmodule StrawHat.Map.Schema.Country do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Continent
+  alias StrawHat.Map.Continents
   alias StrawHat.Map.Schema.State
 
   @typedoc """
@@ -40,7 +40,7 @@ defmodule StrawHat.Map.Schema.Country do
           has_counties: boolean()
         }
 
-  @continent_codes Continent.get_continent_codes()
+  @continent_codes Continents.get_continent_codes()
   @required_fields ~w(name iso_two iso_three iso_numeric continent)a
   @optional_fields ~w(has_counties)a
 

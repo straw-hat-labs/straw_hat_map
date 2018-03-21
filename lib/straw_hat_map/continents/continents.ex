@@ -1,9 +1,9 @@
-defmodule StrawHat.Map.Continent do
+defmodule StrawHat.Map.Continents do
   @moduledoc """
   Defines functionality for continents.
   """
 
-  alias StrawHat.Map.Schema.Continent
+  alias StrawHat.Map.Continent
 
   @continents [
     %Continent{code: "AF"},
@@ -16,16 +16,18 @@ defmodule StrawHat.Map.Continent do
   ]
 
   @doc """
-  Get list of continent codes.
+  Returns the list of continent codes.
   """
+  @since "1.0.0"
   @spec get_continent_codes :: [String.t()]
   def get_continent_codes do
     Enum.map(@continents, fn continent -> continent.code end)
   end
 
   @doc """
-  Get list of continents.
+  Returns the list of continents.
   """
+  @since "1.0.0"
   @spec get_continents :: [Continent.t()]
   def get_continents, do: @continents
 end

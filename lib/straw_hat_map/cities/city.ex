@@ -5,14 +5,13 @@ defmodule StrawHat.Map.City do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{State}
-  alias StrawHat.Map.{County, Address}
+  alias StrawHat.Map.{County, Address, State}
 
   @typedoc """
   - `name`: Name of the city.
   - `capital`: Defines the city as capital of the country.
-  - `state`: `t:StrawHat.Map.Schema.State.t/0` associated with the city.
-  - `state_id`: `id` of `t:StrawHat.Map.Schema.State.t/0` associated with
+  - `state`: `t:StrawHat.Map.State.t/0` associated with the city.
+  - `state_id`: `id` of `t:StrawHat.Map.State.t/0` associated with
   the city.
   - `county`: `t:StrawHat.Map.County.t/0` associated with the city.
   - `county_id`: `id` of `t:StrawHat.Map.County.t/0` associated with

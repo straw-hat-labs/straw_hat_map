@@ -1,8 +1,8 @@
 defmodule StrawHat.Map.Test.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
-  alias StrawHat.Map.Schema.{State, Place}
-  alias StrawHat.Map.{Country, Continents, County, Address, City, Location}
+  alias StrawHat.Map.Schema.{Place}
+  alias StrawHat.Map.{Country, Continents, County, Address, City, Location, State}
 
   def country_factory do
     iso_numeric = "#{:rand.uniform(9)}#{:rand.uniform(9)}#{:rand.uniform(9)}"

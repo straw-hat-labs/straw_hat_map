@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.State do
+defmodule StrawHat.Map.State do
   @moduledoc """
   Represents a State Ecto Schema with functionality about the data validation
   for State.
@@ -48,6 +48,9 @@ defmodule StrawHat.Map.Schema.State do
     has_many(:cities, City)
   end
 
+  @doc """
+  Validates the attributes and return a Ecto.Changeset for the current State.
+  """
   @spec changeset(t, state_attrs) :: Ecto.Changeset.t()
   def changeset(state, state_attrs) do
     state

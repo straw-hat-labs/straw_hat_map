@@ -6,8 +6,7 @@ defmodule StrawHat.Map.Countries do
   use StrawHat.Map.Interactor
 
   alias StrawHat.Map.Query.{StateQuery}
-  alias StrawHat.Map.Schema.{State}
-  alias StrawHat.Map.{Country}
+  alias StrawHat.Map.{Country, State}
 
   @doc """
   Gets the list of countries.
@@ -75,8 +74,7 @@ defmodule StrawHat.Map.Countries do
   """
   @spec get_states([integer()]) :: [State.t()] | no_return()
   def get_states(country_ids) when is_list(country_ids) do
-    State
-    |> StateQuery.states_by_countries(country_ids)
-    |> Repo.all()
+    query = from(state in State, where: state.country_id in ^country_ids)
+    Repo.all(query)
   end
 end

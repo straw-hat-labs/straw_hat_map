@@ -5,12 +5,12 @@ defmodule StrawHat.Map.County do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.State
+  alias StrawHat.Map.State
 
   @typedoc """
   - `name`: Name of the county.
-  - `state`: `t:StrawHat.Map.Schema.State.t/0` associated with the county.
-  - `state_id`: `id` of `t:StrawHat.Map.Schema.State.t/0` associated with
+  - `state`: `t:StrawHat.Map.State.t/0` associated with the county.
+  - `state_id`: `id` of `t:StrawHat.Map.State.t/0` associated with
   the county.
   """
   @type t :: %__MODULE__{

@@ -1,13 +1,11 @@
-defmodule StrawHat.Map.State do
+defmodule StrawHat.Map.States do
   @moduledoc """
   Defines functionality for states management.
   """
 
   use StrawHat.Map.Interactor
-
   alias StrawHat.Map.Query.{StateQuery}
-  alias StrawHat.Map.Schema.{State}
-  alias StrawHat.Map.{County, City}
+  alias StrawHat.Map.{State, County, City}
 
   @doc """
   Get the list of states.
@@ -47,14 +45,11 @@ defmodule StrawHat.Map.State do
   """
   @spec find_state(String.t()) :: {:ok, State.t()} | {:error, Error.t()}
   def find_state(state_id) do
-    case get_state(state_id) do
-      nil ->
-        error = Error.new("straw_hat_map.state.not_found", metadata: [state_id: state_id])
-        {:error, error}
-
-      state ->
-        {:ok, state}
-    end
+    state_id
+    |> get_state()
+    |> StrawHat.Response.from_value(
+      Error.new("straw_hat_map.state.not_found", metadata: [state_id: state_id])
+    )
   end
 
   @doc """
@@ -68,9 +63,8 @@ defmodule StrawHat.Map.State do
   """
   @spec get_states_by_ids([integer()]) :: [State.t()] | no_return()
   def get_states_by_ids(state_ids) do
-    State
-    |> StateQuery.states_by_ids(state_ids)
-    |> Repo.all()
+    query = from(state in State, where: state.id in ^state_ids)
+    Repo.all(query)
   end
 
   @doc """

@@ -41,7 +41,7 @@ defmodule StrawHat.Map.Location do
   end
 
   @doc """
-  Validate the attributes and return a Ecto.Changeset for the current Location.
+  Validates the attributes and return a Ecto.Changeset for the current Location.
   """
   @spec changeset(t, location_attrs) :: Ecto.Changeset.t()
   def changeset(location, location_attrs) do

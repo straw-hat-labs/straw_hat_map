@@ -6,7 +6,7 @@ defmodule StrawHat.Map.Country do
 
   use StrawHat.Map.Schema
   alias StrawHat.Map.Continents
-  alias StrawHat.Map.Schema.State
+  alias StrawHat.Map.State
 
   @typedoc """
   - `name`: Name of the country.
@@ -15,7 +15,7 @@ defmodule StrawHat.Map.Country do
   - `iso_numeric`: Numeric ISO code.
   - `has_counties`: Defines if the country has counties.
   - `continent`: Two characters continent code.
-  - `states`: List of `t:StrawHat.Map.Schema.States.t/0` associated with
+  - `states`: List of `t:StrawHat.Map.States.t/0` associated with
   the country.
   """
   @type t :: %__MODULE__{

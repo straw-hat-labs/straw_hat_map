@@ -1,21 +1,19 @@
-defmodule StrawHat.Map.City do
+defmodule StrawHat.Map.Cities do
   @moduledoc """
   Defines functionality for cities management.
   """
 
   use StrawHat.Map.Interactor
-
-  alias StrawHat.Map.Query.CityQuery
-  alias StrawHat.Map.Schema.City
+  alias StrawHat.Map.City
 
   @doc """
-  Get the list of cities.
+  Gets the list of cities.
   """
   @spec get_cities(Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_cities(pagination \\ []), do: Repo.paginate(City, pagination)
 
   @doc """
-  Create a city.
+  Creates a city.
   """
   @spec create_city(City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
   def create_city(city_attrs) do
@@ -25,7 +23,7 @@ defmodule StrawHat.Map.City do
   end
 
   @doc """
-  Update a city.
+  Updates a city.
   """
   @spec update_city(City.t(), City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
   def update_city(%City{} = city, city_attrs) do
@@ -35,13 +33,13 @@ defmodule StrawHat.Map.City do
   end
 
   @doc """
-  Destroy a city.
+  Destroys a city.
   """
   @spec destroy_city(City.t()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
   def destroy_city(%City{} = city), do: Repo.delete(city)
 
   @doc """
-  Get a city by `id`.
+  Gets a city by `id`.
   """
   @spec find_city(String.t()) :: {:ok, City.t()} | {:error, Error.t()}
   def find_city(city_id) do
@@ -56,18 +54,17 @@ defmodule StrawHat.Map.City do
   end
 
   @doc """
-  Get a city by `id`.
+  Gets a city by `id`.
   """
   @spec get_city(String.t()) :: City.t() | nil | no_return
   def get_city(city_id), do: Repo.get(City, city_id)
 
   @doc """
-  Get list of cities.
+  Gets list of cities.
   """
   @spec get_cities_by_ids([integer()]) :: [City.t()] | no_return()
   def get_cities_by_ids(city_ids) do
-    City
-    |> CityQuery.cities_by_ids(city_ids)
-    |> Repo.all()
+    query = from(city in City, where: city.id in ^city_ids)
+    Repo.all(query)
   end
 end

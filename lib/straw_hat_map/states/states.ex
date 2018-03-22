@@ -5,9 +5,9 @@ defmodule StrawHat.Map.State do
 
   use StrawHat.Map.Interactor
 
-  alias StrawHat.Map.Query.{CityQuery, StateQuery}
-  alias StrawHat.Map.Schema.{City, State}
-  alias StrawHat.Map.{County}
+  alias StrawHat.Map.Query.{StateQuery}
+  alias StrawHat.Map.Schema.{State}
+  alias StrawHat.Map.{County, City}
 
   @doc """
   Get the list of states.
@@ -78,16 +78,14 @@ defmodule StrawHat.Map.State do
   """
   @spec get_cities(State.t()) :: [City.t()] | no_return()
   def get_cities(%State{} = state) do
-    City
-    |> CityQuery.cities_by_state(state.id)
-    |> Repo.all()
+    query = from(city in City, where: city.state_id == ^state.id)
+    Repo.all(query)
   end
 
   @spec get_cities([integer()]) :: [City.t()] | no_return()
   def get_cities(state_ids) when is_list(state_ids) do
-    City
-    |> CityQuery.cities_by_states(state_ids)
-    |> Repo.all()
+    query = from(city in City, where: city.state_id in ^state_ids)
+    Repo.all(query)
   end
 
   @doc """

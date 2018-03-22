@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.City do
+defmodule StrawHat.Map.City do
   @moduledoc """
   Represents a City Ecto Schema with functionality about the data validation
   for City.
@@ -52,7 +52,7 @@ defmodule StrawHat.Map.Schema.City do
   end
 
   @doc """
-  Validate the attributes and return a Ecto.Changeset for the current City.
+  Validates the attributes and return a Ecto.Changeset for the current City.
   """
   @spec changeset(t, city_attrs) :: Ecto.Changeset.t()
   def changeset(city, city_attrs) do

@@ -5,14 +5,15 @@ defmodule StrawHat.Map.Address do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{City, Location}
+  alias StrawHat.Map.Schema.{Location}
+  alias StrawHat.Map.{City}
 
   @typedoc """
   - `line_one`: Line one of the address.
   - `line_two`: Line two of the address.
   - `postal_code`: Postal Code or Zipcode of the address.
-  - `city`: `t:StrawHat.Map.Schema.City.t/0` associated with the address.
-  - `city_id`: `id` of `t:StrawHat.Map.Schema.City.t/0` associated with
+  - `city`: `t:StrawHat.Map.City.t/0` associated with the address.
+  - `city_id`: `id` of `t:StrawHat.Map.City.t/0` associated with
   the address.
   - `locations`: List of `t:StrawHat.Map.Schema.Location.t/0` associated with
   the address.

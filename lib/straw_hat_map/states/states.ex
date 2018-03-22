@@ -8,13 +8,13 @@ defmodule StrawHat.Map.States do
   alias StrawHat.Map.{State, County, City}
 
   @doc """
-  Get the list of states.
+  Gets the list of states.
   """
   @spec get_states(Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_states(pagination \\ []), do: Repo.paginate(State, pagination)
 
   @doc """
-  Create a state.
+  Creates a state.
   """
   @spec create_state(State.state_attrs()) :: {:ok, State.t()} | {:error, Ecto.Changeset.t()}
   def create_state(state_attrs) do
@@ -24,7 +24,7 @@ defmodule StrawHat.Map.States do
   end
 
   @doc """
-  Update a state.
+  Updates a state.
   """
   @spec update_state(State.t(), State.state_attrs()) ::
           {:ok, State.t()} | {:error, Ecto.Changeset.t()}
@@ -35,13 +35,13 @@ defmodule StrawHat.Map.States do
   end
 
   @doc """
-  Destroy a state.
+  Destroys a state.
   """
   @spec destroy_state(State.t()) :: {:ok, State.t()} | {:error, Ecto.Changeset.t()}
   def destroy_state(%State{} = state), do: Repo.delete(state)
 
   @doc """
-  Get a state by `id`.
+  Gets a state by `id`.
   """
   @spec find_state(String.t()) :: {:ok, State.t()} | {:error, Error.t()}
   def find_state(state_id) do
@@ -53,13 +53,13 @@ defmodule StrawHat.Map.States do
   end
 
   @doc """
-  Get a state by `id`.
+  Gets a state by `id`.
   """
   @spec get_state(String.t()) :: State.t() | nil | no_return
   def get_state(state_id), do: Repo.get(State, state_id)
 
   @doc """
-  Get list of states.
+  Gets list of states.
   """
   @spec get_states_by_ids([integer()]) :: [State.t()] | no_return()
   def get_states_by_ids(state_ids) do
@@ -68,7 +68,7 @@ defmodule StrawHat.Map.States do
   end
 
   @doc """
-  Get list of cities.
+  Gets list of cities.
   """
   @spec get_cities(State.t()) :: [City.t()] | no_return()
   def get_cities(%State{} = state) do
@@ -83,7 +83,7 @@ defmodule StrawHat.Map.States do
   end
 
   @doc """
-  Get list of counties.
+  Gets list of counties.
   """
   @spec get_counties([integer()]) :: [County.t()] | no_return()
   def get_counties(state_ids) when is_list(state_ids) do

@@ -5,12 +5,13 @@ defmodule StrawHat.Map.Schema.Location do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{Address, Place}
+  alias StrawHat.Map.Schema.{Place}
+  alias StrawHat.Map.{Address}
 
   @typedoc """
   - `location`: the `Geo.Point.t/0` of the location of the Location.
-  - `address`: `t:StrawHat.Map.Schema.Address.t/0` associated with the location.
-  - `address_id`: `id` of `t:StrawHat.Map.Schema.Address.t/0` associated with
+  - `address`: `t:StrawHat.Map.Address.t/0` associated with the location.
+  - `address_id`: `id` of `t:StrawHat.Map.Address.t/0` associated with
   the location.
   - `place`: `t:StrawHat.Map.Schema.Place.t/0` associated with the location.
   """

@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.Address do
+defmodule StrawHat.Map.Address do
   @moduledoc """
   Represents a Address Ecto Schema with functionality about the data validation
   for Address.
@@ -48,7 +48,7 @@ defmodule StrawHat.Map.Schema.Address do
   end
 
   @doc """
-  Validate the attributes and return a Ecto.Changeset for the current Address.
+  Validates the attributes and return a Ecto.Changeset for the current Address.
   """
   @spec changeset(t, address_attrs) :: Ecto.Changeset.t()
   def changeset(address, address_attrs) do

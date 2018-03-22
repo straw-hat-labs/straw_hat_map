@@ -1,21 +1,19 @@
-defmodule StrawHat.Map.Address do
+defmodule StrawHat.Map.Addresses do
   @moduledoc """
   Defines functionality for addresses management.
   """
 
   use StrawHat.Map.Interactor
-
-  alias StrawHat.Map.Query.AddressQuery
-  alias StrawHat.Map.Schema.Address
+  alias StrawHat.Map.Address
 
   @doc """
-  Get the list of addresses.
+  Returns a list of addresses.
   """
   @spec get_addresses(Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_addresses(pagination \\ []), do: Repo.paginate(Address, pagination)
 
   @doc """
-  Create an address.
+  Creates an address.
   """
   @spec create_address(Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
@@ -26,7 +24,7 @@ defmodule StrawHat.Map.Address do
   end
 
   @doc """
-  Update an address.
+  Updates an address.
   """
   @spec update_address(Address.t(), Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
@@ -37,39 +35,35 @@ defmodule StrawHat.Map.Address do
   end
 
   @doc """
-  Destroy an address.
+  Destroys an address.
   """
   @spec destroy_address(Address.t()) :: {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def destroy_address(%Address{} = address), do: Repo.delete(address)
 
   @doc """
-  Get an address by `id`.
+  Gets an address by `id`.
   """
   @spec find_address(String.t()) :: {:ok, Address.t()} | {:error, Error.t()}
   def find_address(address_id) do
-    case get_address(address_id) do
-      nil ->
-        error = Error.new("straw_hat_map.address.not_found", metadata: [address_id: address_id])
-        {:error, error}
-
-      address ->
-        {:ok, address}
-    end
+    address_id
+    |> get_address()
+    |> StrawHat.Response.from_value(
+      Error.new("straw_hat_map.address.not_found", metadata: [address_id: address_id])
+    )
   end
 
   @doc """
-  Get an address by `id`.
+  Gets an address by `id`.
   """
   @spec get_address(String.t()) :: Address.t() | nil | no_return
   def get_address(address_id), do: Repo.get(Address, address_id)
 
   @doc """
-  Get list of addresses.
+  Gets list of addresses.
   """
   @spec get_addresses_by_ids([integer()]) :: [Address.t()] | no_return()
   def get_addresses_by_ids(address_ids) do
-    Address
-    |> AddressQuery.addresses_by_ids(address_ids)
-    |> Repo.all()
+    query = from(address in Address, where: address.id in ^address_ids)
+    Repo.all(query)
   end
 end

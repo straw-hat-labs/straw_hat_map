@@ -5,7 +5,8 @@ defmodule StrawHat.Map.Schema.City do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{County, State, Address}
+  alias StrawHat.Map.Schema.{State}
+  alias StrawHat.Map.{County, Address}
 
   @typedoc """
   - `name`: Name of the city.
@@ -16,7 +17,7 @@ defmodule StrawHat.Map.Schema.City do
   - `county`: `t:StrawHat.Map.County.t/0` associated with the city.
   - `county_id`: `id` of `t:StrawHat.Map.County.t/0` associated with
   the city.
-  - `addresses`: List of `t:StrawHat.Map.Schema.Address.t/0` associated with
+  - `addresses`: List of `t:StrawHat.Map.Address.t/0` associated with
   the city.
   """
   @type t :: %__MODULE__{

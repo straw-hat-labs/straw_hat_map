@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.Country do
+defmodule StrawHat.Map.Country do
   @moduledoc """
   Represents a Country Ecto Schema with functionality about the data validation
   for Country.
@@ -55,7 +55,7 @@ defmodule StrawHat.Map.Schema.Country do
   end
 
   @doc """
-  Validate the attributes and return a Ecto.Changeset for the current Country.
+  Validates the attributes and return a Ecto.Changeset for the current Country.
   """
   @spec changeset(t, country_attrs) :: Ecto.Changeset.t()
   def changeset(country, country_attrs) do

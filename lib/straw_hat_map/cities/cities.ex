@@ -43,14 +43,11 @@ defmodule StrawHat.Map.Cities do
   """
   @spec find_city(String.t()) :: {:ok, City.t()} | {:error, Error.t()}
   def find_city(city_id) do
-    case get_city(city_id) do
-      nil ->
-        error = Error.new("straw_hat_map.city.not_found", metadata: [city_id: city_id])
-        {:error, error}
-
-      city ->
-        {:ok, city}
-    end
+    city_id
+    |> get_city()
+    |> StrawHat.Response.from_value(
+      Error.new("straw_hat_map.city.not_found", metadata: [city_id: city_id])
+    )
   end
 
   @doc """

@@ -1,7 +1,6 @@
-defmodule StrawHat.Map.Test.LocationTest do
+defmodule StrawHat.Map.LocationsTest do
   use StrawHat.Map.Test.DataCase, async: true
-  alias StrawHat.Map.Schema.Location, as: LocationSchema
-  alias StrawHat.Map.Location
+  alias StrawHat.Map.{Locations, Location}
 
   test "get locations by ids" do
     available_locations = insert_list(3, :location)
@@ -11,7 +10,7 @@ defmodule StrawHat.Map.Test.LocationTest do
       |> Enum.take(2)
       |> Enum.map(fn location -> location.id end)
 
-    locations = Location.get_locations_by_ids(ids)
+    locations = Locations.get_locations_by_ids(ids)
 
     assert List.first(locations).id == List.first(ids)
     assert List.last(locations).id == List.last(ids)
@@ -24,7 +23,7 @@ defmodule StrawHat.Map.Test.LocationTest do
           location: %{"type" => "Point", "coordinates" => [-83.550948, 22.3709423]}
         })
 
-      assert %{valid?: true} = LocationSchema.changeset(%LocationSchema{}, location)
+      assert %{valid?: true} = Location.changeset(%Location{}, location)
     end
 
     test "with invalid data" do
@@ -33,7 +32,7 @@ defmodule StrawHat.Map.Test.LocationTest do
           location: %{"type" => "PepePlz"}
         })
 
-      assert %{valid?: false} = LocationSchema.changeset(%LocationSchema{}, invalid_location)
+      assert %{valid?: false} = Location.changeset(%Location{}, invalid_location)
     end
   end
 end

@@ -5,7 +5,8 @@ defmodule StrawHat.Map.Schema.Place do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{Location, Place}
+  alias StrawHat.Map.Schema.{Place}
+  alias StrawHat.Map.{Location}
 
   @typedoc """
   - `name`: Name of the place.
@@ -14,7 +15,7 @@ defmodule StrawHat.Map.Schema.Place do
   on the system.
   - `place_id`: `id` of `t:StrawHat.Map.Schema.Place.t/0` associated with
   the place.
-  - `location`: `t:StrawHat.Map.Schema.Location.t/0` associated with the
+  - `location`: `t:StrawHat.Map.Location.t/0` associated with the
   current location.
   """
   @type t :: %__MODULE__{

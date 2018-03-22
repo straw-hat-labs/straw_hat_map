@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Test.ContinentTest do
+defmodule StrawHat.Map.ContinentsTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Continents
 

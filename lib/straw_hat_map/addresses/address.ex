@@ -5,8 +5,7 @@ defmodule StrawHat.Map.Address do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{Location}
-  alias StrawHat.Map.{City}
+  alias StrawHat.Map.{City, Location}
 
   @typedoc """
   - `line_one`: Line one of the address.
@@ -15,7 +14,7 @@ defmodule StrawHat.Map.Address do
   - `city`: `t:StrawHat.Map.City.t/0` associated with the address.
   - `city_id`: `id` of `t:StrawHat.Map.City.t/0` associated with
   the address.
-  - `locations`: List of `t:StrawHat.Map.Schema.Location.t/0` associated with
+  - `locations`: List of `t:StrawHat.Map.Location.t/0` associated with
   the address.
   """
   @type t :: %__MODULE__{

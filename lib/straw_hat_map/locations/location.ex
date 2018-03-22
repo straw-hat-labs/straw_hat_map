@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.Location do
+defmodule StrawHat.Map.Location do
   @moduledoc """
   Represents a Location Ecto Schema with functionality about the data validation
   for Location.

@@ -13,8 +13,8 @@ defmodule StrawHat.Map.Schema.City do
   - `state`: `t:StrawHat.Map.Schema.State.t/0` associated with the city.
   - `state_id`: `id` of `t:StrawHat.Map.Schema.State.t/0` associated with
   the city.
-  - `county`: `t:StrawHat.Map.Schema.County.t/0` associated with the city.
-  - `county_id`: `id` of `t:StrawHat.Map.Schema.County.t/0` associated with
+  - `county`: `t:StrawHat.Map.County.t/0` associated with the city.
+  - `county_id`: `id` of `t:StrawHat.Map.County.t/0` associated with
   the city.
   - `addresses`: List of `t:StrawHat.Map.Schema.Address.t/0` associated with
   the city.

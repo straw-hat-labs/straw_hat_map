@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Schema.County do
+defmodule StrawHat.Map.County do
   @moduledoc """
   Represents a County Ecto Schema with functionality about the data validation
   for County.
@@ -35,7 +35,7 @@ defmodule StrawHat.Map.Schema.County do
   end
 
   @doc """
-  Validate the attributes and return a Ecto.Changeset for the current County.
+  Validates the attributes and return a Ecto.Changeset for the current County.
   """
   @spec changeset(t, county_attrs) :: Ecto.Changeset.t()
   def changeset(city, county_attrs) do

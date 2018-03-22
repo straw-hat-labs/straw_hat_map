@@ -1,21 +1,21 @@
-defmodule StrawHat.Map.County do
+defmodule StrawHat.Map.Counties do
   @moduledoc """
   Defines functionality for counties management.
   """
 
   use StrawHat.Map.Interactor
-
-  alias StrawHat.Map.Query.{CountyQuery, CityQuery}
-  alias StrawHat.Map.Schema.{County, City}
+  alias StrawHat.Map.Query.{CityQuery}
+  alias StrawHat.Map.Schema.{City}
+  alias StrawHat.Map.{County}
 
   @doc """
-  Get the list of counties.
+  Returns the list of counties.
   """
   @spec get_counties(Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_counties(pagination \\ []), do: Repo.paginate(County, pagination)
 
   @doc """
-  Create a county.
+  Creates a county.
   """
   @spec create_county(County.county_attrs()) :: {:ok, County.t()} | {:error, Ecto.Changeset.t()}
   def create_county(county_attrs) do
@@ -25,7 +25,7 @@ defmodule StrawHat.Map.County do
   end
 
   @doc """
-  Update a county.
+  Updates a county.
   """
   @spec update_county(County.t(), County.county_attrs()) ::
           {:ok, County.t()} | {:error, Ecto.Changeset.t()}
@@ -36,44 +36,40 @@ defmodule StrawHat.Map.County do
   end
 
   @doc """
-  Destroy a county.
+  Destroys a county.
   """
   @spec destroy_county(County.t()) :: {:ok, County.t()} | {:error, Ecto.Changeset.t()}
   def destroy_county(%County{} = county), do: Repo.delete(county)
 
   @doc """
-  Get a county by `id`.
+  Gets a county by `id`.
   """
   @spec find_county(String.t()) :: {:ok, County.t()} | {:error, Error.t()}
   def find_county(county_id) do
-    case get_county(county_id) do
-      nil ->
-        error = Error.new("straw_hat_map.county.not_found", metadata: [county_id: county_id])
-        {:error, error}
-
-      county ->
-        {:ok, county}
-    end
+    county_id
+    |> get_county()
+    |> StrawHat.Response.from_value(
+      Error.new("straw_hat_map.county.not_found", metadata: [county_id: county_id])
+    )
   end
 
   @doc """
-  Get a county by `id`.
+  Gets a county by `id`.
   """
   @spec get_county(String.t()) :: County.t() | nil | no_return
   def get_county(county_id), do: Repo.get(County, county_id)
 
   @doc """
-  Get list of counties.
+  Returns a list of counties.
   """
   @spec get_counties_by_ids([integer()]) :: [County.t()] | no_return()
   def get_counties_by_ids(county_ids) do
-    County
-    |> CountyQuery.counties_by_ids(county_ids)
-    |> Repo.all()
+    query = from(c in County, where: c.id in ^county_ids)
+    Repo.all(query)
   end
 
   @doc """
-  Get list of cities.
+  Return the list of cities from counties.
   """
   @spec get_cities([integer()]) :: [State.t()] | no_return()
   def get_cities(county_ids) when is_list(county_ids) do

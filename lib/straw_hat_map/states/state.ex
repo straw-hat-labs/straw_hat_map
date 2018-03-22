@@ -5,7 +5,8 @@ defmodule StrawHat.Map.Schema.State do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{Country, County, City}
+  alias StrawHat.Map.Schema.{Country, City}
+  alias StrawHat.Map.{County}
 
   @typedoc """
   - `name`: Name of the state.
@@ -14,7 +15,7 @@ defmodule StrawHat.Map.Schema.State do
   state.
   - `country_id`: `id` of `t:StrawHat.Map.Schema.Country.t/0` associated with
   the state.
-  - `counties`: List of `t:StrawHat.Map.Schema.County.t/0` associated with the
+  - `counties`: List of `t:StrawHat.Map.County.t/0` associated with the
   current state.
   - `cities`: List of `t:StrawHat.Map.Schema.City.t/0` associated with the
   current state.

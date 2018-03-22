@@ -1,22 +1,22 @@
-defmodule StrawHat.Map.Test.CountyTest do
+defmodule StrawHat.Map.CountiesTest do
   use StrawHat.Map.Test.DataCase, async: true
-  alias StrawHat.Map.County
+  alias StrawHat.Map.Counties
 
   describe "get county by id" do
     test "with valid id" do
       county = insert(:county)
 
-      assert {:ok, _county} = County.find_county(county.id)
+      assert {:ok, _county} = Counties.find_county(county.id)
     end
 
     test "with invalid id" do
-      assert {:error, _reason} = County.find_county(8745)
+      assert {:error, _reason} = Counties.find_county(8745)
     end
   end
 
   test "get list of counties" do
     insert_list(10, :county)
-    county_page = County.get_counties(%{page: 2, page_size: 5})
+    county_page = Counties.get_counties(%{page: 2, page_size: 5})
 
     assert county_page.total_entries == 10
   end
@@ -24,12 +24,12 @@ defmodule StrawHat.Map.Test.CountyTest do
   test "create a county" do
     params = params_with_assocs(:county)
 
-    assert {:ok, _county} = County.create_county(params)
+    assert {:ok, _county} = Counties.create_county(params)
   end
 
   test "update a county" do
     county = insert(:county)
-    {:ok, county} = County.update_county(county, %{name: "Havana"})
+    {:ok, county} = Counties.update_county(county, %{name: "Havana"})
 
     assert county.name == "Havana"
   end
@@ -37,7 +37,7 @@ defmodule StrawHat.Map.Test.CountyTest do
   test "destroy a county" do
     county = insert(:county)
 
-    assert {:ok, _} = County.destroy_county(county)
+    assert {:ok, _} = Counties.destroy_county(county)
   end
 
   test "list of counties by ids" do
@@ -48,7 +48,7 @@ defmodule StrawHat.Map.Test.CountyTest do
       |> Enum.take(2)
       |> Enum.map(fn county -> county.id end)
 
-    counties = County.get_counties_by_ids(ids)
+    counties = Counties.get_counties_by_ids(ids)
 
     assert List.first(counties).id == List.first(ids)
     assert List.last(counties).id == List.last(ids)
@@ -61,7 +61,7 @@ defmodule StrawHat.Map.Test.CountyTest do
     insert_list(2, :city, %{county_id: List.last(counties).id})
 
     ids = Enum.map(counties, fn county -> county.id end)
-    cities = County.get_cities(ids)
+    cities = Counties.get_cities(ids)
 
     assert length(cities) == 4
   end

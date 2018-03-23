@@ -57,6 +57,7 @@ defmodule StrawHat.Map.Country do
   @doc """
   Validates the attributes and return a Ecto.Changeset for the current Country.
   """
+  @since "1.0.0"
   @spec changeset(t, country_attrs) :: Ecto.Changeset.t()
   def changeset(country, country_attrs) do
     country
@@ -69,6 +70,7 @@ defmodule StrawHat.Map.Country do
     |> validate_inclusion(:continent, @continent_codes)
   end
 
+  @since "1.0.0"
   @spec validate_name(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_name(changeset) do
     changeset
@@ -77,6 +79,7 @@ defmodule StrawHat.Map.Country do
     |> unique_constraint(:name)
   end
 
+  @since "1.0.0"
   @spec validate_iso_two(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_two(changeset) do
     changeset
@@ -86,6 +89,7 @@ defmodule StrawHat.Map.Country do
     |> unique_constraint(:iso_two)
   end
 
+  @since "1.0.0"
   @spec validate_iso_three(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_three(changeset) do
     changeset
@@ -95,6 +99,7 @@ defmodule StrawHat.Map.Country do
     |> unique_constraint(:iso_three)
   end
 
+  @since "1.0.0"
   @spec validate_iso_numeric(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_iso_numeric(changeset) do
     changeset

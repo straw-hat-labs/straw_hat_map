@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
   @name :straw_hat_map
-  @version "0.3.1"
+  @version "1.0.0"
   @elixir_version "~> 1.5"
 
   @description """
@@ -107,7 +107,7 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Addresses
         ],
         Schemas: [
-          StrawHat.Map.Schema.Continent,
+          StrawHat.Map.Continent,
           StrawHat.Map.Country,
           StrawHat.Map.State,
           StrawHat.Map.County,

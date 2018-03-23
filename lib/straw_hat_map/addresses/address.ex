@@ -50,6 +50,7 @@ defmodule StrawHat.Map.Address do
   @doc """
   Validates the attributes and return a Ecto.Changeset for the current Address.
   """
+  @since "1.0.0"
   @spec changeset(t, address_attrs) :: Ecto.Changeset.t()
   def changeset(address, address_attrs) do
     address

@@ -4,7 +4,6 @@ defmodule StrawHat.Map.States do
   """
 
   use StrawHat.Map.Interactor
-  alias StrawHat.Map.Query.{StateQuery}
   alias StrawHat.Map.{State, County, City}
 
   @doc """

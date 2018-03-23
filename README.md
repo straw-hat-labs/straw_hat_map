@@ -1,5 +1,9 @@
 # StrawHat.Map
 
+[![Build Status](https://travis-ci.org/straw-hat-team/straw_hat_map.svg?branch=master)](https://travis-ci.org/straw-hat-team/straw_hat_map)
+[![codecov](https://codecov.io/gh/straw-hat-team/straw_hat_map/branch/master/graph/badge.svg)](https://codecov.io/gh/straw-hat-team/straw_hat_map)
+[![Inline docs](http://inch-ci.org/github/straw-hat-team/straw_hat_map.svg)](http://inch-ci.org/github/straw-hat-team/straw_hat_map)
+
 Application for Addresses and Map information management.
 
 ## Installation

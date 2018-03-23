@@ -10,6 +10,7 @@ addons:
 
 before_script:
   - psql -c 'create database straw_hat_map_test;' -U postgres
+  - psql -U postgres -c "create extension postgis"
 script:
   - make testing
 after_script:

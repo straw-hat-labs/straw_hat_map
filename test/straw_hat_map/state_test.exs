@@ -2,49 +2,47 @@ defmodule StrawHat.Map.StatesTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.States
 
-  describe "get state by id" do
-    test "with valid id" do
+  describe "find_state/1" do
+    test "with valid id should returns the found state" do
       state = insert(:state)
 
       assert {:ok, _state} = States.find_state(state.id)
     end
 
-    test "with invalid id" do
+    test "with invalid id shouldn't return any state" do
       assert {:error, _reason} = States.find_state(8745)
     end
   end
 
-  test "get list of states" do
+  test "get_states/1 returns a pagination of states" do
     insert_list(10, :state)
     state_page = States.get_states(%{page: 2, page_size: 5})
 
     assert state_page.total_entries == 10
   end
 
-  describe "create a state" do
-    test "with valid case" do
-      country = insert(:country)
-      params = params_for(:state, %{country_id: country.id})
+  test "create_state/1 with valid inputs creates an state" do
+    country = insert(:country)
+    params = params_for(:state, %{country_id: country.id})
 
-      assert {:ok, _state} = States.create_state(params)
-      assert {:error, _state} = States.create_state(params)
-    end
+    assert {:ok, _state} = States.create_state(params)
+    assert {:error, _state} = States.create_state(params)
   end
 
-  test "update a state" do
+  test "update_state/2 with valid inputs updates the state" do
     state = insert(:state)
     {:ok, state} = States.update_state(state, %{name: "Havana"})
 
     assert state.name == "Havana"
   end
 
-  test "destroy a state" do
+  test "destroy_state/1 with a found state destroys the state" do
     state = insert(:state)
 
     assert {:ok, _} = States.destroy_state(state)
   end
 
-  test "list of states by ids" do
+  test "get_states_by_ids/1 with a list of IDs returns the relative states" do
     available_states = insert_list(3, :state)
 
     ids =
@@ -58,7 +56,7 @@ defmodule StrawHat.Map.StatesTest do
     assert List.last(states).id == List.last(ids)
   end
 
-  test "list of cities" do
+  test "get_cities/1 returns the list of cities from the state" do
     state = insert(:state)
     insert_list(3, :city, %{state: state})
     cities = States.get_cities(state)
@@ -66,7 +64,7 @@ defmodule StrawHat.Map.StatesTest do
     assert length(cities) == 3
   end
 
-  test "list of cities by state ids" do
+  test "get_cities/1 returns the list of cities from a list of state IDs" do
     states = insert_list(2, :state)
 
     insert_list(2, :city, %{state: List.first(states)})
@@ -78,7 +76,7 @@ defmodule StrawHat.Map.StatesTest do
     assert length(cities) == 4
   end
 
-  test "list of counties by state ids" do
+  test "get_counties/1 returns the list of counties from a list of state IDs" do
     states = insert_list(2, :state)
 
     insert_list(2, :county, %{state: List.first(states)})

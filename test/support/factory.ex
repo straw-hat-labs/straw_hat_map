@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.Test.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
-  alias StrawHat.Map.Schema.{Place}
   alias StrawHat.Map.{Country, Continents, County, Address, City, Location, State}
 
   def country_factory do
@@ -53,9 +52,5 @@ defmodule StrawHat.Map.Test.Factory do
       location: %Geo.Point{coordinates: {-83.550948, 22.3709423}},
       address: build(:address)
     }
-  end
-
-  def place_factory do
-    %Place{name: Faker.String.base64(4), owner_id: "1", location: build(:location)}
   end
 end

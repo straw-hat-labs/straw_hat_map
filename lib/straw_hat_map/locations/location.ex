@@ -5,21 +5,18 @@ defmodule StrawHat.Map.Location do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.Schema.{Place}
-  alias StrawHat.Map.{Address}
+  alias StrawHat.Map.Address
 
   @typedoc """
   - `location`: the `Geo.Point.t/0` of the location of the Location.
   - `address`: `t:StrawHat.Map.Address.t/0` associated with the location.
   - `address_id`: `id` of `t:StrawHat.Map.Address.t/0` associated with
   the location.
-  - `place`: `t:StrawHat.Map.Schema.Place.t/0` associated with the location.
   """
   @type t :: %__MODULE__{
           location: Geo.Point.t(),
           address_id: String.t(),
-          address: Address.t() | Ecto.Association.NotLoaded.t(),
-          place: Place.t() | Ecto.Association.NotLoaded.t()
+          address: Address.t() | Ecto.Association.NotLoaded.t()
         }
 
   @typedoc """
@@ -37,7 +34,6 @@ defmodule StrawHat.Map.Location do
   schema "locations" do
     field(:location, Geo.Point)
     belongs_to(:address, Address)
-    has_one(:place, Place)
   end
 
   @doc """

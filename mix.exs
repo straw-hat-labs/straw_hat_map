@@ -103,8 +103,7 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Counties,
           StrawHat.Map.Cities,
           StrawHat.Map.Locations,
-          StrawHat.Map.Addresses,
-          StrawHat.Map.Places
+          StrawHat.Map.Addresses
         ],
         Schemas: [
           StrawHat.Map.Schema.Continent,
@@ -113,8 +112,7 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.County,
           StrawHat.Map.City,
           StrawHat.Map.Location,
-          StrawHat.Map.Address,
-          StrawHat.Map.Schema.Place
+          StrawHat.Map.Address
         ]
       ]
     ]

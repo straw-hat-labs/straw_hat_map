@@ -2,19 +2,19 @@ defmodule StrawHat.Map.CountriesTest do
   use StrawHat.Map.Test.DataCase, async: true
   alias StrawHat.Map.Countries
 
-  describe "get country by id" do
-    test "with valid id" do
+  describe "find_country/1" do
+    test "with valid id should find the country" do
       country = insert(:country)
 
       assert {:ok, _country} = Countries.find_country(country.id)
     end
 
-    test "with invalid id" do
+    test "with invalid id shouldn't find the country" do
       assert {:error, _reason} = Countries.find_country(8745)
     end
   end
 
-  test "get list of countries" do
+  test "get_countries/1 returns a pagination of countries" do
     insert_list(6, :country)
     country_page = Countries.get_countries(%{page: 2, page_size: 5})
 
@@ -22,7 +22,7 @@ defmodule StrawHat.Map.CountriesTest do
     assert length(country_page.entries) == 1
   end
 
-  test "get list of countries by ids" do
+  test "get_countries_by_ids/1 with a list of IDs returns the relative countries" do
     available_countries = insert_list(3, :country)
 
     ids =
@@ -36,26 +36,26 @@ defmodule StrawHat.Map.CountriesTest do
     assert List.last(countries).id == List.last(ids)
   end
 
-  test "create a country" do
+  test "create_country/1 with valid inputs creates a country" do
     params = params_for(:country)
 
     assert {:ok, _country} = Countries.create_country(params)
   end
 
-  test "update a country" do
+  test "update_country/2 with valid inputs updates the country" do
     country = insert(:country)
     {:ok, country} = Countries.update_country(country, %{name: "Cuba"})
 
     assert country.name == "Cuba"
   end
 
-  test "destroy a country" do
+  test "destroy_country/1 with a found country destroys the country" do
     country = insert(:country)
 
     assert {:ok, _} = Countries.destroy_country(country)
   end
 
-  test "get list of states by country ids" do
+  test "get_states/1 with a list of country IDs returns the relative states" do
     countries = insert_list(2, :country)
 
     insert_list(2, :state, %{country: List.first(countries)})

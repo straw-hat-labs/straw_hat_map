@@ -56,5 +56,27 @@ defmodule StrawHat.Map.Address do
     |> cast(address_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> assoc_constraint(:city)
+    |> validate_postal_code()
+  end
+
+  @spec validate_postal_code(Ecto.Changeset.t()) :: Ecto.Changeset.t()
+  defp validate_postal_code(changeset) do
+    rule =
+      get_field(changeset, :city_id)
+      |> get_postal_code_rule()
+
+    changeset
+    |> validate_format(:postal_code, rule)
+  end
+
+  @spec get_postal_code_rule(Integer.t()) :: City.t() | nil | no_return
+  defp get_postal_code_rule(city) do
+    %City{state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}} =
+      StrawHat.Map.Repo.get!(City, city)
+      |> StrawHat.Map.Repo.preload([state: :country])
+    case rule do
+      nil -> ~r/^\w+[ -]?\w+$/
+      _ -> rule
+    end
   end
 end

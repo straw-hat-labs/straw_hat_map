@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
   @name :straw_hat_map
-  @version "0.3.1"
+  @version "1.0.0"
   @elixir_version "~> 1.5"
 
   @description """
@@ -60,7 +60,8 @@ defmodule StrawHat.Map.Mixfile do
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:excoveralls, ">= 0.0.0", only: [:test], runtime: false},
-      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
+      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false},
+      {:inch_ex, ">= 0.0.0", only: [:dev], runtime: false}
     ]
   end
 
@@ -103,18 +104,16 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Counties,
           StrawHat.Map.Cities,
           StrawHat.Map.Locations,
-          StrawHat.Map.Addresses,
-          StrawHat.Map.Places
+          StrawHat.Map.Addresses
         ],
         Schemas: [
-          StrawHat.Map.Schema.Continent,
+          StrawHat.Map.Continent,
           StrawHat.Map.Country,
           StrawHat.Map.State,
           StrawHat.Map.County,
           StrawHat.Map.City,
           StrawHat.Map.Location,
-          StrawHat.Map.Address,
-          StrawHat.Map.Schema.Place
+          StrawHat.Map.Address
         ]
       ]
     ]

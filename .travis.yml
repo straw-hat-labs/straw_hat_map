@@ -1,0 +1,25 @@
+language: elixir
+sudo: required
+
+elixir:
+  - 1.6.4
+otp_release:
+  - 20.2
+addons:
+  postgresql: 9.6
+
+before_script:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y postgresql-9.6-postgis-2.4
+  - psql -c 'create database straw_hat_map_test;' -U postgres
+  - psql -U postgres -c "create extension postgis"
+script:
+  - make testing
+after_script:
+  - make docs
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  recipients:
+    - engineers@straw-hat-llc.com

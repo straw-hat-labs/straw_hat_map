@@ -51,6 +51,7 @@ defmodule StrawHat.Map.State do
   @doc """
   Validates the attributes and return a Ecto.Changeset for the current State.
   """
+  @since "1.0.0"
   @spec changeset(t, state_attrs) :: Ecto.Changeset.t()
   def changeset(state, state_attrs) do
     state

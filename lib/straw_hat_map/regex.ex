@@ -1,27 +1,30 @@
 defmodule StrawHat.Map.Regex do
+  @moduledoc """
+  Adds regular expressions as a custom Ecto Type
+  """
+
   @behaviour Ecto.Type
   def type, do: :string
 
+  @doc """
+  Cast regular expressions into strings
+  """
   @spec cast(Regex.t) :: {:ok, String.t} | :error
   def cast(regex) do
     case Regex.regex?(regex) do
       true -> {:ok, Regex.source(regex)}
       false -> :error
-    end  
+    end
   end
 
+  @doc """
+  Loads the stored data as a regular expression
+  """
   @spec load(String.t) :: {:ok, Regex.t} | :error
   def load(regex) when is_binary(regex) do
     Regex.compile(regex)
   end
 
-  @doc """
-  When dumping data to the database, we *expect* our casted type as a string
-    iex> Regex.dump("foo")
-    {:ok, "foo"}
-    iex> Regex.dump(1)
-    :error
-  """
   @spec dump(String.t) :: {:ok, String.t} | :error
   def dump(regex) when is_binary(regex), do: {:ok, regex}
   def dump(_), do: :error

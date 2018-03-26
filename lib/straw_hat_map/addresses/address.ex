@@ -62,14 +62,14 @@ defmodule StrawHat.Map.Address do
   @spec validate_postal_code(Ecto.Changeset.t()) :: Ecto.Changeset.t()
   defp validate_postal_code(changeset) do
     rule =
-      get_field(changeset, :city_id)
+      changeset
+      |> get_field(:city_id)
       |> get_postal_code_rule()
 
-    changeset
-    |> validate_format(:postal_code, rule)
+    validate_format(changeset, :postal_code, rule)
   end
 
-  @spec get_postal_code_rule(Integer.t()) :: City.t() | nil | no_return
+  @spec get_postal_code_rule(Integer.t()) :: Regex.t()
   defp get_postal_code_rule(city) do
     %City{state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}} =
       StrawHat.Map.Repo.get!(City, city)

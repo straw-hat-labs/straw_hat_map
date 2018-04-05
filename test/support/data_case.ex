@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Test.DataCase do
+  @moduledoc false
+
   use ExUnit.CaseTemplate
 
   using do

@@ -82,7 +82,7 @@ defmodule StrawHat.Map.Addresses do
   defp get_postal_code_rule(city_id) do
     %StrawHat.Map.City{state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}} =
       city_id
-      |> StrawHat.Map.Cities.get_city()  
+      |> StrawHat.Map.Cities.get_city()
       |> StrawHat.Map.Repo.preload([state: :country])
     case rule do
       nil -> ~r/^\w+[ -]?\w+$/

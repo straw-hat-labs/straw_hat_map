@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Test.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
   alias StrawHat.Map.{Country, Continents, County, Address, City, Location, State}

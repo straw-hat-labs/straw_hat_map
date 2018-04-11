@@ -7,7 +7,7 @@ defmodule StrawHat.Map.Country do
   use StrawHat.Map.Schema
   alias StrawHat.Map.{Continents, State}
   alias StrawHat.Map.Ecto.Regex
-  
+
   @typedoc """
   - `name`: Name of the country.
   - `iso_two`: Two characters ISO code.

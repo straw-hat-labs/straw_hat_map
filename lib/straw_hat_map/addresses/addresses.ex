@@ -81,7 +81,8 @@ defmodule StrawHat.Map.Addresses do
   @spec get_postal_code_rule(Integer.t()) :: Regex.t()
   defp get_postal_code_rule(city_id) do
     %StrawHat.Map.City{state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}} =
-      StrawHat.Map.Repo.get!(City, city_id)
+      city_id
+      |> StrawHat.Map.Cities.get_city()  
       |> StrawHat.Map.Repo.preload([state: :country])
     case rule do
       nil -> ~r/^\w+[ -]?\w+$/

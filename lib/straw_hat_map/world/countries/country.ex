@@ -5,11 +5,8 @@ defmodule StrawHat.Map.Country do
   """
 
   use StrawHat.Map.Schema
-  alias StrawHat.Map.{
-    Continents,
-    State,
-    Regex
-  }
+  alias StrawHat.Map.{Continents, State}
+  alias StrawHat.Map.Ecto.Regex
   
   @typedoc """
   - `name`: Name of the country.
@@ -20,7 +17,7 @@ defmodule StrawHat.Map.Country do
   - `continent`: Two characters continent code.
   - `states`: List of `t:StrawHat.Map.States.t/0` associated with
   the country.
-  - `postal_code_rule`: A regular expression that specifies valid postal code.
+  - `postal_code_rule`: A regular expression that specifies a valid postal code.
   """
   @type t :: %__MODULE__{
           name: String.t(),

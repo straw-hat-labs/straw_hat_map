@@ -20,8 +20,10 @@ defmodule StrawHat.Map.Addresses do
   @spec create_address(Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def create_address(address_attrs) do
+    rule = get_postal_code_rule(address_attrs.city_id)
+
     %Address{}
-    |> Address.changeset(address_attrs)
+    |> Address.changeset(address_attrs, [postal_code_rule: rule])
     |> Repo.insert()
   end
 
@@ -32,8 +34,10 @@ defmodule StrawHat.Map.Addresses do
   @spec update_address(Address.t(), Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def update_address(%Address{} = address, address_attrs) do
+    rule = get_postal_code_rule(address.city_id)
+
     address
-    |> Address.changeset(address_attrs)
+    |> Address.changeset(address_attrs, [postal_code_rule: rule])
     |> Repo.update()
   end
 
@@ -72,5 +76,16 @@ defmodule StrawHat.Map.Addresses do
   def get_addresses_by_ids(address_ids) do
     query = from(address in Address, where: address.id in ^address_ids)
     Repo.all(query)
+  end
+
+  @spec get_postal_code_rule(Integer.t()) :: Regex.t()
+  defp get_postal_code_rule(city_id) do
+    %StrawHat.Map.City{state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}} =
+      StrawHat.Map.Repo.get!(City, city_id)
+      |> StrawHat.Map.Repo.preload([state: :country])
+    case rule do
+      nil -> ~r/^\w+[ -]?\w+$/
+      _ -> rule
+    end
   end
 end

@@ -23,7 +23,7 @@ defmodule StrawHat.Map.Addresses do
     rule = get_postal_code_rule(address_attrs.city_id)
 
     %Address{}
-    |> Address.changeset(address_attrs, postal_code_rule: rule)
+    |> Address.changeset(address_attrs, [postal_code_rule: rule])
     |> Repo.insert()
   end
 
@@ -37,7 +37,7 @@ defmodule StrawHat.Map.Addresses do
     rule = get_postal_code_rule(address.city_id)
 
     address
-    |> Address.changeset(address_attrs, postal_code_rule: rule)
+    |> Address.changeset(address_attrs, [postal_code_rule: rule])
     |> Repo.update()
   end
 

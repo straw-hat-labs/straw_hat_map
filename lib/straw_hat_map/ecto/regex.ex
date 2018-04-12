@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Ecto.Regex do
   @doc """
   Cast regular expressions into strings
   """
-  @spec cast(Regex.t) :: {:ok, String.t} | :error
+  @spec cast(Regex.t()) :: {:ok, String.t()} | :error
   def cast(regex) do
     case Regex.regex?(regex) do
       true -> {:ok, Regex.source(regex)}
@@ -20,12 +20,12 @@ defmodule StrawHat.Map.Ecto.Regex do
   @doc """
   Loads the stored data as a regular expression
   """
-  @spec load(String.t) :: {:ok, Regex.t} | :error
+  @spec load(String.t()) :: {:ok, Regex.t()} | :error
   def load(regex) when is_binary(regex) do
     Regex.compile(regex)
   end
 
-  @spec dump(String.t) :: {:ok, String.t} | :error
+  @spec dump(String.t()) :: {:ok, String.t()} | :error
   def dump(regex) when is_binary(regex), do: {:ok, regex}
   def dump(_), do: :error
 end

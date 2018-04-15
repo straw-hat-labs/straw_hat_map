@@ -3,10 +3,6 @@ defmodule StrawHat.Map.EctoRegexTest do
   alias StrawHat.Map.Ecto.Regex
 
   describe "cast/1" do
-    test "with a regex value" do
-      assert {:ok, _value} = Regex.cast(~r/\d/)
-    end
-
     test "with a string value" do
       assert {:ok, _value} = Regex.cast("\\d")
     end

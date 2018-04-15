@@ -11,9 +11,10 @@ defmodule StrawHat.Map.Ecto.Regex do
   """
   @spec cast(Regex.t()) :: {:ok, String.t()} | :error
   def cast(regex) do
-    case Regex.regex?(regex) do
-      true -> {:ok, Regex.source(regex)}
-      false -> :error
+    if Regex.regex?(regex) do
+      {:ok, Regex.source(regex)}
+    else
+      :error
     end
   end
 
@@ -24,6 +25,7 @@ defmodule StrawHat.Map.Ecto.Regex do
   def load(regex) when is_binary(regex) do
     Regex.compile(regex)
   end
+  def load(_), do: :error
 
   @spec dump(String.t()) :: {:ok, String.t()} | :error
   def dump(regex) when is_binary(regex), do: {:ok, regex}

@@ -7,6 +7,10 @@ defmodule StrawHat.Map.EctoRegexTest do
       assert {:ok, _value} = Regex.cast(~r/\d/)
     end
 
+    test "with a string value" do
+      assert {:ok, _value} = Regex.cast("\\d")
+    end
+
     test "with a non-regex value" do
       assert :error = Regex.cast(:atom)
     end

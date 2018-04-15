@@ -6,6 +6,8 @@ defmodule StrawHat.Map.Addresses do
   use StrawHat.Map.Interactor
   alias StrawHat.Map.Address
 
+  @default_postal_code_rule ~r/^\w+[ -]?\w+$/
+
   @doc """
   Returns a list of addresses.
   """
@@ -88,7 +90,7 @@ defmodule StrawHat.Map.Addresses do
       |> StrawHat.Map.Repo.preload(state: :country)
 
     case rule do
-      nil -> ~r/^\w+[ -]?\w+$/
+      nil -> @default_postal_code_rule
       _ -> rule
     end
   end

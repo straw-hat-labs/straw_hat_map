@@ -45,7 +45,7 @@ defmodule StrawHat.Map.Country do
 
   @continent_codes Continents.get_continent_codes()
   @required_fields ~w(name iso_two iso_three iso_numeric continent)a
-  @optional_fields ~w(has_counties)a
+  @optional_fields ~w(has_counties postal_code_rule)a
 
   schema "countries" do
     field(:name, :string)
@@ -54,8 +54,8 @@ defmodule StrawHat.Map.Country do
     field(:iso_numeric, :string)
     field(:continent, :string)
     field(:has_counties, :boolean)
-    has_many(:states, State)
     field(:postal_code_rule, Regex)
+    has_many(:states, State)
   end
 
   @doc """

@@ -8,7 +8,7 @@ defmodule StrawHat.Map.Ecto.Regex do
   def type, do: :string
 
   @since "1.1.0"
-  @spec cast(String.t) :: {:ok, String.t()} | :error
+  @spec cast(String.t()) :: {:ok, String.t()} | :error
   def cast(value) when is_binary(value) do
     case Regex.compile(value) do
       {:ok, _} -> {:ok, value}

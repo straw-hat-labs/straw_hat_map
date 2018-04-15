@@ -4,9 +4,7 @@ defmodule StrawHat.Map.Addresses do
   """
 
   use StrawHat.Map.Interactor
-  alias StrawHat.Map.Address
-
-  @default_postal_code_rule ~r/^\w+[ -]?\w+$/
+  alias StrawHat.Map.{Address, Cities}
 
   @doc """
   Returns a list of addresses.
@@ -22,10 +20,12 @@ defmodule StrawHat.Map.Addresses do
   @spec create_address(Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def create_address(address_attrs) do
-    rule = get_postal_code_rule(address_attrs.city_id)
+    opts = [
+      postal_code_rule: Cities.get_postal_code_rule(address_attrs.city_id)
+    ]
 
     %Address{}
-    |> Address.changeset(address_attrs, postal_code_rule: rule)
+    |> Address.changeset(address_attrs, opts)
     |> Repo.insert()
   end
 
@@ -36,10 +36,14 @@ defmodule StrawHat.Map.Addresses do
   @spec update_address(Address.t(), Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def update_address(%Address{} = address, address_attrs) do
-    rule = get_postal_code_rule(address.city_id)
+    city_id = Map.get(address_attrs, :city_id, address_attrs.city_id)
+
+    opts = [
+      postal_code_rule: Cities.get_postal_code_rule(city_id)
+    ]
 
     address
-    |> Address.changeset(address_attrs, postal_code_rule: rule)
+    |> Address.changeset(address_attrs, opts)
     |> Repo.update()
   end
 
@@ -78,20 +82,5 @@ defmodule StrawHat.Map.Addresses do
   def get_addresses_by_ids(address_ids) do
     query = from(address in Address, where: address.id in ^address_ids)
     Repo.all(query)
-  end
-
-  @spec get_postal_code_rule(Integer.t()) :: Regex.t()
-  defp get_postal_code_rule(city_id) do
-    %StrawHat.Map.City{
-      state: %StrawHat.Map.State{country: %StrawHat.Map.Country{postal_code_rule: rule}}
-    } =
-      city_id
-      |> StrawHat.Map.Cities.get_city()
-      |> StrawHat.Map.Repo.preload(state: :country)
-
-    case rule do
-      nil -> @default_postal_code_rule
-      _ -> rule
-    end
   end
 end

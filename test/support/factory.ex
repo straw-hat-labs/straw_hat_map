@@ -15,8 +15,8 @@ defmodule StrawHat.Map.Test.Factory do
 
     %Country{
       name: Faker.String.base64(10),
-      iso_two: Faker.String.base64(2),
-      iso_three: Faker.String.base64(3),
+      iso_two: Faker.format("??"),
+      iso_three: Faker.format("???"),
       iso_numeric: iso_numeric,
       has_counties: true,
       continent: continent

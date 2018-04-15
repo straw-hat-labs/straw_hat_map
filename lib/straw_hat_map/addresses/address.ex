@@ -7,6 +7,8 @@ defmodule StrawHat.Map.Address do
   use StrawHat.Map.Schema
   alias StrawHat.Map.{City, Location}
 
+  @default_postal_code_rule ~r/^\w+[ -]?\w+$/
+
   @typedoc """
   - `line_one`: Line one of the address.
   - `line_two`: Line two of the address.
@@ -52,11 +54,26 @@ defmodule StrawHat.Map.Address do
   """
   @since "1.0.0"
   @spec changeset(t, address_attrs, Keyword.t()) :: Ecto.Changeset.t()
-  def changeset(address, address_attrs, opts) do
+  def changeset(address, address_attrs, opts \\ []) do
     address
     |> cast(address_attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> assoc_constraint(:city)
-    |> validate_format(:postal_code, opts[:postal_code_rule])
+    |> validate_format(:postal_code, get_postal_code_rule(opts))
   end
+
+  @doc false
+  @since "1.1.0"
+  @spec get_postal_code_rule(Keyword.t()) :: Regex.t()
+  def get_postal_code_rule(opts) do
+    case Keyword.get(opts, :postal_code_rule) do
+      nil -> @default_postal_code_rule
+      value -> value
+    end
+  end
+
+  @doc false
+  @since "1.1.0"
+  @spec default_postal_code_rule :: Regex.t()
+  def default_postal_code_rule, do: @default_postal_code_rule
 end

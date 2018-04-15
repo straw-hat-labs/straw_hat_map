@@ -71,4 +71,18 @@ defmodule StrawHat.Map.Cities do
     query = from(city in City, where: city.id in ^city_ids)
     Repo.all(query)
   end
+
+  @doc """
+  Returns the postal code rule of the associated country.
+  """
+  @since "1.1.0"
+  @spec get_postal_code_rule(Integer.t()) :: Regex.t() | nil
+  def get_postal_code_rule(city_id) do
+    city_id
+    |> get_city()
+    |> Repo.preload(state: :country)
+    |> Map.get(:state)
+    |> Map.get(:country)
+    |> Map.get(:postal_code_rule)
+  end
 end

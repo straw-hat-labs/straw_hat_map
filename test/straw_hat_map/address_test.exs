@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.AddressesTest do
   use StrawHat.Map.Test.DataCase, async: true
-  alias StrawHat.Map.Addresses
+  alias StrawHat.Map.{Addresses, Address, Countries}
 
   describe "find_address/1" do
     test "with valid id should returns the found address" do
@@ -27,8 +27,14 @@ defmodule StrawHat.Map.AddressesTest do
   end
 
   test "update_address/2 with valid inputs updates the address" do
+    new_city = insert(:city)
     address = insert(:address)
-    {:ok, address} = Addresses.update_address(address, %{line_two: "PO BOX 123"})
+
+    {:ok, address} =
+      Addresses.update_address(address, %{
+        line_two: "PO BOX 123",
+        city_id: new_city.id
+      })
 
     assert address.line_two == "PO BOX 123"
   end
@@ -51,5 +57,36 @@ defmodule StrawHat.Map.AddressesTest do
 
     assert List.first(addresses).id == List.first(ids)
     assert List.last(addresses).id == List.last(ids)
+  end
+
+  describe "postal code validations" do
+    test "with country postal code value" do
+      city = insert(:city)
+
+      {:ok, _country} =
+        Countries.update_country(city.state.country, %{
+          postal_code_rule: "/\\d/"
+        })
+
+      params = params_with_assocs(:address, %{postal_code: "pepeHands"})
+      assert {:ok, _address} = Addresses.create_address(params)
+    end
+
+    test "with nil postal code value" do
+      city = insert(:city)
+
+      {:ok, _country} =
+        Countries.update_country(city.state.country, %{
+          postal_code_rule: "/\\d/"
+        })
+
+      params = params_with_assocs(:address, %{postal_code: "pepeHands"})
+      assert {:ok, _address} = Addresses.create_address(params)
+    end
+  end
+
+  test "Address.get_postal_code_rule/1" do
+    assert Address.default_postal_code_rule() == Address.get_postal_code_rule([])
+    assert 123 == Address.get_postal_code_rule(postal_code_rule: 123)
   end
 end

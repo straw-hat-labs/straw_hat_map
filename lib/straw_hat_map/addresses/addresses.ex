@@ -20,12 +20,13 @@ defmodule StrawHat.Map.Addresses do
   @spec create_address(Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def create_address(address_attrs) do
-    opts = [
-      postal_code_rule: Cities.get_postal_code_rule(address_attrs.city_id)
-    ]
+    postal_code_rule =
+      address_attrs
+      |> Map.get(:city_id)
+      |> Cities.get_postal_code_rule()
 
     %Address{}
-    |> Address.changeset(address_attrs, opts)
+    |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
     |> Repo.insert()
   end
 
@@ -36,14 +37,13 @@ defmodule StrawHat.Map.Addresses do
   @spec update_address(Address.t(), Address.address_attrs()) ::
           {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
   def update_address(%Address{} = address, address_attrs) do
-    city_id = Map.get(address_attrs, :city_id, address_attrs.city_id)
-
-    opts = [
-      postal_code_rule: Cities.get_postal_code_rule(city_id)
-    ]
+    postal_code_rule =
+      address_attrs
+      |> Map.get(:city_id, address_attrs.city_id)
+      |> Cities.get_postal_code_rule()
 
     address
-    |> Address.changeset(address_attrs, opts)
+    |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
     |> Repo.update()
   end
 

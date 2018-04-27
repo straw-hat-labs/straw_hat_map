@@ -32,7 +32,7 @@ defmodule StrawHat.Map.Location do
   @optional_fields ~w(location address_id)a
 
   schema "locations" do
-    field(:location, Geo.Point)
+    field(:location, Geo.PostGIS.Geometry)
     belongs_to(:address, Address)
   end
 

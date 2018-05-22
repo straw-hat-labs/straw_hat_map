@@ -50,7 +50,7 @@ defmodule StrawHat.Map.Cities do
   def find_city(city_id) do
     city_id
     |> get_city()
-    |> StrawHat.Response.from_value(
+    |> Response.from_value(
       Error.new("straw_hat_map.city.not_found", metadata: [city_id: city_id])
     )
   end

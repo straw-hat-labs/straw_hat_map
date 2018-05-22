@@ -51,7 +51,7 @@ defmodule StrawHat.Map.States do
   def find_state(state_id) do
     state_id
     |> get_state()
-    |> StrawHat.Response.from_value(
+    |> Response.from_value(
       Error.new("straw_hat_map.state.not_found", metadata: [state_id: state_id])
     )
   end

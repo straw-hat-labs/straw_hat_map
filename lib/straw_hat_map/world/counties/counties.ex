@@ -51,7 +51,7 @@ defmodule StrawHat.Map.Counties do
   def find_county(county_id) do
     county_id
     |> get_county()
-    |> StrawHat.Response.from_value(
+    |> Response.from_value(
       Error.new("straw_hat_map.county.not_found", metadata: [county_id: county_id])
     )
   end

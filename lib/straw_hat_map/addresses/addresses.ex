@@ -62,7 +62,7 @@ defmodule StrawHat.Map.Addresses do
   def find_address(address_id) do
     address_id
     |> get_address()
-    |> StrawHat.Response.from_value(
+    |> Response.from_value(
       Error.new("straw_hat_map.address.not_found", metadata: [address_id: address_id])
     )
   end

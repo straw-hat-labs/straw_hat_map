@@ -52,7 +52,7 @@ defmodule StrawHat.Map.Countries do
   def find_country(country_id) do
     country_id
     |> get_country()
-    |> StrawHat.Response.from_value(
+    |> Response.from_value(
       Error.new("straw_hat_map.country.not_found", metadata: [country_id: country_id])
     )
   end

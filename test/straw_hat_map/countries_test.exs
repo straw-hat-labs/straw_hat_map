@@ -10,7 +10,7 @@ defmodule StrawHat.Map.CountriesTest do
     end
 
     test "with invalid id shouldn't find the country" do
-      assert {:error, _reason} = Countries.find_country(8745)
+      assert {:error, _reason} = Ecto.UUID.generate() |> Countries.find_country()
     end
   end
 

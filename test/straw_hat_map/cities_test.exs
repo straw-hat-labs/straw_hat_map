@@ -10,7 +10,7 @@ defmodule StrawHat.Map.CitiesTest do
     end
 
     test "with invalid id shouldn't find the city" do
-      assert {:error, _reason} = Cities.find_city(8745)
+      assert {:error, _reason} = Ecto.UUID.generate() |> Cities.find_city()
     end
   end
 

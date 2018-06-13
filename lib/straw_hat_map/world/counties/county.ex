@@ -32,6 +32,7 @@ defmodule StrawHat.Map.County do
   schema "counties" do
     field(:name, :string)
     belongs_to(:state, State)
+    timestamps()
   end
 
   @doc """

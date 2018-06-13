@@ -47,6 +47,7 @@ defmodule StrawHat.Map.Address do
     field(:postal_code, :string)
     belongs_to(:city, City)
     has_many(:locations, Location)
+    timestamps()
   end
 
   @doc """

@@ -34,6 +34,7 @@ defmodule StrawHat.Map.Location do
   schema "locations" do
     field(:location, Geo.PostGIS.Geometry)
     belongs_to(:address, Address)
+    timestamps()
   end
 
   @doc """

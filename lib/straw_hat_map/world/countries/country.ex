@@ -56,6 +56,7 @@ defmodule StrawHat.Map.Country do
     field(:has_counties, :boolean)
     field(:postal_code_rule, Regex)
     has_many(:states, State)
+    timestamps()
   end
 
   @doc """

@@ -10,7 +10,7 @@ defmodule StrawHat.Map.CountiesTest do
     end
 
     test "with invalid id shouldn't find the county" do
-      assert {:error, _reason} = Counties.find_county(8745)
+      assert {:error, _reason} = Ecto.UUID.generate() |> Counties.find_county()
     end
   end
 

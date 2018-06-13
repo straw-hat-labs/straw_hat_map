@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Repo.Migrations.AddGeoLocationToLocationsTable do
 
   def change do
     alter table(:locations) do
-      add :location, :geometry
+      add(:location, :geometry)
     end
   end
 end

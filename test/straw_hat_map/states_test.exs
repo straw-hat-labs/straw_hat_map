@@ -10,7 +10,7 @@ defmodule StrawHat.Map.StatesTest do
     end
 
     test "with invalid id shouldn't return any state" do
-      assert {:error, _reason} = States.find_state(8745)
+      assert {:error, _reason} = Ecto.UUID.generate() |> States.find_state()
     end
   end
 

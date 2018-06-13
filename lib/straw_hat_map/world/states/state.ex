@@ -46,6 +46,7 @@ defmodule StrawHat.Map.State do
     belongs_to(:country, Country)
     has_many(:counties, County)
     has_many(:cities, City)
+    timestamps()
   end
 
   @doc """

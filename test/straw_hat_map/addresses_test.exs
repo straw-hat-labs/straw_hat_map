@@ -9,7 +9,7 @@ defmodule StrawHat.Map.AddressesTest do
     end
 
     test "with invalid id shouldn't return any address" do
-      assert {:error, _reason} = Addresses.find_address(8745)
+      assert {:error, _reason} = Ecto.UUID.generate() |> Addresses.find_address()
     end
   end
 

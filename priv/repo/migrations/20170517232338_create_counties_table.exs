@@ -2,11 +2,19 @@ defmodule StrawHat.Map.Repo.Migrations.CreateCountiesTable do
   use Ecto.Migration
 
   def change do
-    create table(:counties) do
+    create table(:counties, primary_key: false) do
+      add(:id, :binary_id, primary_key: true)
       add(:name, :string, null: false)
-      add(:state_id, references(:states), null: false, on_delete: :delete_all)
+
+      add(
+        :state_id,
+        references(:states, type: :binary_id, on_delete: :delete_all),
+        null: false
+      )
+
+      timestamps(type: :utc_datetime)
     end
 
-    create index(:counties, [:name, :state_id], unique: true)
+    create(index(:counties, [:name, :state_id], unique: true))
   end
 end

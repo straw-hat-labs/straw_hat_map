@@ -2,11 +2,13 @@ defmodule StrawHat.Map.Repo.Migrations.CreateAddressesTable do
   use Ecto.Migration
 
   def change do
-    create table(:addresses) do
+    create table(:addresses, primary_key: false) do
+      add(:id, :binary_id, primary_key: true)
       add(:line_one, :string, null: false)
       add(:line_two, :string)
       add(:postal_code, :string)
-      add(:city_id, references(:cities), null: false)
+      add(:city_id, references(:cities, type: :binary_id), null: false)
+      timestamps(type: :utc_datetime)
     end
   end
 end

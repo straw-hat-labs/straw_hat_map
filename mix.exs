@@ -2,8 +2,8 @@ defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
   @name :straw_hat_map
-  @version "1.1.0"
-  @elixir_version "~> 1.5"
+  @version "1.2.0"
+  @elixir_version "~> 1.6"
 
   @description """
   Map and Addresses Management.

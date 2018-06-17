@@ -13,4 +13,9 @@ defmodule StrawHat.Map.ContinentsTest do
 
     assert length(continents) == 7
   end
+
+  test "find_continent/1 find a continent by code" do
+    assert {:ok, _continent} = Continents.find_continent("AF")
+    assert {:error, _continent} = Continents.find_continent("ASDF")
+  end
 end

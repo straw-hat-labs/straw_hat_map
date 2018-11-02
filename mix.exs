@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Mixfile do
   use Mix.Project
 
   @name :straw_hat_map
-  @version "1.2.1"
+  @version "1.3.0"
   @elixir_version "~> 1.7"
 
   @description """
@@ -27,7 +27,8 @@ defmodule StrawHat.Map.Mixfile do
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        "coveralls.json": :test
       ],
 
       # Extras
@@ -46,11 +47,10 @@ defmodule StrawHat.Map.Mixfile do
   defp deps do
     [
       {:straw_hat, "~> 0.4"},
-      {:postgrex, "~> 0.13.2"},
-      {:ecto, "~> 2.2"},
-      {:scrivener_ecto, "~> 1.2"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:scrivener_ecto, "~> 2.0"},
       {:geo_postgis, "~> 2.0"},
-      {:poison, "~> 3.1", optional: true},
 
       # Testing
       {:ex_machina, ">= 0.0.0", only: [:test]},

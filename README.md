@@ -11,7 +11,7 @@ Application for Addresses and Map information management.
 ```elixir
 def deps do
   [
-    {:straw_hat_map, "~> 1.1"}
+    {:straw_hat_map, "~> 1.3"}
   ]
 end
 ```

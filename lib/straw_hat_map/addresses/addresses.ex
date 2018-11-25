@@ -11,14 +11,16 @@ defmodule StrawHat.Map.Addresses do
   """
   @since "1.0.0"
   @spec get_addresses(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_addresses(pagination \\ []), do: Repo.paginate(Address, pagination)
+  def get_addresses(pagination \\ []) do
+    Repo.paginate(Address, pagination)
+  end
 
   @doc """
   Creates an address.
   """
   @since "1.0.0"
   @spec create_address(Address.address_attrs()) ::
-          {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
+          Response.t(Address.t(), Ecto.Changeset.t())
   def create_address(address_attrs) do
     postal_code_rule =
       address_attrs
@@ -28,6 +30,7 @@ defmodule StrawHat.Map.Addresses do
     %Address{}
     |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
     |> Repo.insert()
+    |> Response.from_value()
   end
 
   @doc """
@@ -35,7 +38,7 @@ defmodule StrawHat.Map.Addresses do
   """
   @since "1.0.0"
   @spec update_address(Address.t(), Address.address_attrs()) ::
-          {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
+          Response.t(Address.t(), Ecto.Changeset.t())
   def update_address(%Address{} = address, address_attrs) do
     postal_code_rule =
       address_attrs
@@ -45,20 +48,25 @@ defmodule StrawHat.Map.Addresses do
     address
     |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
     |> Repo.update()
+    |> Response.from_value()
   end
 
   @doc """
   Destroys an address.
   """
   @since "1.0.0"
-  @spec destroy_address(Address.t()) :: {:ok, Address.t()} | {:error, Ecto.Changeset.t()}
-  def destroy_address(%Address{} = address), do: Repo.delete(address)
+  @spec destroy_address(Address.t()) :: Response.t(Address.t(), Ecto.Changeset.t())
+  def destroy_address(%Address{} = address) do
+    address
+    |> Repo.delete()
+    |> Response.from_value()
+  end
 
   @doc """
   Gets an address by `id`.
   """
   @since "1.0.0"
-  @spec find_address(String.t()) :: {:ok, Address.t()} | {:error, Error.t()}
+  @spec find_address(String.t()) :: Response.t(Address.t(), Error.t())
   def find_address(address_id) do
     address_id
     |> get_address()
@@ -72,7 +80,9 @@ defmodule StrawHat.Map.Addresses do
   """
   @since "1.0.0"
   @spec get_address(String.t()) :: Address.t() | nil | no_return
-  def get_address(address_id), do: Repo.get(Address, address_id)
+  def get_address(address_id) do
+    Repo.get(Address, address_id)
+  end
 
   @doc """
   Gets list of addresses.

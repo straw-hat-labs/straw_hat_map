@@ -47,6 +47,7 @@ defmodule StrawHat.Map.Mixfile do
   defp deps do
     [
       {:straw_hat, "~> 0.4"},
+      {:ecto, "~> 3.0"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
       {:scrivener_ecto, "~> 2.0"},

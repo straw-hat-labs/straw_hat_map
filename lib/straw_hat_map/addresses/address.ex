@@ -10,6 +10,7 @@ defmodule StrawHat.Map.Address do
   @default_postal_code_rule ~r/^\w+[ -]?\w+$/
 
   @typedoc """
+  - `id`: ID of the address.
   - `line_one`: Line one of the address.
   - `line_two`: Line two of the address.
   - `postal_code`: Postal Code or Zipcode of the address.
@@ -22,6 +23,7 @@ defmodule StrawHat.Map.Address do
   the address.
   """
   @type t :: %__MODULE__{
+          id: String.t(),
           line_one: String.t(),
           line_two: String.t(),
           postal_code: String.t(),

@@ -13,6 +13,8 @@ defmodule StrawHat.Map.Address do
   - `line_one`: Line one of the address.
   - `line_two`: Line two of the address.
   - `postal_code`: Postal Code or Zipcode of the address.
+  - `inserted_at`: When the address was created.
+  - `updated_at`: Last time the address was updated.
   - `city`: `t:StrawHat.Map.City.t/0` associated with the address.
   - `city_id`: `id` of `t:StrawHat.Map.City.t/0` associated with
   the address.
@@ -23,6 +25,8 @@ defmodule StrawHat.Map.Address do
           line_one: String.t(),
           line_two: String.t(),
           postal_code: String.t(),
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t(),
           city: City.t() | Ecto.Association.NotLoaded.t(),
           city_id: Integer.t(),
           locations: [Location.t()] | Ecto.Association.NotLoaded.t()

@@ -19,8 +19,7 @@ defmodule StrawHat.Map.Addresses do
   Creates an address.
   """
   @since "1.0.0"
-  @spec create_address(Address.address_attrs()) ::
-          Response.t(Address.t(), Ecto.Changeset.t())
+  @spec create_address(Address.address_attrs()) :: Response.t(Address.t(), Ecto.Changeset.t())
   def create_address(address_attrs) do
     postal_code_rule =
       address_attrs

@@ -1,10 +1,15 @@
 defmodule StrawHat.Map.Schema do
-  @moduledoc false
+  @moduledoc """
+  Schemas/Entities represent data structures and it validations.
+  """
+  @type belong_to(t) :: t | Ecto.Association.NotLoaded.t()
+  @type has_many(t) :: [t] | Ecto.Association.NotLoaded.t()
 
   defmacro __using__(_opts) do
     quote do
       use Ecto.Schema
       import Ecto.Changeset
+      alias StrawHat.Map.Schema
 
       @primary_key {:id, :binary_id, autogenerate: true}
       @foreign_key_type :binary_id

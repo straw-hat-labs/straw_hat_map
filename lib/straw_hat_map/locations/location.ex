@@ -9,14 +9,18 @@ defmodule StrawHat.Map.Location do
 
   @typedoc """
   - `location`: the `Geo.Point.t/0` of the location of the Location.
+  - `inserted_at`: When the location was created.
+  - `updated_at`: Last time the location was updated.
   - `address`: `t:StrawHat.Map.Address.t/0` associated with the location.
   - `address_id`: `id` of `t:StrawHat.Map.Address.t/0` associated with
   the location.
   """
   @type t :: %__MODULE__{
           location: Geo.Point.t(),
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t(),
           address_id: String.t(),
-          address: Address.t() | Ecto.Association.NotLoaded.t()
+          address: Schema.belong_to(Address.t())
         }
 
   @typedoc """

@@ -27,9 +27,9 @@ defmodule StrawHat.Map.Address do
           postal_code: String.t(),
           inserted_at: DateTime.t(),
           updated_at: DateTime.t(),
-          city: City.t() | Ecto.Association.NotLoaded.t(),
+          city: Schema.belong_to(City.t()),
           city_id: Integer.t(),
-          locations: [Location.t()] | Ecto.Association.NotLoaded.t()
+          locations: Schema.has_many(Location.t())
         }
 
   @typedoc """

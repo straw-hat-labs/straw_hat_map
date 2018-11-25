@@ -8,6 +8,7 @@ defmodule StrawHat.Map.Location do
   alias StrawHat.Map.Address
 
   @typedoc """
+  - `id`: ID of the location.
   - `location`: the `Geo.Point.t/0` of the location of the Location.
   - `inserted_at`: When the location was created.
   - `updated_at`: Last time the location was updated.
@@ -16,6 +17,7 @@ defmodule StrawHat.Map.Location do
   the location.
   """
   @type t :: %__MODULE__{
+          id: String.t(),
           location: Geo.Point.t(),
           inserted_at: DateTime.t(),
           updated_at: DateTime.t(),

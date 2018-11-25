@@ -4,18 +4,12 @@ defmodule StrawHat.Map.Mixfile do
   @name :straw_hat_map
   @version "1.3.0"
   @elixir_version "~> 1.7"
-
-  @description """
-  Map and Addresses Management.
-  """
   @source_url "https://github.com/straw-hat-team/straw_hat_map"
 
   def project do
     production? = Mix.env() == :prod
 
     [
-      name: "StrawHat.Map",
-      description: @description,
       app: @name,
       version: @version,
       elixir: @elixir_version,
@@ -31,8 +25,12 @@ defmodule StrawHat.Map.Mixfile do
         "coveralls.json": :test
       ],
 
-      # Extras
+      # Hex
+      description: "Map and Addresses Management",
       package: package(),
+
+      # Docs
+      name: "StrawHat.Map",
       docs: docs()
     ]
   end
@@ -98,7 +96,7 @@ defmodule StrawHat.Map.Mixfile do
       source_url: @source_url,
       extras: ["README.md"],
       groups_for_modules: [
-        Interactors: [
+        UseCases: [
           StrawHat.Map.Continents,
           StrawHat.Map.Countries,
           StrawHat.Map.States,

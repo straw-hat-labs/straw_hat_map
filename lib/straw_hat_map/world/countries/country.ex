@@ -9,24 +9,30 @@ defmodule StrawHat.Map.Country do
   alias StrawHat.Map.Ecto.Regex
 
   @typedoc """
+  - `id`: ID of the country.
   - `name`: Name of the country.
   - `iso_two`: Two characters ISO code.
   - `iso_three`: Three characters ISO code.
   - `iso_numeric`: Numeric ISO code.
   - `has_counties`: Defines if the country has counties.
   - `continent`: Two characters continent code.
+  - `inserted_at`: When the country was created.
+  - `updated_at`: Last time the country was updated.
   - `states`: List of `t:StrawHat.Map.States.t/0` associated with
   the country.
   - `postal_code_rule`: A regular expression that specifies a valid postal code.
   """
   @type t :: %__MODULE__{
+          id: String.t(),
           name: String.t(),
           iso_two: String.t(),
           iso_three: String.t(),
           iso_numeric: String.t(),
           continent: String.t(),
           has_counties: boolean(),
-          states: [State.t()] | Ecto.Association.NotLoaded.t(),
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t(),
+          states: Schema.has_many(State.t()),
           postal_code_rule: Regex.t()
         }
 

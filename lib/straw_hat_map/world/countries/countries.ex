@@ -11,18 +11,21 @@ defmodule StrawHat.Map.Countries do
   """
   @since "1.0.0"
   @spec get_countries(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_countries(pagination \\ []), do: Repo.paginate(Country, pagination)
+  def get_countries(pagination \\ []) do
+    Repo.paginate(Country, pagination)
+  end
 
   @doc """
   Creates a country.
   """
   @since "1.0.0"
   @spec create_country(Country.country_attrs()) ::
-          {:ok, Country.t()} | {:error, Ecto.Changeset.t()}
+          Response.t(Country.t(), Ecto.Changeset.t())
   def create_country(country_attrs) do
     %Country{}
     |> Country.changeset(country_attrs)
     |> Repo.insert()
+    |> Response.from_value()
   end
 
   @doc """
@@ -30,25 +33,30 @@ defmodule StrawHat.Map.Countries do
   """
   @since "1.0.0"
   @spec update_country(Country.t(), Country.country_attrs()) ::
-          {:ok, Country.t()} | {:error, Ecto.Changeset.t()}
+          Response.t(Country.t(), Ecto.Changeset.t())
   def update_country(%Country{} = country, country_attrs) do
     country
     |> Country.changeset(country_attrs)
     |> Repo.update()
+    |> Response.from_value()
   end
 
   @doc """
   Destroys a country.
   """
   @since "1.0.0"
-  @spec destroy_country(Country.t()) :: {:ok, Country.t()} | {:error, Ecto.Changeset.t()}
-  def destroy_country(%Country{} = country), do: Repo.delete(country)
+  @spec destroy_country(Country.t()) :: Response.t(Country.t(), Ecto.Changeset.t())
+  def destroy_country(%Country{} = country) do
+    country
+    |> Repo.delete()
+    |> Response.from_value()
+  end
 
   @doc """
   Gets a country by `id`.
   """
   @since "1.0.0"
-  @spec find_country(String.t()) :: {:ok, Country.t()} | {:error, Error.t()}
+  @spec find_country(String.t()) :: Response.t(Country.t(), Error.t())
   def find_country(country_id) do
     country_id
     |> get_country()
@@ -62,7 +70,9 @@ defmodule StrawHat.Map.Countries do
   """
   @since "1.0.0"
   @spec get_country(String.t()) :: Country.t() | nil | no_return
-  def get_country(country_id), do: Repo.get(Country, country_id)
+  def get_country(country_id) do
+    Repo.get(Country, country_id)
+  end
 
   @doc """
   Gets list of countries.

@@ -8,8 +8,11 @@ defmodule StrawHat.Map.City do
   alias StrawHat.Map.{County, Address, State}
 
   @typedoc """
+  - `id`: ID of the city.
   - `name`: Name of the city.
   - `capital`: Defines the city as capital of the country.
+  - `inserted_at`: When the city was created.
+  - `updated_at`: Last time the city was updated.
   - `state`: `t:StrawHat.Map.State.t/0` associated with the city.
   - `state_id`: `id` of `t:StrawHat.Map.State.t/0` associated with
   the city.
@@ -20,13 +23,16 @@ defmodule StrawHat.Map.City do
   the city.
   """
   @type t :: %__MODULE__{
+          id: String.t(),
           name: String.t(),
           capital: boolean(),
-          state: State.t() | Ecto.Association.NotLoaded.t(),
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t(),
+          state: Schema.belongs_to(State.t()),
           state_id: Integer.t(),
-          county: County.t() | Ecto.Association.NotLoaded.t(),
+          county: Schema.belongs_to(County.t()),
           county_id: Integer.t(),
-          addresses: [Address.t()]
+          addresses: Schema.has_many(Address.t())
         }
 
   @typedoc """

@@ -2,7 +2,7 @@ defmodule StrawHat.Map.Schema do
   @moduledoc """
   Schemas/Entities represent data structures and it validations.
   """
-  @type belong_to(t) :: t | Ecto.Association.NotLoaded.t()
+  @type belongs_to(t) :: t | Ecto.Association.NotLoaded.t()
   @type has_many(t) :: [t] | Ecto.Association.NotLoaded.t()
 
   defmacro __using__(_opts) do

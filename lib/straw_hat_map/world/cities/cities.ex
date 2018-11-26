@@ -11,42 +11,50 @@ defmodule StrawHat.Map.Cities do
   """
   @since "1.0.0"
   @spec get_cities(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_cities(pagination \\ []), do: Repo.paginate(City, pagination)
+  def get_cities(pagination \\ []) do
+    Repo.paginate(City, pagination)
+  end
 
   @doc """
   Creates a city.
   """
   @since "1.0.0"
-  @spec create_city(City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
+  @spec create_city(City.city_attrs()) :: Response.t(City.t(), Ecto.Changeset.t())
   def create_city(city_attrs) do
     %City{}
     |> City.changeset(city_attrs)
     |> Repo.insert()
+    |> Response.from_value()
   end
 
   @doc """
   Updates a city.
   """
   @since "1.0.0"
-  @spec update_city(City.t(), City.city_attrs()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
+  @spec update_city(City.t(), City.city_attrs()) :: Response.t(City.t(), Ecto.Changeset.t())
   def update_city(%City{} = city, city_attrs) do
     city
     |> City.changeset(city_attrs)
     |> Repo.update()
+    |> Response.from_value()
   end
 
   @doc """
   Destroys a city.
   """
   @since "1.0.0"
-  @spec destroy_city(City.t()) :: {:ok, City.t()} | {:error, Ecto.Changeset.t()}
-  def destroy_city(%City{} = city), do: Repo.delete(city)
+  @spec destroy_city(City.t()) :: Response.t(City.t(), Ecto.Changeset.t())
+  def destroy_city(%City{} = city) do
+    city
+    |> Repo.delete()
+    |> Response.from_value()
+  end
 
   @doc """
   Gets a city by `id`.
   """
   @since "1.0.0"
-  @spec find_city(String.t()) :: {:ok, City.t()} | {:error, Error.t()}
+  @spec find_city(String.t()) :: Response.t(City.t(), Error.t())
   def find_city(city_id) do
     city_id
     |> get_city()
@@ -60,7 +68,9 @@ defmodule StrawHat.Map.Cities do
   """
   @since "1.0.0"
   @spec get_city(String.t()) :: City.t() | nil | no_return
-  def get_city(city_id), do: Repo.get(City, city_id)
+  def get_city(city_id) do
+    Repo.get(City, city_id)
+  end
 
   @doc """
   Gets list of cities.

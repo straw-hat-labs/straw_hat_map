@@ -8,15 +8,21 @@ defmodule StrawHat.Map.County do
   alias StrawHat.Map.State
 
   @typedoc """
+  - `id`: ID of the county.
   - `name`: Name of the county.
+  - `inserted_at`: When the county was created.
+  - `updated_at`: Last time the county was updated.
   - `state`: `t:StrawHat.Map.State.t/0` associated with the county.
   - `state_id`: `id` of `t:StrawHat.Map.State.t/0` associated with
   the county.
   """
   @type t :: %__MODULE__{
+          id: String.t(),
           name: String.t(),
-          state_id: String.t(),
-          state: State.t() | Ecto.Association.NotLoaded.t()
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t(),
+          state: Schema.belongs_to(State.t()),
+          state_id: String.t()
         }
 
   @typedoc """

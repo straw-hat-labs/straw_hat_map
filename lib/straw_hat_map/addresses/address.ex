@@ -29,7 +29,7 @@ defmodule StrawHat.Map.Address do
           postal_code: String.t(),
           inserted_at: DateTime.t(),
           updated_at: DateTime.t(),
-          city: Schema.belong_to(City.t()),
+          city: Schema.belongs_to(City.t()),
           city_id: Integer.t(),
           locations: Schema.has_many(Location.t())
         }

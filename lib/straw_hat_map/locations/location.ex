@@ -22,7 +22,7 @@ defmodule StrawHat.Map.Location do
           inserted_at: DateTime.t(),
           updated_at: DateTime.t(),
           address_id: String.t(),
-          address: Schema.belong_to(Address.t())
+          address: Schema.belongs_to(Address.t())
         }
 
   @typedoc """

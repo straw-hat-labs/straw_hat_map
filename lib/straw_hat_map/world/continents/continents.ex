@@ -36,7 +36,7 @@ defmodule StrawHat.Map.Continents do
   Finds a continent.
   """
   @since "1.2.1"
-  @spec find_continent(String.t()) :: {:ok, Continent.t()} | {:error, Error.t()}
+  @spec find_continent(String.t()) :: Response.t(Continent.t(), Error.t())
   def find_continent(continent_code) do
     continent_code
     |> get_continent()

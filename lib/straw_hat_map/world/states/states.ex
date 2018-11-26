@@ -11,17 +11,20 @@ defmodule StrawHat.Map.States do
   """
   @since "1.0.0"
   @spec get_states(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_states(pagination \\ []), do: Repo.paginate(State, pagination)
+  def get_states(pagination \\ []) do
+    Repo.paginate(State, pagination)
+  end
 
   @doc """
   Creates a state.
   """
   @since "1.0.0"
-  @spec create_state(State.state_attrs()) :: {:ok, State.t()} | {:error, Ecto.Changeset.t()}
+  @spec create_state(State.state_attrs()) :: Response.t(State.t(), Ecto.Changeset.t())
   def create_state(state_attrs) do
     %State{}
     |> State.changeset(state_attrs)
     |> Repo.insert()
+    |> Response.from_value()
   end
 
   @doc """
@@ -29,25 +32,30 @@ defmodule StrawHat.Map.States do
   """
   @since "1.0.0"
   @spec update_state(State.t(), State.state_attrs()) ::
-          {:ok, State.t()} | {:error, Ecto.Changeset.t()}
+          Response.t(State.t(), Ecto.Changeset.t())
   def update_state(%State{} = state, state_attrs) do
     state
     |> State.changeset(state_attrs)
     |> Repo.update()
+    |> Response.from_value()
   end
 
   @doc """
   Destroys a state.
   """
   @since "1.0.0"
-  @spec destroy_state(State.t()) :: {:ok, State.t()} | {:error, Ecto.Changeset.t()}
-  def destroy_state(%State{} = state), do: Repo.delete(state)
+  @spec destroy_state(State.t()) :: Response.t(State.t(), Ecto.Changeset.t())
+  def destroy_state(%State{} = state) do
+    state
+    |> Repo.delete()
+    |> Response.from_value()
+  end
 
   @doc """
   Gets a state by `id`.
   """
   @since "1.0.0"
-  @spec find_state(String.t()) :: {:ok, State.t()} | {:error, Error.t()}
+  @spec find_state(String.t()) :: Response.t(State.t(), Error.t())
   def find_state(state_id) do
     state_id
     |> get_state()
@@ -61,7 +69,9 @@ defmodule StrawHat.Map.States do
   """
   @since "1.0.0"
   @spec get_state(String.t()) :: State.t() | nil | no_return
-  def get_state(state_id), do: Repo.get(State, state_id)
+  def get_state(state_id) do
+    Repo.get(State, state_id)
+  end
 
   @doc """
   Gets list of states.

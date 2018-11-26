@@ -70,8 +70,6 @@ defmodule StrawHat.Map.Address do
   end
 
   @doc false
-  @since "1.1.0"
-  @spec get_postal_code_rule(Keyword.t()) :: Regex.t()
   def get_postal_code_rule(opts) do
     case Keyword.get(opts, :postal_code_rule) do
       nil -> @default_postal_code_rule
@@ -80,7 +78,5 @@ defmodule StrawHat.Map.Address do
   end
 
   @doc false
-  @since "1.1.0"
-  @spec default_postal_code_rule :: Regex.t()
   def default_postal_code_rule, do: @default_postal_code_rule
 end

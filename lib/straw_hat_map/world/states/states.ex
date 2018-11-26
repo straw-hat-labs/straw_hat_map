@@ -31,8 +31,7 @@ defmodule StrawHat.Map.States do
   Updates a state.
   """
   @since "1.0.0"
-  @spec update_state(State.t(), State.state_attrs()) ::
-          Response.t(State.t(), Ecto.Changeset.t())
+  @spec update_state(State.t(), State.state_attrs()) :: Response.t(State.t(), Ecto.Changeset.t())
   def update_state(%State{} = state, state_attrs) do
     state
     |> State.changeset(state_attrs)

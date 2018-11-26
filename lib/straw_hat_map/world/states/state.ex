@@ -23,7 +23,7 @@ defmodule StrawHat.Map.State do
   current state.
   """
   @type t :: %__MODULE__{
-    id: String.t(),
+          id: String.t(),
           name: String.t(),
           code: String.t(),
           inserted_at: DateTime.t(),

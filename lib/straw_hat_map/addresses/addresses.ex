@@ -10,17 +10,17 @@ defmodule StrawHat.Map.Addresses do
   Returns a list of addresses.
   """
   @since "1.0.0"
-  @spec get_addresses(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_addresses(pagination \\ []) do
-    Repo.paginate(Address, pagination)
+  @spec get_addresses(Ecto.Repo.t, Scrivener.Config.t()) :: Scrivener.Page.t()
+  def get_addresses(repo, pagination \\ []) do
+    repo.paginate(Address, pagination)
   end
 
   @doc """
   Creates an address.
   """
   @since "1.0.0"
-  @spec create_address(Address.address_attrs()) :: Response.t(Address.t(), Ecto.Changeset.t())
-  def create_address(address_attrs) do
+  @spec create_address(Ecto.Repo.t, Address.address_attrs()) :: Response.t(Address.t(), Ecto.Changeset.t())
+  def create_address(repo, address_attrs) do
     postal_code_rule =
       address_attrs
       |> Map.get(:city_id)
@@ -28,7 +28,7 @@ defmodule StrawHat.Map.Addresses do
 
     %Address{}
     |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
-    |> Repo.insert()
+    |> repo.insert()
     |> Response.from_value()
   end
 
@@ -36,9 +36,9 @@ defmodule StrawHat.Map.Addresses do
   Updates an address.
   """
   @since "1.0.0"
-  @spec update_address(Address.t(), Address.address_attrs()) ::
+  @spec update_address(Ecto.Repo.t, Address.t(), Address.address_attrs()) ::
           Response.t(Address.t(), Ecto.Changeset.t())
-  def update_address(%Address{} = address, address_attrs) do
+  def update_address(repo, %Address{} = address, address_attrs) do
     postal_code_rule =
       address_attrs
       |> Map.get(:city_id, address_attrs.city_id)
@@ -46,7 +46,7 @@ defmodule StrawHat.Map.Addresses do
 
     address
     |> Address.changeset(address_attrs, postal_code_rule: postal_code_rule)
-    |> Repo.update()
+    |> repo.update()
     |> Response.from_value()
   end
 
@@ -54,10 +54,10 @@ defmodule StrawHat.Map.Addresses do
   Destroys an address.
   """
   @since "1.0.0"
-  @spec destroy_address(Address.t()) :: Response.t(Address.t(), Ecto.Changeset.t())
-  def destroy_address(%Address{} = address) do
+  @spec destroy_address(Ecto.Repo.t, Address.t()) :: Response.t(Address.t(), Ecto.Changeset.t())
+  def destroy_address(repo, %Address{} = address) do
     address
-    |> Repo.delete()
+    |> repo.delete()
     |> Response.from_value()
   end
 
@@ -65,10 +65,10 @@ defmodule StrawHat.Map.Addresses do
   Gets an address by `id`.
   """
   @since "1.0.0"
-  @spec find_address(String.t()) :: Response.t(Address.t(), Error.t())
-  def find_address(address_id) do
-    address_id
-    |> get_address()
+  @spec find_address(Ecto.Repo.t, String.t()) :: Response.t(Address.t(), Error.t())
+  def find_address(repo, address_id) do
+    repo
+    |> get_address(address_id)
     |> Response.from_value(
       Error.new("straw_hat_map.address.not_found", metadata: [address_id: address_id])
     )
@@ -78,18 +78,18 @@ defmodule StrawHat.Map.Addresses do
   Gets an address by `id`.
   """
   @since "1.0.0"
-  @spec get_address(String.t()) :: Address.t() | nil | no_return
-  def get_address(address_id) do
-    Repo.get(Address, address_id)
+  @spec get_address(Ecto.Repo.t, String.t()) :: Address.t() | nil | no_return
+  def get_address(repo, address_id) do
+    repo.get(Address, address_id)
   end
 
   @doc """
   Gets list of addresses.
   """
   @since "1.0.0"
-  @spec get_addresses_by_ids([integer()]) :: [Address.t()] | no_return()
-  def get_addresses_by_ids(address_ids) do
+  @spec get_addresses_by_ids(Ecto.Repo.t, [integer()]) :: [Address.t()] | no_return()
+  def get_addresses_by_ids(repo, address_ids) do
     query = from(address in Address, where: address.id in ^address_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 end

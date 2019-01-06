@@ -5,7 +5,7 @@ deps:
 
 linter:
 	mix format --check-formatted
-	mix credo --strict
+	mix credo
 
 testing:
 	mix coveralls.json

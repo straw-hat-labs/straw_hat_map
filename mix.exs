@@ -20,7 +20,8 @@ defmodule StrawHat.Map.Mixfile do
       start_permanent: production?,
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        coveralls: :test,
+        "ecto.reset": :test,
+        "ecto.setup": :test,
         "coveralls.html": :test,
         "coveralls.json": :test
       ],

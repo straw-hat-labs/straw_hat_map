@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.LocationsTest do
-  use StrawHat.Map.Test.DataCase, async: true
+  use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.{Locations, Location}
 
   test "get_locations_by_ids/1 with a list of IDs returns the relative locations" do

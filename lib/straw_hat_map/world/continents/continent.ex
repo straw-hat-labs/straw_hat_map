@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Continent do
   @moduledoc """
-  Represents a Content struct.
+  A Continent entity.
   """
 
   @typedoc """

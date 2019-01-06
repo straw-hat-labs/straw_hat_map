@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Continents do
   @moduledoc """
-  Defines functionality for continents.
+  Continents use cases.
   """
 
   use StrawHat.Map.Interactor
@@ -51,6 +51,8 @@ defmodule StrawHat.Map.Continents do
   @since "1.2.1"
   @spec get_continent(String.t()) :: Continent.t() | nil
   def get_continent(continent_code) do
-    get_continents() |> Enum.find(fn continent -> continent.code == continent_code end)
+    Enum.find(@continents, fn continent ->
+      continent.code == continent_code
+    end)
   end
 end

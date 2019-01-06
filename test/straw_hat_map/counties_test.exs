@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.CountiesTest do
-  use StrawHat.Map.Test.DataCase, async: true
+  use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.Counties
 
   describe "find_county/1" do

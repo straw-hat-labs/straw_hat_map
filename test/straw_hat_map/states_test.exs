@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.StatesTest do
-  use StrawHat.Map.Test.DataCase, async: true
+  use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.States
 
   describe "find_state/1" do

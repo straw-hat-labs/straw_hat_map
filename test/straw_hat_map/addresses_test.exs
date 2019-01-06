@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.AddressesTest do
-  use StrawHat.Map.Test.DataCase, async: true
+  use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.{Addresses, Address, Countries}
 
   describe "find_address/1" do

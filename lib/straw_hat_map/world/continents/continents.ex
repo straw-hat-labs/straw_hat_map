@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Continents do
   Continents use cases.
   """
 
-  use StrawHat.Map.Interactor
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.Continent
 
   @continents [

@@ -81,9 +81,9 @@ defmodule StrawHat.Map.Countries do
   @doc """
   Gets list of states.
   """
-  @spec get_states([integer()]) :: [State.t()] | no_return()
-  def get_states(country_ids) when is_list(country_ids) do
+  @spec get_states(Ecto.Repo, [integer()]) :: [State.t()] | no_return()
+  def get_states(repo, country_ids) when is_list(country_ids) do
     query = from(state in State, where: state.country_id in ^country_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 end

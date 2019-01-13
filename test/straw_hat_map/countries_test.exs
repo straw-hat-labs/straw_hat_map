@@ -67,15 +67,17 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "get_states with a list of country IDs returns the relative states" do
-    countries = insert_list(2, :country)
+  describe "get_states" do
+    test "with a list of country IDs returns the relative states" do
+      countries = insert_list(2, :country)
 
-    insert_list(2, :state, %{country: List.first(countries)})
-    insert_list(2, :state, %{country: List.last(countries)})
+      insert_list(2, :state, %{country: List.first(countries)})
+      insert_list(2, :state, %{country: List.last(countries)})
 
-    ids = Enum.map(countries, fn country -> country.id end)
-    states = Countries.get_states(ids)
+      ids = Enum.map(countries, fn country -> country.id end)
+      states = Countries.get_states(Repo, ids)
 
-    assert length(states) == 4
+      assert length(states) == 4
+    end
   end
 end

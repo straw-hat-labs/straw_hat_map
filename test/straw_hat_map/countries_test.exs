@@ -37,10 +37,12 @@ defmodule StrawHat.Map.CountriesTest do
     assert List.last(countries).id == List.last(ids)
   end
 
-  test "create_country/1 with valid inputs creates a country" do
-    params = params_for(:country)
+  describe "create_country/2" do
+    test "with valid inputs creates a country" do
+      params = params_for(:country)
 
-    assert {:ok, _country} = Countries.create_country(params)
+      assert {:ok, _country} = Countries.create_country(Repo, params)
+    end
   end
 
   test "update_country/2 with valid inputs updates the country" do

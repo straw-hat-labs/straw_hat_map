@@ -97,7 +97,7 @@ defmodule StrawHat.Map.Mixfile do
       source_url: @source_url,
       extras: ["README.md"],
       groups_for_modules: [
-        Interactors: [
+        "Use Cases": [
           StrawHat.Map.Continents,
           StrawHat.Map.Countries,
           StrawHat.Map.States,
@@ -106,7 +106,7 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Locations,
           StrawHat.Map.Addresses
         ],
-        Schemas: [
+        Entities: [
           StrawHat.Map.Continent,
           StrawHat.Map.Country,
           StrawHat.Map.State,

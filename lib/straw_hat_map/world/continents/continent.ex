@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Continent do
   """
 
   @typedoc """
-  - `code`: Two characters code of the continent.
+  - `code`: Two characters code.
   """
   @type t :: %__MODULE__{
           code: String.t()

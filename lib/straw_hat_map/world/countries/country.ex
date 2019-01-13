@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.Country do
   @moduledoc """
-  Represents a Country Ecto Schema with functionality about the data validation
-  for Country.
+  A Country entity.
   """
 
   use StrawHat.Map.Schema

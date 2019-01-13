@@ -56,10 +56,12 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "destroy_country/1 with a found country destroys the country" do
-    country = insert(:country)
+  describe "destroy_country" do
+    test "with a found country destroys the country" do
+      country = insert(:country)
 
-    assert {:ok, _} = Countries.destroy_country(country)
+      assert {:ok, _} = Countries.destroy_country(Repo, country)
+    end
   end
 
   test "get_states/1 with a list of country IDs returns the relative states" do

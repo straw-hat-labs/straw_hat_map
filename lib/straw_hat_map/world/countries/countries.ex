@@ -46,10 +46,10 @@ defmodule StrawHat.Map.Countries do
   Destroys a country.
   """
   @since "1.0.0"
-  @spec destroy_country(Country.t()) :: Response.t(Country.t(), Ecto.Changeset.t())
-  def destroy_country(%Country{} = country) do
+  @spec destroy_country(Ecto.Repo, Country.t()) :: Response.t(Country.t(), Ecto.Changeset.t())
+  def destroy_country(repo, %Country{} = country) do
     country
-    |> Repo.delete()
+    |> repo.delete()
     |> Response.from_value()
   end
 

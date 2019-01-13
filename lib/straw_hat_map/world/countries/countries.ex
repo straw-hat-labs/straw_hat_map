@@ -3,8 +3,10 @@ defmodule StrawHat.Map.Countries do
   Defines functionality for countries management.
   """
 
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.{Country, State}
+  alias StrawHat.Map.Repo
 
   @doc """
   Gets the list of countries.

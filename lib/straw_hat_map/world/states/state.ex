@@ -1,27 +1,11 @@
 defmodule StrawHat.Map.State do
   @moduledoc """
-  Represents a State Ecto Schema with functionality about the data validation
-  for State.
+  A State entity.
   """
 
   use StrawHat.Map.Schema
   alias StrawHat.Map.{Country, County, City}
 
-  @typedoc """
-  - `id`: ID of the state.
-  - `name`: Name of the state.
-  - `code`: Code of the state.
-  - `inserted_at`: When the state was created.
-  - `updated_at`: Last time the state was updated.
-  - `country`: `t:StrawHat.Map.Country.t/0` associated with the current
-  state.
-  - `country_id`: `id` of `t:StrawHat.Map.Country.t/0` associated with
-  the state.
-  - `counties`: List of `t:StrawHat.Map.County.t/0` associated with the
-  current state.
-  - `cities`: List of `t:StrawHat.Map.City.t/0` associated with the
-  current state.
-  """
   @type t :: %__MODULE__{
           id: String.t(),
           name: String.t(),
@@ -34,9 +18,6 @@ defmodule StrawHat.Map.State do
           cities: Schema.has_many(City.t())
         }
 
-  @typedoc """
-  Check `t:t/0` type for more information about the keys.
-  """
   @type state_attrs :: %{
           name: String.t(),
           code: String.t(),
@@ -56,7 +37,7 @@ defmodule StrawHat.Map.State do
   end
 
   @doc """
-  Validates the attributes and return a Ecto.Changeset for the current State.
+  Return a change set of the state.
   """
   @since "1.0.0"
   @spec changeset(t, state_attrs) :: Ecto.Changeset.t()

@@ -3,7 +3,9 @@ defmodule StrawHat.Map.States do
   State management use cases.
   """
 
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
+  alias StrawHat.Map.Repo
   alias StrawHat.Map.{State, County, City}
 
   @spec get_states(Scrivener.Config.t()) :: Scrivener.Page.t()

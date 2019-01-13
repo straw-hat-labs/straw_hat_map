@@ -65,7 +65,7 @@ defmodule StrawHat.Map.AddressesTest do
       city = insert(:city)
 
       {:ok, _country} =
-        Countries.update_country(city.state.country, %{
+        Countries.update_country(Repo, city.state.country, %{
           postal_code_rule: "/\\d/"
         })
 
@@ -77,7 +77,7 @@ defmodule StrawHat.Map.AddressesTest do
       city = insert(:city)
 
       {:ok, _country} =
-        Countries.update_country(city.state.country, %{
+        Countries.update_country(Repo, city.state.country, %{
           postal_code_rule: "/\\d/"
         })
 

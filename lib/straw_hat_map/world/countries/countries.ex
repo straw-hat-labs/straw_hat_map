@@ -33,12 +33,12 @@ defmodule StrawHat.Map.Countries do
   Updates a country.
   """
   @since "1.0.0"
-  @spec update_country(Country.t(), Country.country_attrs()) ::
+  @spec update_country(Ecto.Repo, Country.t(), Country.country_attrs()) ::
           Response.t(Country.t(), Ecto.Changeset.t())
-  def update_country(%Country{} = country, country_attrs) do
+  def update_country(repo, %Country{} = country, country_attrs) do
     country
     |> Country.changeset(country_attrs)
-    |> Repo.update()
+    |> repo.update()
     |> Response.from_value()
   end
 

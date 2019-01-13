@@ -47,11 +47,13 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "update_country/2 with valid inputs updates the country" do
-    country = insert(:country)
-    {:ok, country} = Countries.update_country(country, %{name: "Cuba"})
+  describe "update_country/3" do
+    test "with valid inputs updates the country" do
+      country = insert(:country)
+      {:ok, country} = Countries.update_country(Repo, country, %{name: "Cuba"})
 
-    assert country.name == "Cuba"
+      assert country.name == "Cuba"
+    end
   end
 
   test "destroy_country/1 with a found country destroys the country" do

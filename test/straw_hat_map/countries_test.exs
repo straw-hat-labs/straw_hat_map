@@ -3,7 +3,7 @@ defmodule StrawHat.Map.CountriesTest do
   alias StrawHat.Map.Countries
   alias StrawHat.Map.Repo
 
-  describe "find_country/1" do
+  describe "find_country" do
     test "with valid id should find the country" do
       country = insert(:country)
 
@@ -16,7 +16,7 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  describe "get_countries/2" do
+  describe "get_countries" do
     test "returns a pagination of countries" do
       insert_list(6, :country)
       country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
@@ -26,21 +26,23 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "get_countries_by_ids/1 with a list of IDs returns the relative countries" do
-    available_countries = insert_list(3, :country)
+  describe "get_countries_by_ids" do
+    test "with a list of IDs returns the relative countries" do
+      available_countries = insert_list(3, :country)
 
-    ids =
-      available_countries
-      |> Enum.take(2)
-      |> Enum.map(fn country -> country.id end)
+      ids =
+        available_countries
+        |> Enum.take(2)
+        |> Enum.map(fn country -> country.id end)
 
-    countries = Countries.get_countries_by_ids(ids)
+      countries = Countries.get_countries_by_ids(Repo, ids)
 
-    assert List.first(countries).id == List.first(ids)
-    assert List.last(countries).id == List.last(ids)
+      assert List.first(countries).id == List.first(ids)
+      assert List.last(countries).id == List.last(ids)
+    end
   end
 
-  describe "create_country/2" do
+  describe "create_country" do
     test "with valid inputs creates a country" do
       params = params_for(:country)
 
@@ -48,7 +50,7 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  describe "update_country/3" do
+  describe "update_country" do
     test "with valid inputs updates the country" do
       country = insert(:country)
       {:ok, country} = Countries.update_country(Repo, country, %{name: "Cuba"})
@@ -65,7 +67,7 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "get_states/1 with a list of country IDs returns the relative states" do
+  test "get_states with a list of country IDs returns the relative states" do
     countries = insert_list(2, :country)
 
     insert_list(2, :state, %{country: List.first(countries)})

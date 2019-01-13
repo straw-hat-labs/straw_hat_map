@@ -72,10 +72,10 @@ defmodule StrawHat.Map.Countries do
   @doc """
   Gets list of countries.
   """
-  @spec get_countries_by_ids([integer()]) :: [Country.t()] | no_return()
-  def get_countries_by_ids(country_ids) do
+  @spec get_countries_by_ids(Ecto.Repo, [integer()]) :: [Country.t()] | no_return()
+  def get_countries_by_ids(repo, country_ids) do
     query = from(country in Country, where: country.id in ^country_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 
   @doc """

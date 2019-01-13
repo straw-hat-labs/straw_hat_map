@@ -3,21 +3,21 @@ defmodule StrawHat.Map.CountriesTest do
   alias StrawHat.Map.Countries
   alias StrawHat.Map.Repo
 
-  describe "find_country" do
-    test "with valid id should find the country" do
+  describe "finding a country" do
+    test "with a valid ID" do
       country = insert(:country)
 
       assert {:ok, _country} = Countries.find_country(Repo, country.id)
     end
 
-    test "with invalid id shouldn't find the country" do
+    test "with an invalid ID" do
       country_id = Ecto.UUID.generate()
       assert {:error, _reason} = Countries.find_country(Repo, country_id)
     end
   end
 
-  describe "get_countries" do
-    test "returns a pagination of countries" do
+  describe "getting a list of countries" do
+    test "returns a pagination" do
       insert_list(6, :country)
       country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
 
@@ -26,7 +26,7 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  describe "get_countries_by_ids" do
+  describe "getting a list of countries by IDs" do
     test "with a list of IDs returns the relative countries" do
       available_countries = insert_list(3, :country)
 
@@ -42,16 +42,16 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  describe "create_country" do
-    test "with valid inputs creates a country" do
+  describe "creating a country" do
+    test "with valid inputs" do
       params = params_for(:country)
 
       assert {:ok, _country} = Countries.create_country(Repo, params)
     end
   end
 
-  describe "update_country" do
-    test "with valid inputs updates the country" do
+  describe "updating a country" do
+    test "with valid inputs" do
       country = insert(:country)
       {:ok, country} = Countries.update_country(Repo, country, %{name: "Cuba"})
 
@@ -59,16 +59,16 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  describe "destroy_country" do
-    test "with a found country destroys the country" do
+  describe "destroying a country" do
+    test "with an existing country" do
       country = insert(:country)
 
       assert {:ok, _} = Countries.destroy_country(Repo, country)
     end
   end
 
-  describe "get_states" do
-    test "with a list of country IDs returns the relative states" do
+  describe "getting a list of states by countries" do
+    test "returns a list of related states" do
       countries = insert_list(2, :country)
 
       insert_list(2, :state, %{country: List.first(countries)})

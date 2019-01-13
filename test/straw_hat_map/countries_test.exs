@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.CountriesTest do
   use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.Countries
+  alias StrawHat.Map.Repo
 
   describe "find_country/1" do
     test "with valid id should find the country" do
@@ -14,9 +15,9 @@ defmodule StrawHat.Map.CountriesTest do
     end
   end
 
-  test "get_countries/1 returns a pagination of countries" do
+  test "get_countries/2 returns a pagination of countries" do
     insert_list(6, :country)
-    country_page = Countries.get_countries(%{page: 2, page_size: 5})
+    country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
 
     assert country_page.total_entries == 6
     assert length(country_page.entries) == 1

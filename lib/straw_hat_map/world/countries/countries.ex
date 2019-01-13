@@ -10,9 +10,9 @@ defmodule StrawHat.Map.Countries do
   Gets the list of countries.
   """
   @since "1.0.0"
-  @spec get_countries(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_countries(pagination \\ []) do
-    Repo.paginate(Country, pagination)
+  @spec get_countries(Ecto.Repo, Scrivener.Config.t()) :: Scrivener.Page.t()
+  def get_countries(repo, pagination \\ []) do
+    repo.paginate(Country, pagination)
   end
 
   @doc """

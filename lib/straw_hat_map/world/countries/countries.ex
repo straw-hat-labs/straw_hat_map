@@ -7,12 +7,12 @@ defmodule StrawHat.Map.Countries do
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.{Country, State}
 
-  @spec get_countries(Ecto.Repo, Scrivener.Config.t()) :: Scrivener.Page.t()
+  @spec get_countries(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_countries(repo, pagination \\ []) do
     repo.paginate(Country, pagination)
   end
 
-  @spec create_country(Ecto.Repo, Country.country_attrs()) ::
+  @spec create_country(Ecto.Repo.t(), Country.country_attrs()) ::
           Response.t(Country.t(), Ecto.Changeset.t())
   def create_country(repo, country_attrs) do
     %Country{}
@@ -21,7 +21,7 @@ defmodule StrawHat.Map.Countries do
     |> Response.from_value()
   end
 
-  @spec update_country(Ecto.Repo, Country.t(), Country.country_attrs()) ::
+  @spec update_country(Ecto.Repo.t(), Country.t(), Country.country_attrs()) ::
           Response.t(Country.t(), Ecto.Changeset.t())
   def update_country(repo, %Country{} = country, country_attrs) do
     country
@@ -30,14 +30,14 @@ defmodule StrawHat.Map.Countries do
     |> Response.from_value()
   end
 
-  @spec destroy_country(Ecto.Repo, Country.t()) :: Response.t(Country.t(), Ecto.Changeset.t())
+  @spec destroy_country(Ecto.Repo.t(), Country.t()) :: Response.t(Country.t(), Ecto.Changeset.t())
   def destroy_country(repo, %Country{} = country) do
     country
     |> repo.delete()
     |> Response.from_value()
   end
 
-  @spec find_country(Ecto.Repo, String.t()) :: Response.t(Country.t(), Error.t())
+  @spec find_country(Ecto.Repo.t(), String.t()) :: Response.t(Country.t(), Error.t())
   def find_country(repo, country_id) do
     repo
     |> get_country(country_id)
@@ -46,18 +46,18 @@ defmodule StrawHat.Map.Countries do
     )
   end
 
-  @spec get_country(Ecto.Repo, String.t()) :: Country.t() | nil | no_return
+  @spec get_country(Ecto.Repo.t(), String.t()) :: Country.t() | nil | no_return
   def get_country(repo, country_id) do
     repo.get(Country, country_id)
   end
 
-  @spec get_countries_by_ids(Ecto.Repo, [integer()]) :: [Country.t()] | no_return()
+  @spec get_countries_by_ids(Ecto.Repo.t(), [integer()]) :: [Country.t()] | no_return()
   def get_countries_by_ids(repo, country_ids) do
     query = from(country in Country, where: country.id in ^country_ids)
     repo.all(query)
   end
 
-  @spec get_states(Ecto.Repo, [integer()]) :: [State.t()] | no_return()
+  @spec get_states(Ecto.Repo.t(), [integer()]) :: [State.t()] | no_return()
   def get_states(repo, country_ids) when is_list(country_ids) do
     query = from(state in State, where: state.country_id in ^country_ids)
     repo.all(query)

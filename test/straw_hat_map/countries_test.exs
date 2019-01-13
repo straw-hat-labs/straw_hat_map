@@ -7,11 +7,12 @@ defmodule StrawHat.Map.CountriesTest do
     test "with valid id should find the country" do
       country = insert(:country)
 
-      assert {:ok, _country} = Countries.find_country(country.id)
+      assert {:ok, _country} = Countries.find_country(Repo, country.id)
     end
 
     test "with invalid id shouldn't find the country" do
-      assert {:error, _reason} = Ecto.UUID.generate() |> Countries.find_country()
+      country_id = Ecto.UUID.generate()
+      assert {:error, _reason} = Countries.find_country(Repo, country_id)
     end
   end
 

@@ -52,10 +52,10 @@ defmodule StrawHat.Map.Countries do
   @doc """
   Gets a country by `id`.
   """
-  @spec find_country(String.t()) :: Response.t(Country.t(), Error.t())
-  def find_country(country_id) do
-    country_id
-    |> get_country()
+  @spec find_country(Ecto.Repo, String.t()) :: Response.t(Country.t(), Error.t())
+  def find_country(repo, country_id) do
+    repo
+    |> get_country(country_id)
     |> Response.from_value(
       Error.new("straw_hat_map.country.not_found", metadata: [country_id: country_id])
     )
@@ -64,9 +64,9 @@ defmodule StrawHat.Map.Countries do
   @doc """
   Gets a country by `id`.
   """
-  @spec get_country(String.t()) :: Country.t() | nil | no_return
-  def get_country(country_id) do
-    Repo.get(Country, country_id)
+  @spec get_country(Ecto.Repo, String.t()) :: Country.t() | nil | no_return
+  def get_country(repo, country_id) do
+    repo.get(Country, country_id)
   end
 
   @doc """

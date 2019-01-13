@@ -12,7 +12,8 @@ defmodule StrawHat.Map.Countries do
     repo.paginate(Country, pagination)
   end
 
-  @spec create_country(Ecto.Repo, Country.country_attrs()) :: Response.t(Country.t(), Ecto.Changeset.t())
+  @spec create_country(Ecto.Repo, Country.country_attrs()) ::
+          Response.t(Country.t(), Ecto.Changeset.t())
   def create_country(repo, country_attrs) do
     %Country{}
     |> Country.changeset(country_attrs)

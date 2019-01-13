@@ -8,18 +8,11 @@ defmodule StrawHat.Map.Country do
   alias StrawHat.Map.Ecto.Regex
 
   @typedoc """
-  - `id`: ID of the country.
-  - `name`: Name of the country.
   - `iso_two`: Two characters ISO code.
   - `iso_three`: Three characters ISO code.
   - `iso_numeric`: Numeric ISO code.
-  - `has_counties`: Defines if the country has counties.
   - `continent`: Two characters continent code.
-  - `inserted_at`: When the country was created.
-  - `updated_at`: Last time the country was updated.
-  - `states`: List of `t:StrawHat.Map.States.t/0` associated with
-  the country.
-  - `postal_code_rule`: A regular expression that specifies a valid postal code.
+  - `postal_code_rule`: A regular expression for validating postal codes.
   """
   @type t :: %__MODULE__{
           id: String.t(),
@@ -35,9 +28,6 @@ defmodule StrawHat.Map.Country do
           postal_code_rule: Regex.t()
         }
 
-  @typedoc """
-  Check `t:t/0` type for more information about the keys.
-  """
   @type country_attrs :: %{
           name: String.t(),
           iso_two: String.t(),
@@ -65,9 +55,8 @@ defmodule StrawHat.Map.Country do
   end
 
   @doc """
-  Validates the attributes and return a Ecto.Changeset for the current Country.
+  Return a change set of the country.
   """
-  @since "1.0.0"
   @spec changeset(t, country_attrs) :: Ecto.Changeset.t()
   def changeset(country, country_attrs) do
     country

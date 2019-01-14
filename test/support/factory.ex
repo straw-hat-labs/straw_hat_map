@@ -7,8 +7,6 @@ defmodule StrawHat.Map.Tests.Factory do
   alias StrawHat.Map.{Address, Country, Continents, County, City, Location, State}
 
   def country_factory do
-    iso_numeric = "#{:rand.uniform(9)}#{:rand.uniform(9)}#{:rand.uniform(9)}"
-
     continent =
       Continents.get_continent_codes()
       |> Enum.shuffle()

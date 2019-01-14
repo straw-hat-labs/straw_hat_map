@@ -1,27 +1,13 @@
 defmodule StrawHat.Map.Tests.IsoGenerator do
-  use Agent
-
-  @initial_state %{
-    two: [],
-    three: [],
-    numeric: [],
-  }
-
-  def start_link() do
-    Agent.start_link(fn -> @initial_state end, name: __MODULE__)
+  def initial_state do
+    %{
+      two: [],
+      three: [],
+      numeric: [],
+    }
   end
 
-  def generate_iso(type) do
-    Agent.get_and_update(__MODULE__, fn state ->
-      generate_and_update(state, type)
-    end)
-  end
-
-  def reset do
-    Agent.update(__MODULE__, fn -> [] end)
-  end
-
-  defp generate_and_update(state, type) do
+  def generate_iso(state, type) do
     new_iso = generate_numeric_combination(type)
 
     state
@@ -40,7 +26,7 @@ defmodule StrawHat.Map.Tests.IsoGenerator do
   end
 
   defp with_found_iso_numeric(_, state, type, _) do
-    generate_and_update(state, type)
+    generate_iso(state, type)
   end
 
   defp find_iso(state, type, new_iso) do

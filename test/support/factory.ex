@@ -3,6 +3,7 @@ defmodule StrawHat.Map.Tests.Factory do
 
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
+  alias StrawHat.Map.Tests.IsoGenerator
   alias StrawHat.Map.{Address, Country, Continents, County, City, Location, State}
 
   def country_factory do
@@ -15,9 +16,9 @@ defmodule StrawHat.Map.Tests.Factory do
 
     %Country{
       name: Faker.String.base64(10),
-      iso_two: Faker.format("??"),
-      iso_three: Faker.format("???"),
-      iso_numeric: iso_numeric,
+      iso_two: IsoGenerator.generate_iso(:two),
+      iso_three: IsoGenerator.generate_iso(:three),
+      iso_numeric: IsoGenerator.generate_iso(:numeric),
       has_counties: true,
       continent: continent
     }

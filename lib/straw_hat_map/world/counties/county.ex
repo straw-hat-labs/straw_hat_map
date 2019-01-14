@@ -44,7 +44,6 @@ defmodule StrawHat.Map.County do
   @doc """
   Validates the attributes and return a Ecto.Changeset for the current County.
   """
-  @since "1.0.0"
   @spec changeset(t, county_attrs) :: Ecto.Changeset.t()
   def changeset(city, county_attrs) do
     city

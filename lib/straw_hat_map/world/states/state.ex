@@ -39,7 +39,6 @@ defmodule StrawHat.Map.State do
   @doc """
   Return a change set of the state.
   """
-  @since "1.0.0"
   @spec changeset(t, state_attrs) :: Ecto.Changeset.t()
   def changeset(state, state_attrs) do
     state

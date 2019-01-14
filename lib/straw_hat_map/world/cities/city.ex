@@ -60,7 +60,6 @@ defmodule StrawHat.Map.City do
   @doc """
   Validates the attributes and return a Ecto.Changeset for the current City.
   """
-  @since "1.0.0"
   @spec changeset(t, city_attrs) :: Ecto.Changeset.t()
   def changeset(city, city_attrs) do
     city

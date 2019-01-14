@@ -1,4 +1,8 @@
 defmodule StrawHat.Map.Tests.IsoGeneratorServer do
+  @moduledoc """
+  GenServer for generating ISO codes.
+  """
+
   use Agent
 
   alias StrawHat.Map.Tests.IsoGenerator

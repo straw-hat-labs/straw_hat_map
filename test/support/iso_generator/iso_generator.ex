@@ -1,4 +1,8 @@
 defmodule StrawHat.Map.Tests.IsoGenerator do
+  @moduledoc """
+  Generates ISO codes.
+  """
+
   def initial_state do
     %{
       two: [],

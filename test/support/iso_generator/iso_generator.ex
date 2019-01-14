@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Tests.IsoGenerator do
     %{
       two: [],
       three: [],
-      numeric: [],
+      numeric: []
     }
   end
 
@@ -20,6 +20,7 @@ defmodule StrawHat.Map.Tests.IsoGenerator do
       state
       |> Map.get(type)
       |> Enum.concat([new_iso])
+
     state = Map.put(state, type, updated_list)
 
     {new_iso, state}

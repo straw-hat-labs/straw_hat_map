@@ -12,7 +12,8 @@ defmodule StrawHat.Map.States do
     repo.paginate(State, pagination)
   end
 
-  @spec create_state(Ecto.Repo.t(), State.state_attrs()) :: Response.t(State.t(), Ecto.Changeset.t())
+  @spec create_state(Ecto.Repo.t(), State.state_attrs()) ::
+          Response.t(State.t(), Ecto.Changeset.t())
   def create_state(repo, state_attrs) do
     %State{}
     |> State.changeset(state_attrs)
@@ -20,7 +21,8 @@ defmodule StrawHat.Map.States do
     |> Response.from_value()
   end
 
-  @spec update_state(Ecto.Repo.t(), State.t(), State.state_attrs()) :: Response.t(State.t(), Ecto.Changeset.t())
+  @spec update_state(Ecto.Repo.t(), State.t(), State.state_attrs()) ::
+          Response.t(State.t(), Ecto.Changeset.t())
   def update_state(repo, %State{} = state, state_attrs) do
     state
     |> State.changeset(state_attrs)

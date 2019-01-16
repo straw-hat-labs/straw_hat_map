@@ -6,82 +6,58 @@ defmodule StrawHat.Map.Counties do
   use StrawHat.Map.Interactor
   alias StrawHat.Map.{County, City}
 
-  @doc """
-  Returns the list of counties.
-  """
-  @spec get_counties(Scrivener.Config.t()) :: Scrivener.Page.t()
-  def get_counties(pagination \\ []) do
-    Repo.paginate(County, pagination)
+  @spec get_counties(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
+  def get_counties(repo, pagination \\ []) do
+    repo.paginate(County, pagination)
   end
 
-  @doc """
-  Creates a county.
-  """
-  @spec create_county(County.county_attrs()) :: Response.t(County.t(), Ecto.Changeset.t())
-  def create_county(county_attrs) do
+  @spec create_county(Ecto.Repo.t(), County.county_attrs()) :: Response.t(County.t(), Ecto.Changeset.t())
+  def create_county(repo, county_attrs) do
     %County{}
     |> County.changeset(county_attrs)
-    |> Repo.insert()
+    |> repo.insert()
     |> Response.from_value()
   end
 
-  @doc """
-  Updates a county.
-  """
-  @spec update_county(County.t(), County.county_attrs()) ::
+  @spec update_county(Ecto.Repo.t(), County.t(), County.county_attrs()) ::
           Response.t(County.t(), Ecto.Changeset.t())
-  def update_county(%County{} = county, county_attrs) do
+  def update_county(repo, %County{} = county, county_attrs) do
     county
     |> County.changeset(county_attrs)
-    |> Repo.update()
+    |> repo.update()
     |> Response.from_value()
   end
 
-  @doc """
-  Destroys a county.
-  """
-  @spec destroy_county(County.t()) :: Response.t(County.t(), Ecto.Changeset.t())
-  def destroy_county(%County{} = county) do
+  @spec destroy_county(Ecto.Repo.t(), County.t()) :: Response.t(County.t(), Ecto.Changeset.t())
+  def destroy_county(repo, %County{} = county) do
     county
-    |> Repo.delete()
+    |> repo.delete()
     |> Response.from_value()
   end
 
-  @doc """
-  Gets a county by `id`.
-  """
-  @spec find_county(String.t()) :: Response.t(County.t(), Error.t())
-  def find_county(county_id) do
-    county_id
-    |> get_county()
+  @spec find_county(Ecto.Repo.t(), String.t()) :: Response.t(County.t(), Error.t())
+  def find_county(repo, county_id) do
+    repo
+    |> get_county(county_id)
     |> Response.from_value(
       Error.new("straw_hat_map.county.not_found", metadata: [county_id: county_id])
     )
   end
 
-  @doc """
-  Gets a county by `id`.
-  """
-  @spec get_county(String.t()) :: County.t() | nil | no_return
-  def get_county(county_id) do
-    Repo.get(County, county_id)
+  @spec get_county(Ecto.Repo.t(), String.t()) :: County.t() | nil | no_return
+  def get_county(repo, county_id) do
+    repo.get(County, county_id)
   end
 
-  @doc """
-  Returns a list of counties.
-  """
-  @spec get_counties_by_ids([integer()]) :: [County.t()] | no_return()
-  def get_counties_by_ids(county_ids) do
+  @spec get_counties_by_ids(Ecto.Repo.t(), [integer()]) :: [County.t()] | no_return()
+  def get_counties_by_ids(repo, county_ids) do
     query = from(c in County, where: c.id in ^county_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 
-  @doc """
-  Return the list of cities from counties.
-  """
-  @spec get_cities([integer()]) :: [State.t()] | no_return()
-  def get_cities(county_ids) when is_list(county_ids) do
+  @spec get_cities(Ecto.Repo.t(), [integer()]) :: [State.t()] | no_return()
+  def get_cities(repo, county_ids) when is_list(county_ids) do
     query = from(city in City, where: city.county_id in ^county_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 end

@@ -10,6 +10,8 @@ defmodule StrawHat.Map.Mixfile do
     production? = Mix.env() == :prod
 
     [
+      name: "StrawHat.Map",
+      description: "Map and Addresses Management",
       app: @name,
       version: @version,
       elixir: @elixir_version,
@@ -19,19 +21,8 @@ defmodule StrawHat.Map.Mixfile do
       build_embedded: production?,
       start_permanent: production?,
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
-        "ecto.reset": :test,
-        "ecto.setup": :test,
-        "coveralls.html": :test,
-        "coveralls.json": :test
-      ],
-
-      # Hex
-      description: "Map and Addresses Management",
+      preferred_cli_env: cli_env(),
       package: package(),
-
-      # Docs
-      name: "StrawHat.Map",
       docs: docs()
     ]
   end
@@ -61,6 +52,15 @@ defmodule StrawHat.Map.Mixfile do
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:excoveralls, ">= 0.0.0", only: [:test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
+    ]
+  end
+
+  defp cli_env do
+    [
+      "ecto.reset": :test,
+      "ecto.setup": :test,
+      "coveralls.html": :test,
+      "coveralls.json": :test
     ]
   end
 

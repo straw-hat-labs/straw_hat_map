@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Location do
   for Location.
   """
 
-  use StrawHat.Map.Schema
+  use StrawHat.Map.EctoSchema
   alias StrawHat.Map.Address
 
   @typedoc """

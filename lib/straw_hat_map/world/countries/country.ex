@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Country do
   A Country entity.
   """
 
-  use StrawHat.Map.Schema
+  use StrawHat.Map.EctoSchema
   alias StrawHat.Map.{Continents, State}
   alias StrawHat.Map.Ecto.Regex
 

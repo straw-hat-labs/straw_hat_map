@@ -4,7 +4,7 @@ defmodule StrawHat.Map.Address do
   for Address.
   """
 
-  use StrawHat.Map.Schema
+  use StrawHat.Map.EctoSchema
   alias StrawHat.Map.{City, Location}
 
   @default_postal_code_rule ~r/^\w+[ -]?\w+$/

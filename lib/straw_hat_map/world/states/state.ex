@@ -3,7 +3,7 @@ defmodule StrawHat.Map.State do
   A State entity.
   """
 
-  use StrawHat.Map.Schema
+  use StrawHat.Map.EctoSchema
   alias StrawHat.Map.{Country, County, City}
 
   @type t :: %__MODULE__{

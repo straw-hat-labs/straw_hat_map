@@ -36,9 +36,6 @@ defmodule StrawHat.Map.State do
     timestamps()
   end
 
-  @doc """
-  Return a change set of the state.
-  """
   @spec changeset(t, state_attrs) :: Ecto.Changeset.t()
   def changeset(state, state_attrs) do
     state

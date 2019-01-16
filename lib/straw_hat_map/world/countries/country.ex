@@ -54,9 +54,6 @@ defmodule StrawHat.Map.Country do
     timestamps()
   end
 
-  @doc """
-  Return a change set of the country.
-  """
   @spec changeset(t, country_attrs) :: Ecto.Changeset.t()
   def changeset(country, country_attrs) do
     country

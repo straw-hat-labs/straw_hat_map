@@ -3,9 +3,8 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/straw_hat_map.svg)](https://hex.pm/packages/straw_hat_map)
 [![CI Status](https://travis-ci.org/straw-hat-team/straw_hat_map.svg?branch=master)](https://travis-ci.org/straw-hat-team/straw_hat_map)
 [![Code Coverage](https://codecov.io/gh/straw-hat-team/straw_hat_map/branch/master/graph/badge.svg)](https://codecov.io/gh/straw-hat-team/straw_hat_map)
-[![Documentation](https://inch-ci.org/github/straw-hat-team/straw_hat_map.svg)](https://inch-ci.org/github/straw-hat-team/straw_hat_map)
 
-Application for Addresses and Map information management.
+Map and addresses management.
 
 ## Configuration
 

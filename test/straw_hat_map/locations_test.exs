@@ -1,6 +1,7 @@
 defmodule StrawHat.Map.LocationsTest do
   use StrawHat.Map.Tests.DataCase, async: true
   alias StrawHat.Map.{Locations, Location}
+  alias StrawHat.Map.Repo
 
   test "get_locations_by_ids/1 with a list of IDs returns the relative locations" do
     available_locations = insert_list(3, :location)
@@ -10,7 +11,7 @@ defmodule StrawHat.Map.LocationsTest do
       |> Enum.take(2)
       |> Enum.map(fn location -> location.id end)
 
-    locations = Locations.get_locations_by_ids(ids)
+    locations = Locations.get_locations_by_ids(Repo, ids)
 
     assert List.first(locations).id == List.first(ids)
     assert List.last(locations).id == List.last(ids)

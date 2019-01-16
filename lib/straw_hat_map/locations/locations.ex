@@ -1,17 +1,15 @@
 defmodule StrawHat.Map.Locations do
   @moduledoc """
-  Defines functionality for locations.
+  Location management use cases.
   """
 
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.Location
 
-  @doc """
-  Gets list of locations.
-  """
-  @spec get_locations_by_ids([integer()]) :: [Location.t()] | no_return()
-  def get_locations_by_ids(location_ids) do
+  @spec get_locations_by_ids(Ecto.Repo.t(), [integer()]) :: [Location.t()] | no_return()
+  def get_locations_by_ids(repo, location_ids) do
     query = from(location in Location, where: location.id in ^location_ids)
-    Repo.all(query)
+    repo.all(query)
   end
 end

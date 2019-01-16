@@ -3,7 +3,8 @@ defmodule StrawHat.Map.Cities do
   City management use cases.
   """
 
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.City
 
   @spec get_cities(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()

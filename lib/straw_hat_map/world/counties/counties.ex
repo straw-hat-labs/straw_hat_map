@@ -11,7 +11,8 @@ defmodule StrawHat.Map.Counties do
     repo.paginate(County, pagination)
   end
 
-  @spec create_county(Ecto.Repo.t(), County.county_attrs()) :: Response.t(County.t(), Ecto.Changeset.t())
+  @spec create_county(Ecto.Repo.t(), County.county_attrs()) ::
+          Response.t(County.t(), Ecto.Changeset.t())
   def create_county(repo, county_attrs) do
     %County{}
     |> County.changeset(county_attrs)

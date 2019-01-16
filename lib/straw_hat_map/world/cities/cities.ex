@@ -20,7 +20,8 @@ defmodule StrawHat.Map.Cities do
     |> Response.from_value()
   end
 
-  @spec update_city(Ecto.Repo.t(), City.t(), City.city_attrs()) :: Response.t(City.t(), Ecto.Changeset.t())
+  @spec update_city(Ecto.Repo.t(), City.t(), City.city_attrs()) ::
+          Response.t(City.t(), Ecto.Changeset.t())
   def update_city(repo, %City{} = city, city_attrs) do
     city
     |> City.changeset(city_attrs)

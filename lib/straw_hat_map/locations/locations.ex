@@ -4,7 +4,6 @@ defmodule StrawHat.Map.Locations do
   """
 
   import Ecto.Query, only: [from: 2]
-  alias StrawHat.{Error, Response}
   alias StrawHat.Map.Location
 
   @spec get_locations_by_ids(Ecto.Repo.t(), [integer()]) :: [Location.t()] | no_return()

@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.EctoRegexTest do
   use StrawHat.Map.Tests.DataCase, async: true
-  alias StrawHat.Map.Ecto.Regex
+  alias StrawHat.Map.Ecto.Types.Regex
 
   describe "cast/1" do
     test "with a string value" do

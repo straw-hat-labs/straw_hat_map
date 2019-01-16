@@ -5,7 +5,7 @@ defmodule StrawHat.Map.Country do
 
   use StrawHat.Map.EctoSchema
   alias StrawHat.Map.{Continents, State}
-  alias StrawHat.Map.Ecto.Regex
+  alias StrawHat.Map.Ecto.Types.Regex
 
   @typedoc """
   - `iso_two`: Two characters ISO code.

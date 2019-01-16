@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Ecto.Regex do
+defmodule StrawHat.Map.Ecto.Types.Regex do
   @moduledoc """
   Adds regular expressions as a custom Ecto Type.
   """

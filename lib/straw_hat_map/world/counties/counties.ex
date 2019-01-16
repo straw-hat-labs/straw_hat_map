@@ -2,8 +2,8 @@ defmodule StrawHat.Map.Counties do
   @moduledoc """
   County management use cases.
   """
-
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.{County, City}
 
   @spec get_counties(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()

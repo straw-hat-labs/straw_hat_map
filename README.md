@@ -8,24 +8,38 @@ Map and addresses management.
 
 ## Configuration
 
+`StrawHat.Map` requires an Ecto repository with `Geo.PostGIS.Extension`
+extension enabled.
+
+First you need to create or extend your current PostgreSQL types:
+
+```elixir
+Postgrex.Types.define(
+  MyApp.PostgresTypes,
+  [Geo.PostGIS.Extension] ++ Ecto.Adapters.Postgres.extensions()
+)
+```
+
+Then make sure that you add the types to your repository connection.
+
 ```elixir
 # In your config files
 
-config :straw_hat_map, StrawHat.Map.Repo,
-  database: "straw_hat_map",
-  hostname: "localhost",
-  username: "postgres",
-  password: "postgres",
-  types: StrawHat.Map.Ecto.AdapterTypes
+config :my_app, MyApp.Repo,
+  # ...
+  types: MyApp.PostgresTypes
 ```
 
-**Important:** Notice that we added `types: StrawHat.Map.Ecto.AdapterTypes`
-to repo configuration, this is required to make PostGis to work.
+## Use cases
 
-## Usage
+All the APIs are contain in the business use cases are under `Use Cases`
+documentation section. Check the available modules and the public API.
 
-All the APIs are contain in the interactors. You would normally need to look up
-in the interactor modules for the funtionalities you will need.
+You should be able to comprehend the API by reading the type spec and the
+function name.
+
+Please open an issue or even better make pull request about the documation if
+you have any issues with it.
 
 ### Mix Aliases Task and Ecto
 

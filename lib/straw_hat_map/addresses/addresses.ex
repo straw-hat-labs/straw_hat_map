@@ -3,7 +3,8 @@ defmodule StrawHat.Map.Addresses do
   Defines functionality for addresses management.
   """
 
-  use StrawHat.Map.Interactor
+  import Ecto.Query, only: [from: 2]
+  alias StrawHat.{Error, Response}
   alias StrawHat.Map.{Address, Cities}
 
   @doc """

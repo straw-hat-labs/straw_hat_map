@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Counties do
   @moduledoc """
-  Defines functionality for counties management.
+  County management use cases.
   """
 
   use StrawHat.Map.Interactor

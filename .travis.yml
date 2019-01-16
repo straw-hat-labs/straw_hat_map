@@ -4,7 +4,7 @@ notifications:
     - opensource@straw-hat-llc.com
 
 language: elixir
-elixir: 1.7
+elixir: 1.8
 cache:
   directories:
     - _build

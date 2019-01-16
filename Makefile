@@ -4,8 +4,9 @@ deps:
 	mix deps.get
 
 linter:
+	mix compile --warnings-as-errors --force
 	mix format --check-formatted
-	mix credo
+	mix credo --strict
 
 testing:
 	mix coveralls.json

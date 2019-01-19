@@ -9,19 +9,6 @@ defmodule StrawHat.Map.Address do
 
   @default_postal_code_rule ~r/^\w+[ -]?\w+$/
 
-  @typedoc """
-  - `id`: ID of the address.
-  - `line_one`: Line one of the address.
-  - `line_two`: Line two of the address.
-  - `postal_code`: Postal Code or Zipcode of the address.
-  - `inserted_at`: When the address was created.
-  - `updated_at`: Last time the address was updated.
-  - `city`: `t:StrawHat.Map.City.t/0` associated with the address.
-  - `city_id`: `id` of `t:StrawHat.Map.City.t/0` associated with
-  the address.
-  - `locations`: List of `t:StrawHat.Map.Location.t/0` associated with
-  the address.
-  """
   @type t :: %__MODULE__{
           id: String.t(),
           line_one: String.t(),
@@ -34,9 +21,6 @@ defmodule StrawHat.Map.Address do
           locations: Schema.has_many(Location.t())
         }
 
-  @typedoc """
-  Check `t:t/0` type for more information about the keys.
-  """
   @type address_attrs :: %{
           line_one: String.t(),
           line_two: String.t(),

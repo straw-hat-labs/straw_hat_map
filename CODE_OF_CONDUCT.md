@@ -1,4 +1,4 @@
-# Code of Conduct
+# Contributor Code of Conduct
 
 Contact: code-of-conduct@straw-hat-llc.com
 

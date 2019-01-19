@@ -11,7 +11,7 @@ defmodule StrawHat.Map.Mixfile do
 
     [
       name: "StrawHat.Map",
-      description: "Map and Addresses Management",
+      description: "Map and Addresses Management library",
       app: @name,
       version: @version,
       deps: deps(),

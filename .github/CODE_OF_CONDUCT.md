@@ -1,6 +1,6 @@
 # Code of Conduct
 
-Contact: opensource@straw-hat-llc.com
+Contact: code-of-conduct@straw-hat-llc.com
 
 ## Why have a Code of Conduct?
 

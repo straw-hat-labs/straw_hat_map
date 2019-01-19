@@ -14,13 +14,15 @@ defmodule StrawHat.Map.Mixfile do
       description: "Map and Addresses Management",
       app: @name,
       version: @version,
+      deps: deps(),
+
       elixir: @elixir_version,
       elixirc_paths: elixirc_paths(Mix.env()),
-      deps: deps(),
-      aliases: aliases(),
       build_embedded: production?,
       start_permanent: production?,
-      test_coverage: [tool: ExCoveralls],
+
+      aliases: aliases(),
+      test_coverage: test_coverage(),
       preferred_cli_env: cli_env(),
       package: package(),
       docs: docs()
@@ -53,6 +55,10 @@ defmodule StrawHat.Map.Mixfile do
       {:excoveralls, ">= 0.0.0", only: [:test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
     ]
+  end
+
+  defp test_coverage do
+    [tool: ExCoveralls]
   end
 
   defp cli_env do

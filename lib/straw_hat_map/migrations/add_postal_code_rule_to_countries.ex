@@ -1,9 +1,11 @@
 defmodule StrawHat.Map.Migrations.AddPostalCodeRuleToCountries do
-  @moduledoc false
+  @moduledoc """
+  Add postal code rule column to countries table.
+
+  Created at: ~N[2018-03-22 21:10:17]
+  """
 
   use Ecto.Migration
-
-  @id ~N[2018-03-22 21:10:17]
 
   def change do
     alter table(:countries) do

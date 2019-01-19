@@ -1,9 +1,11 @@
 defmodule StrawHat.Map.Migrations.CreateAddressesTable do
-  @moduledoc false
+  @moduledoc """
+  Create addresses table.
+
+  Created at: ~N[2017-05-17 23:24:15]
+  """
 
   use Ecto.Migration
-
-  @id ~N[2017-05-17 23:24:15]
 
   def change do
     create table(:addresses, primary_key: false) do

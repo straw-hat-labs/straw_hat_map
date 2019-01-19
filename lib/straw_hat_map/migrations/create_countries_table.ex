@@ -1,9 +1,11 @@
 defmodule StrawHat.Map.Migrations.CreateCountriesTable do
-  @moduledoc false
+  @moduledoc """
+  Create countries table.
+
+  Created at: ~N[2017-05-17 23:20:48]
+  """
 
   use Ecto.Migration
-
-  @id ~N[2017-05-17 23:20:48]
 
   def change do
     create table(:countries, primary_key: false) do

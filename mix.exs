@@ -118,7 +118,7 @@ defmodule StrawHat.Map.Mixfile do
           StrawHat.Map.Location,
           StrawHat.Map.Address
         ],
-        "Migrations": [
+        Migrations: [
           StrawHat.Map.Migrations.CreateCountriesTable,
           StrawHat.Map.Migrations.CreateStatesTable,
           StrawHat.Map.Migrations.CreateCountiesTable,

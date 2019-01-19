@@ -5,50 +5,50 @@ about: Find something broken?
 
 <!--
 Before submitting an issue:
-  Search the repo and ensure your issue doesn't already exist. If so, it may:
-    - Have already been fixed in an unreleased version.
-    - Have been closed without a solution. Please create a new issue instead of
-    commenting on the old one.
+
+Search the repo and ensure your issue doesn't already exist. If so, it may:
+
+- Have already been fixed in an unreleased version.
+- Have been closed without a solution. Please create a new issue instead of
+commenting on the old one.
 
 You may remove sections if they aren't relevant, but please supply as much
 information as possible. Incomplete issues will be closed.
 -->
 
-### Checklist
-
-<!--- Go over all the following points, and put an `x` in all the boxes that
-apply. -->
-
-- [ ] Check other issues and make sure that it is not reported yet.
-
-### Versions and Environment
-
-Elixir:
+Elixir version:
 
 ```bash
 # elixir -v
 
 ```
 
-Erlang:
+Erlang version:
 
 ```bash
 # erl -v
 
 ```
 
-Scenic:
+Package version:
 
 ```text
-# mix deps | grep scenic
+# mix deps | grep straw_hat_map
 
 ```
 
-OS:
+<details>
 
-```text
+<summary>Stack Trace</summary>
+
+<!--- Paste the stack trace --->
+
+```bash
 
 ```
+
+</details>
+
 
 ### Steps to reproduce
 
@@ -61,18 +61,6 @@ OS:
 ### Actual Behavior
 
 <!-- What actually happened? -->
-
-#### Stack Trace
-
-<!--- Paste the stack trace --->
-
-<details>
-
-```bash
-
-```
-
-</details>
 
 ### Additional Comments
 

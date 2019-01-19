@@ -1,30 +1,18 @@
 defmodule StrawHat.Map.Repo.Migrations.RunAllMigrations do
   use Ecto.Migration
 
-  alias StrawHat.Map.Migrations.{
-    CreateCountriesTable,
-    CreateStatesTable,
-    CreateCountiesTable,
-    CreateCitiesTable,
-    CreateAddressesTable,
-    CreateLocationsTable,
-    AddPostgisPlugin,
-    AddGeoLocationToLocationsTable,
-    AddPostalCodeRuleToCountries
-  }
-
   def change do
     Enum.map(
       [
-        CreateCountriesTable,
-        CreateStatesTable,
-        CreateCountiesTable,
-        CreateCitiesTable,
-        CreateAddressesTable,
-        CreateLocationsTable,
-        AddPostgisPlugin,
-        AddGeoLocationToLocationsTable,
-        AddPostalCodeRuleToCountries
+        StrawHat.Map.Migrations.CreateCountriesTable,
+        StrawHat.Map.Migrations.CreateStatesTable,
+        StrawHat.Map.Migrations.CreateCountiesTable,
+        StrawHat.Map.Migrations.CreateCitiesTable,
+        StrawHat.Map.Migrations.CreateAddressesTable,
+        StrawHat.Map.Migrations.CreateLocationsTable,
+        StrawHat.Map.Migrations.AddPostgisPlugin,
+        StrawHat.Map.Migrations.AddGeoLocationToLocationsTable,
+        StrawHat.Map.Migrations.AddPostalCodeRuleToCountries
       ],
       &apply(&1, :change, [])
     )

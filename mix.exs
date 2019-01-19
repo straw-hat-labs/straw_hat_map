@@ -15,12 +15,10 @@ defmodule StrawHat.Map.Mixfile do
       app: @name,
       version: @version,
       deps: deps(),
-
       elixir: @elixir_version,
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: production?,
       start_permanent: production?,
-
       aliases: aliases(),
       test_coverage: test_coverage(),
       preferred_cli_env: cli_env(),

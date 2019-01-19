@@ -11,7 +11,7 @@ Map and addresses management.
 `StrawHat.Map` requires an Ecto repository with `Geo.PostGIS.Extension`
 extension enabled.
 
-First you need to create or extend your current PostgreSQL types:
+You need to create or extend your current PostgreSQL types:
 
 ```elixir
 Postgrex.Types.define(
@@ -41,41 +41,8 @@ function name.
 Please open an issue or even better make pull request about the documation if
 you have any issues with it.
 
-### Mix Aliases Task and Ecto
+## Migrations
 
-If you are using `Ecto` in your application probably you have some mix aliases
-if not then just create it.
-
-```elixir
-# mix.exs
-
-defp aliases do
-  [
-    "ecto.setup": [
-      "ecto.create",
-      "ecto.migrate",
-      "run priv/repo/seeds.exs"
-    ],
-    "ecto.reset": [
-      "ecto.drop",
-      "ecto.setup"
-    ],
-    "test": ["ecto.create --quiet", "ecto.migrate", "test"]
-  ]
-end
-```
-
-Then add `StrawHat.Map.Repo` to the list of ecto repos on your application
-in your config.
-
-```elixir
-# config/config.exs
-
-config :my_app,
-  ecto_repos: [
-    # ...
-    StrawHat.Map.Repo
-  ]
-```
-
-This way `ecto.create`, `ecto.migrate` and `ecto.drop` knows about the repo.
+Since this library does not have any repository, it does not run any migration.
+You will need to handle the migrations on your application that contains the
+repository.

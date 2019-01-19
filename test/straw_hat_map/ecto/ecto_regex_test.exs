@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.EctoRegexTest do
+defmodule StrawHat.Map.EctoRegexTests do
   use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Ecto.Types.Regex
 

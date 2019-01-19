@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.CitiesTest do
+defmodule StrawHat.Map.CitiesTests do
   use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Cities
 

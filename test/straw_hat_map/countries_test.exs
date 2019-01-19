@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.CountriesTest do
+defmodule StrawHat.Map.CountriesTests do
   use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Countries
 

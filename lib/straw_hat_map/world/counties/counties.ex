@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Counties do
   @moduledoc """
-  County management use cases.
+  Counties management use cases.
   """
   import Ecto.Query, only: [from: 2]
   alias StrawHat.{Error, Response}

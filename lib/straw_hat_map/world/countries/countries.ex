@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Countries do
   @moduledoc """
-  Country management use cases.
+  Countries management use cases.
   """
 
   import Ecto.Query, only: [from: 2]

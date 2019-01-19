@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Cities do
   @moduledoc """
-  City management use cases.
+  Cities management use cases.
   """
 
   import Ecto.Query, only: [from: 2]

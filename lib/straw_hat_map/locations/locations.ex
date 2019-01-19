@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Locations do
   @moduledoc """
-  Location management use cases.
+  Locations management use cases.
   """
 
   import Ecto.Query, only: [from: 2]

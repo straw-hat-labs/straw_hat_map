@@ -1,20 +1,13 @@
 defmodule StrawHat.Map.Location do
   @moduledoc """
-  Represents a Location Ecto Schema with functionality about the data validation
-  for Location.
+  A location entity.
   """
 
   use StrawHat.Map.EctoSchema
   alias StrawHat.Map.Address
 
   @typedoc """
-  - `id`: ID of the location.
-  - `location`: the `Geo.Point.t/0` of the location of the Location.
-  - `inserted_at`: When the location was created.
-  - `updated_at`: Last time the location was updated.
-  - `address`: `t:StrawHat.Map.Address.t/0` associated with the location.
-  - `address_id`: `id` of `t:StrawHat.Map.Address.t/0` associated with
-  the location.
+  - `location`: a GeoJSON point using `Geo.Point.t/0`.
   """
   @type t :: %__MODULE__{
           id: String.t(),
@@ -25,11 +18,6 @@ defmodule StrawHat.Map.Location do
           address: Schema.belongs_to(Address.t())
         }
 
-  @typedoc """
-  Check `t:t/0` type for more information about the keys.
-
-  - `location`: the GeoJSON Point structure for the location of the Location.
-  """
   @type location_attrs :: %{
           location: Map.t(),
           address_id: String.t()
@@ -43,9 +31,6 @@ defmodule StrawHat.Map.Location do
     timestamps()
   end
 
-  @doc """
-  Validates the attributes and return a Ecto.Changeset for the current Location.
-  """
   @spec changeset(t, location_attrs) :: Ecto.Changeset.t()
   def changeset(location, location_attrs) do
     location

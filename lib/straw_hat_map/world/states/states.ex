@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.States do
   @moduledoc """
-  State management use cases.
+  States management use cases.
   """
 
   import Ecto.Query, only: [from: 2]

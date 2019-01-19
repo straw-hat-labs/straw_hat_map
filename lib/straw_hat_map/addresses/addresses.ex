@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.Addresses do
   @moduledoc """
-  Defines functionality for addresses management.
+  Addresses management use cases.
   """
 
   import Ecto.Query, only: [from: 2]

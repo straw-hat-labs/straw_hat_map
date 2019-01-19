@@ -1,10 +1,10 @@
-defmodule StrawHat.Map.Tests.IsoGeneratorServer do
+defmodule StrawHat.Map.TestSupport.IsoGeneratorServer do
   @moduledoc """
   GenServer for generating ISO codes.
   """
 
   use Agent
-  alias StrawHat.Map.Tests.IsoGenerator
+  alias StrawHat.Map.TestSupport.IsoGenerator
 
   def start_link do
     Agent.start_link(&IsoGenerator.initial_state/0, name: __MODULE__)

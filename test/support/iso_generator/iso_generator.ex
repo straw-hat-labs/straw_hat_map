@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Tests.IsoGenerator do
+defmodule StrawHat.Map.TestSupport.IsoGenerator do
   @moduledoc """
   Generates ISO codes.
   """

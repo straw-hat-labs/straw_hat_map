@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.LocationsTests do
-  use StrawHat.Map.Tests.CaseTemplate, async: true
+  use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.{Location, Locations}
 
   test "get_locations_by_ids/1 with a list of IDs returns the relative locations" do

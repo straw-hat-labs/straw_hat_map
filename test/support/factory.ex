@@ -1,9 +1,9 @@
-defmodule StrawHat.Map.Tests.Factory do
+defmodule StrawHat.Map.TestSupport.Factory do
   @moduledoc false
 
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
-  alias StrawHat.Map.Tests.IsoGeneratorServer
+  alias StrawHat.Map.TestSupport.IsoGeneratorServer
 
   alias StrawHat.Map.{
     Address,

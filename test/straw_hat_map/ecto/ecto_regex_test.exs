@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.EctoRegexTypeTests do
-  use StrawHat.Map.Tests.CaseTemplate, async: true
+  use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.Ecto.Types.Regex
 
   describe "cast" do

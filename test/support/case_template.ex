@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Tests.CaseTemplate do
+defmodule StrawHat.Map.TestSupport.CaseTemplate do
   @moduledoc false
 
   use ExUnit.CaseTemplate
@@ -7,7 +7,7 @@ defmodule StrawHat.Map.Tests.CaseTemplate do
 
   using do
     quote do
-      import StrawHat.Map.Tests.Factory
+      import StrawHat.Map.TestSupport.Factory
       alias StrawHat.Map.Repo
     end
   end

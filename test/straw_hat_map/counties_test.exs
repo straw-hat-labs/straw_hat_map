@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.CountiesTests do
-  use StrawHat.Map.Tests.CaseTemplate, async: true
+  use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.Counties
 
   describe "find_county/1" do

@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Migrations.AddPostalCodeRuleToCountries do
+  @moduledoc false
+
   use Ecto.Migration
 
   @id 20180322211017

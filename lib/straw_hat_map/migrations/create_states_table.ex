@@ -1,4 +1,6 @@
 defmodule StrawHat.Map.Migrations.CreateStatesTable do
+  @moduledoc false
+
   use Ecto.Migration
 
   @id 20170517232328

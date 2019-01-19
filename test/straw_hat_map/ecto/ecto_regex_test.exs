@@ -2,7 +2,7 @@ defmodule StrawHat.Map.EctoRegexTypeTests do
   use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Ecto.Types.Regex
 
-  describe "cast/1" do
+  describe "cast" do
     test "with a string value" do
       assert {:ok, _value} = Regex.cast("\\d")
     end
@@ -12,7 +12,7 @@ defmodule StrawHat.Map.EctoRegexTypeTests do
     end
   end
 
-  describe "load/1" do
+  describe "load" do
     test "with a regex value" do
       assert {:ok, _value} = Regex.load("\\d")
     end

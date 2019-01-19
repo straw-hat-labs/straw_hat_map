@@ -15,14 +15,12 @@ defmodule StrawHat.Map.CountriesTests do
     end
   end
 
-  describe "getting a list of countries" do
-    test "returns a pagination" do
-      insert_list(6, :country)
-      country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
+  test "returning a pagination of countries" do
+    insert_list(6, :country)
+    country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
 
-      assert country_page.total_entries == 6
-      assert length(country_page.entries) == 1
-    end
+    assert country_page.total_entries == 6
+    assert length(country_page.entries) == 1
   end
 
   describe "getting a list of countries by IDs" do

@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Migrations.CreateCountriesTable do
 
   use Ecto.Migration
 
-  @id 20170517232248
+  @id ~N[2017-05-17 23:20:48]
 
   def change do
     create table(:countries, primary_key: false) do

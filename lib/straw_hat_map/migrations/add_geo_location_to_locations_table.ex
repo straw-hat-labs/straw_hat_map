@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Migrations.AddGeoLocationToLocationsTable do
 
   use Ecto.Migration
 
-  @id 20180310203720
+  @id ~N[2018-03-10 20:37:20]
 
   def change do
     alter table(:locations) do

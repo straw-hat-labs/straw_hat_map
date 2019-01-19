@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Migrations.AddPostgisPlugin do
 
   use Ecto.Migration
 
-  @id 20180310203421
+  @id ~N[2018-03-10 20:34:21]
 
   def change do
     execute("CREATE EXTENSION IF NOT EXISTS postgis", "DROP EXTENSION IF EXISTS postgis")

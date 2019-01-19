@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Migrations.AddPostalCodeRuleToCountries do
 
   use Ecto.Migration
 
-  @id 20180322211017
+  @id ~N[2018-03-22 21:10:17]
 
   def change do
     alter table(:countries) do

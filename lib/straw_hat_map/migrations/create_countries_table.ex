@@ -1,6 +1,8 @@
 defmodule StrawHat.Map.Migrations.CreateCountriesTable do
   use Ecto.Migration
 
+  @id 20170517232248
+
   def change do
     create table(:countries, primary_key: false) do
       add(:id, :binary_id, primary_key: true)

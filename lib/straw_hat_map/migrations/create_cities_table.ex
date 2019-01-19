@@ -1,6 +1,8 @@
 defmodule StrawHat.Map.Migrations.CreateCitiesTable do
   use Ecto.Migration
 
+  @id 20170517232349
+
   def change do
     create table(:cities, primary_key: false) do
       add(:id, :binary_id, primary_key: true)

@@ -1,6 +1,8 @@
 defmodule StrawHat.Map.Migrations.CreateAddressesTable do
   use Ecto.Migration
 
+  @id 20170517232415
+
   def change do
     create table(:addresses, primary_key: false) do
       add(:id, :binary_id, primary_key: true)

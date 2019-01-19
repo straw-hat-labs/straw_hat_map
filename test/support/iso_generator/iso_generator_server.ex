@@ -4,10 +4,9 @@ defmodule StrawHat.Map.Tests.IsoGeneratorServer do
   """
 
   use Agent
-
   alias StrawHat.Map.Tests.IsoGenerator
 
-  def start_link() do
+  def start_link do
     Agent.start_link(&IsoGenerator.initial_state/0, name: __MODULE__)
   end
 

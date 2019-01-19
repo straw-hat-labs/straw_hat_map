@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.LocationsTest do
-  use StrawHat.Map.Tests.DataCase, async: true
-  alias StrawHat.Map.{Locations, Location}
-  alias StrawHat.Map.Repo
+  use StrawHat.Map.Tests.CaseTemplate, async: true
+  alias StrawHat.Map.{Location, Locations}
 
   test "get_locations_by_ids/1 with a list of IDs returns the relative locations" do
     available_locations = insert_list(3, :location)

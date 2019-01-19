@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.CitiesTest do
-  use StrawHat.Map.Tests.DataCase, async: true
+  use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Cities
-  alias StrawHat.Map.Repo
 
   describe "find_city/1" do
     test "with valid id should find the city" do

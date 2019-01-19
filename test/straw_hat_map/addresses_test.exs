@@ -1,6 +1,6 @@
 defmodule StrawHat.Map.AddressesTest do
-  use StrawHat.Map.Tests.DataCase, async: true
-  alias StrawHat.Map.{Addresses, Address, Countries}
+  use StrawHat.Map.Tests.CaseTemplate, async: true
+  alias StrawHat.Map.{Address, Addresses, Countries}
 
   describe "find_address/1" do
     test "with valid id should returns the found address" do

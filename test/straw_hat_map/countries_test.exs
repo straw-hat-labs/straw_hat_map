@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.CountriesTest do
-  use StrawHat.Map.Tests.DataCase, async: true
+  use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Countries
-  alias StrawHat.Map.Repo
 
   describe "finding a country" do
     test "with a valid ID" do

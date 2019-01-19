@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.CountiesTest do
-  use StrawHat.Map.Tests.DataCase, async: true
+  use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Counties
-  alias StrawHat.Map.Repo
 
   describe "find_county/1" do
     test "with valid id should find the county" do

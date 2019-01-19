@@ -1,5 +1,5 @@
 defmodule StrawHat.Map.ContinentsTest do
-  use StrawHat.Map.Tests.DataCase, async: true
+  use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.Continents
 
   test "getting a list of continent's codes" do

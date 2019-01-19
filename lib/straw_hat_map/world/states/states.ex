@@ -5,7 +5,7 @@ defmodule StrawHat.Map.States do
 
   import Ecto.Query, only: [from: 2]
   alias StrawHat.{Error, Response}
-  alias StrawHat.Map.{State, County, City}
+  alias StrawHat.Map.{City, County, State}
 
   @spec get_states(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_states(repo, pagination \\ []) do

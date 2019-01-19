@@ -4,7 +4,7 @@ defmodule StrawHat.Map.State do
   """
 
   use StrawHat.Map.EctoSchema
-  alias StrawHat.Map.{Country, County, City}
+  alias StrawHat.Map.{City, Country, County}
 
   @type t :: %__MODULE__{
           id: String.t(),

@@ -4,7 +4,16 @@ defmodule StrawHat.Map.Tests.Factory do
   use ExMachina.Ecto, repo: StrawHat.Map.Repo
 
   alias StrawHat.Map.Tests.IsoGeneratorServer
-  alias StrawHat.Map.{Address, Country, Continents, County, City, Location, State}
+
+  alias StrawHat.Map.{
+    Address,
+    City,
+    Continents,
+    Country,
+    County,
+    Location,
+    State
+  }
 
   def country_factory do
     continent =

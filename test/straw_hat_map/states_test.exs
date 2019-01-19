@@ -1,7 +1,6 @@
 defmodule StrawHat.Map.StatesTest do
-  use StrawHat.Map.Tests.DataCase, async: true
+  use StrawHat.Map.Tests.CaseTemplate, async: true
   alias StrawHat.Map.States
-  alias StrawHat.Map.Repo
 
   describe "find_state/1" do
     test "with valid id should returns the found state" do

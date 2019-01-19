@@ -11,6 +11,7 @@ defmodule StrawHat.Map.CountriesTests do
 
     test "with an invalid ID" do
       country_id = Ecto.UUID.generate()
+
       assert {:error, _reason} = Countries.find_country(Repo, country_id)
     end
   end
@@ -23,20 +24,18 @@ defmodule StrawHat.Map.CountriesTests do
     assert length(country_page.entries) == 1
   end
 
-  describe "getting a list of countries by IDs" do
-    test "with a list of IDs returns the relative countries" do
-      available_countries = insert_list(3, :country)
+  test "getting a list of countries with a list of country's IDs" do
+    available_countries = insert_list(3, :country)
 
-      ids =
-        available_countries
-        |> Enum.take(2)
-        |> Enum.map(fn country -> country.id end)
+    ids =
+      available_countries
+      |> Enum.take(2)
+      |> Enum.map(fn country -> country.id end)
 
-      countries = Countries.get_countries_by_ids(Repo, ids)
+    countries = Countries.get_countries_by_ids(Repo, ids)
 
-      assert List.first(countries).id == List.first(ids)
-      assert List.last(countries).id == List.last(ids)
-    end
+    assert List.first(countries).id == List.first(ids)
+    assert List.last(countries).id == List.last(ids)
   end
 
   describe "creating a country" do
@@ -56,25 +55,21 @@ defmodule StrawHat.Map.CountriesTests do
     end
   end
 
-  describe "destroying a country" do
-    test "with an existing country" do
-      country = insert(:country)
+  test "destroying an existing country" do
+    country = insert(:country)
 
-      assert {:ok, _} = Countries.destroy_country(Repo, country)
-    end
+    assert {:ok, _} = Countries.destroy_country(Repo, country)
   end
 
-  describe "getting a list of states by countries" do
-    test "returns a list of related states" do
-      countries = insert_list(2, :country)
+  test "getting a list of states with a list of country's IDs" do
+    countries = insert_list(2, :country)
 
-      insert_list(2, :state, %{country: List.first(countries)})
-      insert_list(2, :state, %{country: List.last(countries)})
+    insert_list(2, :state, %{country: List.first(countries)})
+    insert_list(2, :state, %{country: List.last(countries)})
 
-      ids = Enum.map(countries, fn country -> country.id end)
-      states = Countries.get_states(Repo, ids)
+    ids = Enum.map(countries, fn country -> country.id end)
+    states = Countries.get_states(Repo, ids)
 
-      assert length(states) == 4
-    end
+    assert length(states) == 4
   end
 end

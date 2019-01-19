@@ -12,11 +12,11 @@ defmodule StrawHat.Map.City do
           capital: boolean(),
           inserted_at: DateTime.t(),
           updated_at: DateTime.t(),
-          state: Schema.belongs_to(State.t()),
+          state: Ecto.Schema.belongs_to(State.t()),
           state_id: Integer.t(),
-          county: Schema.belongs_to(County.t()),
+          county: Ecto.Schema.belongs_to(County.t()),
           county_id: Integer.t(),
-          addresses: Schema.has_many(Address.t())
+          addresses: Ecto.Schema.has_many(Address.t())
         }
 
   @type city_attrs :: %{

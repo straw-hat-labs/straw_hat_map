@@ -1,9 +1,6 @@
 defmodule StrawHat.Map.EctoSchema do
   @moduledoc false
 
-  @type belongs_to(t) :: t | Ecto.Association.NotLoaded.t()
-  @type has_many(t) :: [t] | Ecto.Association.NotLoaded.t()
-
   defmacro __using__(_opts) do
     quote do
       use Ecto.Schema

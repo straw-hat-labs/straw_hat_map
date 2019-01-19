@@ -3,11 +3,7 @@ defmodule StrawHat.Map.Migrations.AddPostgisPlugin do
 
   @id 20180310203421
 
-  def up do
-    execute("CREATE EXTENSION IF NOT EXISTS postgis")
-  end
-
-  def down do
-    execute("DROP EXTENSION IF EXISTS postgis")
+  def change do
+    execute("CREATE EXTENSION IF NOT EXISTS postgis", "DROP EXTENSION IF EXISTS postgis")
   end
 end

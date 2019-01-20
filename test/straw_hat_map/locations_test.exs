@@ -1,38 +1,36 @@
 defmodule StrawHat.Map.LocationsTests do
-  use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.{Location, Locations}
+  use StrawHat.Map.TestSupport.CaseTemplate, async: true
 
-  test "get_locations_by_ids/1 with a list of IDs returns the relative locations" do
-    available_locations = insert_list(3, :location)
+  test "getting a list of locations with a list of locations's IDs" do
+    location_ids =
+      3
+      |> insert_list(:location)
+      |> Enum.map(&Map.get(&1, :id))
 
-    ids =
-      available_locations
-      |> Enum.take(2)
-      |> Enum.map(fn location -> location.id end)
+    found_locations_ids =
+      Repo
+      |> Locations.get_locations_by_ids(location_ids)
+      |> Enum.map(&Map.get(&1, :id))
 
-    locations = Locations.get_locations_by_ids(Repo, ids)
-
-    assert List.first(locations).id == List.first(ids)
-    assert List.last(locations).id == List.last(ids)
+    assert location_ids == found_locations_ids
   end
 
-  describe "changeset/2" do
-    test "with valid data returns a valid changeset" do
-      location =
-        params_for(:location, %{
-          location: %{"type" => "Point", "coordinates" => [-83.550948, 22.3709423]}
-        })
+  test "validating the change set with valid inputs" do
+    location =
+      params_for(:location, %{
+        location: %{"type" => "Point", "coordinates" => [-83.550948, 22.3709423]}
+      })
 
-      assert %{valid?: true} = Location.changeset(%Location{}, location)
-    end
+    assert %{valid?: true} = Location.changeset(%Location{}, location)
+  end
 
-    test "with invalid data returns an invalid changeset" do
-      invalid_location =
-        params_for(:location, %{
-          location: %{"type" => "PepePlz"}
-        })
+  test "validating change set with invalid inputs" do
+    invalid_location =
+      params_for(:location, %{
+        location: %{"type" => "PepePlz"}
+      })
 
-      assert %{valid?: false} = Location.changeset(%Location{}, invalid_location)
-    end
+    assert %{valid?: false} = Location.changeset(%Location{}, invalid_location)
   end
 end

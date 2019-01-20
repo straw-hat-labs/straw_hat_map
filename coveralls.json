@@ -4,6 +4,7 @@
   },
   "skip_files": [
     "test/support",
+    "lib/straw_hat_map/migrations",
     "deps/postgrex/lib/postgrex/type_module.ex"
   ]
 }

@@ -37,21 +37,17 @@ defmodule StrawHat.Map.CountriesTests do
     assert countries_ids == found_countries_ids
   end
 
-  describe "creating a country" do
-    test "with valid inputs" do
-      params = params_for(:country)
+  test "creating a country with valid inputs" do
+    params = params_for(:country)
 
-      assert {:ok, _country} = Countries.create_country(Repo, params)
-    end
+    assert {:ok, _country} = Countries.create_country(Repo, params)
   end
 
-  describe "updating a country" do
-    test "with valid inputs" do
-      country = insert(:country)
-      {:ok, country} = Countries.update_country(Repo, country, %{name: "Cuba"})
+  test "updating a country with valid inputs" do
+    country = insert(:country)
+    {:ok, country} = Countries.update_country(Repo, country, %{name: "Cuba"})
 
-      assert country.name == "Cuba"
-    end
+    assert country.name == "Cuba"
   end
 
   test "destroying an existing country" do

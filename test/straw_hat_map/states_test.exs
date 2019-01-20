@@ -2,24 +2,25 @@ defmodule StrawHat.Map.StatesTests do
   use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.States
 
-  describe "find_state/1" do
-    test "with valid id should returns the found state" do
+  describe "finding a state" do
+    test "with a valid ID" do
       state = insert(:state)
 
       assert {:ok, _state} = States.find_state(Repo, state.id)
     end
 
-    test "with invalid id shouldn't return any state" do
+    test "with an invalid ID" do
       state_id = Ecto.UUID.generate()
+
       assert {:error, _reason} = States.find_state(Repo, state_id)
     end
   end
 
-  test "get_states/1 returns a pagination of states" do
-    insert_list(10, :state)
+  test "returning a pagination of states" do
+    insert_list(6, :state)
     state_page = States.get_states(Repo, %{page: 2, page_size: 5})
 
-    assert state_page.total_entries == 10
+    assert length(state_page.entries) == 1
   end
 
   test "create_state/1 with valid inputs creates an state" do

@@ -3,12 +3,12 @@ defmodule StrawHat.Map.TestSupport.CaseTemplate do
 
   use ExUnit.CaseTemplate
   alias Ecto.Adapters.SQL.Sandbox
-  alias StrawHat.Map.Repo
+  alias StrawHat.Map.TestSupport.Repo
 
   using do
     quote do
       import StrawHat.Map.TestSupport.Factory
-      alias StrawHat.Map.Repo
+      alias StrawHat.Map.TestSupport.Repo
     end
   end
 

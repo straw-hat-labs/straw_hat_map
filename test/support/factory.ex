@@ -1,7 +1,7 @@
 defmodule StrawHat.Map.TestSupport.Factory do
   @moduledoc false
 
-  use ExMachina.Ecto, repo: StrawHat.Map.Repo
+  use ExMachina.Ecto, repo: StrawHat.Map.TestSupport.Repo
 
   alias StrawHat.Map.TestSupport.IsoGeneratorServer
 

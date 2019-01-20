@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Repo.Migrations.RunAllMigrations do
+defmodule StrawHat.Map.TestSupport.Repo.Migrations.RunAllMigrations do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Repo do
+defmodule StrawHat.Map.TestSupport.Repo do
   @moduledoc false
 
   use Ecto.Repo,

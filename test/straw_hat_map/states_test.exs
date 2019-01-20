@@ -74,26 +74,20 @@ defmodule StrawHat.Map.StatesTests do
     assert cities_ids == found_cities_ids
   end
 
-  test "get_cities/1 returns the list of cities from a list of state IDs" do
-    states = insert_list(2, :state)
-
-    insert_list(2, :city, %{state: List.first(states)})
-    insert_list(2, :city, %{state: List.last(states)})
-
-    ids = Enum.map(states, fn state -> state.id end)
-    cities = States.get_cities(Repo, ids)
+  test "getting a list of cities with a list of state's IDs" do
+    [first_state, second_state] = insert_list(2, :state)
+    insert_list(2, :city, %{state: first_state})
+    insert_list(2, :city, %{state: second_state})
+    cities = States.get_cities(Repo, [first_state.id, second_state.id])
 
     assert length(cities) == 4
   end
 
-  test "get_counties/1 returns the list of counties from a list of state IDs" do
-    states = insert_list(2, :state)
-
-    insert_list(2, :county, %{state: List.first(states)})
-    insert_list(2, :county, %{state: List.last(states)})
-
-    ids = Enum.map(states, fn state -> state.id end)
-    counties = States.get_counties(Repo, ids)
+  test "getting a list of counties with a list of state's IDs" do
+    [first_state, second_state] = insert_list(2, :state)
+    insert_list(2, :county, %{state: first_state})
+    insert_list(2, :county, %{state: second_state})
+    counties = States.get_counties(Repo, [first_state.id, second_state.id])
 
     assert length(counties) == 4
   end

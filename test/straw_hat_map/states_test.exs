@@ -23,7 +23,7 @@ defmodule StrawHat.Map.StatesTests do
     assert length(state_page.entries) == 1
   end
 
-  test "create_state/1 with valid inputs creates an state" do
+  test "creating a state with valid inputs" do
     country = insert(:country)
     params = params_for(:state, %{country_id: country.id})
 
@@ -31,14 +31,14 @@ defmodule StrawHat.Map.StatesTests do
     assert {:error, _state} = States.create_state(Repo, params)
   end
 
-  test "update_state/2 with valid inputs updates the state" do
+  test "updating a state with valid inputs" do
     state = insert(:state)
     {:ok, state} = States.update_state(Repo, state, %{name: "Havana"})
 
     assert state.name == "Havana"
   end
 
-  test "destroy_state/1 with a found state destroys the state" do
+  test "destroying an existing state" do
     state = insert(:state)
 
     assert {:ok, _} = States.destroy_state(Repo, state)

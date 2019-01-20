@@ -20,22 +20,15 @@ defmodule StrawHat.Map.CountriesTests do
     insert_list(6, :country)
     country_page = Countries.get_countries(Repo, %{page: 2, page_size: 5})
 
-    assert country_page.total_entries == 6
     assert length(country_page.entries) == 1
   end
 
   test "getting a list of countries with a list of country's IDs" do
     available_countries = insert_list(3, :country)
-
-    ids =
-      available_countries
-      |> Enum.take(2)
-      |> Enum.map(fn country -> country.id end)
-
+    ids = Enum.map(available_countries, &Map.get(&1, :id))
     countries = Countries.get_countries_by_ids(Repo, ids)
 
-    assert List.first(countries).id == List.first(ids)
-    assert List.last(countries).id == List.last(ids)
+    assert available_countries == countries
   end
 
   describe "creating a country" do
@@ -62,13 +55,10 @@ defmodule StrawHat.Map.CountriesTests do
   end
 
   test "getting a list of states with a list of country's IDs" do
-    countries = insert_list(2, :country)
-
-    insert_list(2, :state, %{country: List.first(countries)})
-    insert_list(2, :state, %{country: List.last(countries)})
-
-    ids = Enum.map(countries, fn country -> country.id end)
-    states = Countries.get_states(Repo, ids)
+    [first_country, second_country] = insert_list(2, :country)
+    insert_list(2, :state, %{country: first_country})
+    insert_list(2, :state, %{country: second_country})
+    states = Countries.get_states(Repo, [first_country.id, second_country.id])
 
     assert length(states) == 4
   end

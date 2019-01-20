@@ -24,11 +24,17 @@ defmodule StrawHat.Map.CountriesTests do
   end
 
   test "getting a list of countries with a list of country's IDs" do
-    available_countries = insert_list(3, :country)
-    ids = Enum.map(available_countries, &Map.get(&1, :id))
-    countries = Countries.get_countries_by_ids(Repo, ids)
+    countries_ids =
+      3
+      |> insert_list(:country)
+      |> Enum.map(&Map.get(&1, :id))
 
-    assert available_countries == countries
+    found_countries_ids =
+      Repo
+      |> Countries.get_countries_by_ids(countries_ids)
+      |> Enum.map(&Map.get(&1, :id))
+
+    assert countries_ids == found_countries_ids
   end
 
   describe "creating a country" do

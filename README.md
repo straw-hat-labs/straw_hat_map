@@ -8,8 +8,10 @@ Map and addresses management.
 
 ## Configuration
 
-`StrawHat.Map` requires an Ecto repository with `Geo.PostGIS.Extension`
-extension enabled.
+> **Important**
+>
+> `StrawHat.Map` requires an Ecto repository with `Geo.PostGIS.Extension`
+> extension enabled.
 
 You need to create or extend your current PostgreSQL types:
 
@@ -36,13 +38,16 @@ All the APIs are contain in the business use cases are under `Use Cases`
 documentation section. Check the available modules and the public API.
 
 You should be able to comprehend the API by reading the type spec and the
-function name.
-
-Please open an issue or even better make pull request about the documation if
-you have any issues with it.
+function name. Please open an issue or even better make pull request about the
+documation if you have any issues with it.
 
 ## Migrations
 
 Since this library does not have any repository, it does not run any migration.
 You will need to handle the migrations on your application that contains the
 repository.
+
+The `migrations` directory contains a series of migrations that should cover
+the common use cases. Each migration module has a `Created at` timestamp, this
+information is useful to decide when and the order on which the migrations
+should be run.

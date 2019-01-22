@@ -2,32 +2,34 @@ defmodule StrawHat.Map.AddressesTests do
   use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.{Address, Addresses, Countries}
 
-  describe "find_address/1" do
-    test "with valid id should returns the found address" do
+  describe "finding an address" do
+    test "with a valid ID" do
       address = insert(:address)
+
       assert {:ok, _address} = Addresses.find_address(Repo, address.id)
     end
 
-    test "with invalid id shouldn't return any address" do
+    test "with an invalid ID" do
       id = Ecto.UUID.generate()
+
       assert {:error, _reason} = Addresses.find_address(Repo, id)
     end
   end
 
-  test "get_addresses/1 returns a pagination of addresses" do
-    insert_list(4, :address)
-    address_page = Addresses.get_addresses(Repo, %{page: 2, page_size: 2})
+  test "returning a pagination of addresses" do
+    insert_list(6, :address)
+    address_page = Addresses.get_addresses(Repo, %{page: 2, page_size: 5})
 
-    assert length(address_page.entries) == 2
+    assert length(address_page.entries) == 1
   end
 
-  test "create_address/1 with valid inputs creates an address" do
+  test "creating an address with valid inputs" do
     params = params_with_assocs(:address)
 
     assert {:ok, _address} = Addresses.create_address(Repo, params)
   end
 
-  test "update_address/2 with valid inputs updates the address" do
+  test "updating an address with valid inputs" do
     new_city = insert(:city)
     address = insert(:address)
 
@@ -40,53 +42,38 @@ defmodule StrawHat.Map.AddressesTests do
     assert address.line_two == "PO BOX 123"
   end
 
-  test "destroy_address/1 with a found address destroys the address" do
+  test "destroying an exsiting address" do
     address = insert(:address)
 
     assert {:ok, _} = Addresses.destroy_address(Repo, address)
   end
 
-  test "get_addresses_by_ids/1 with a list of IDs returns the relative addresses" do
-    available_addresses = insert_list(3, :address)
+  test "getting a list of addresses with a list of address's IDs" do
+    addresses_ids =
+      3
+      |> insert_list(:address)
+      |> Enum.map(&Map.get(&1, :id))
 
-    ids =
-      available_addresses
-      |> Enum.take(2)
-      |> Enum.map(fn address -> address.id end)
+    found_addresses_ids =
+      Repo
+      |> Addresses.get_addresses_by_ids(addresses_ids)
+      |> Enum.map(&Map.get(&1, :id))
 
-    addresses = Addresses.get_addresses_by_ids(Repo, ids)
-
-    assert List.first(addresses).id == List.first(ids)
-    assert List.last(addresses).id == List.last(ids)
+    assert addresses_ids == found_addresses_ids
   end
 
-  describe "postal code validations" do
-    test "with country postal code value" do
-      city = insert(:city)
+  test "postal code validations with invalid postal code" do
+    city = insert(:city)
+    {:ok, _country} =
+      Countries.update_country(Repo, city.state.country, %{
+        postal_code_rule: "/\d{4}+-\d{4}+/"
+      })
+    params = params_with_assocs(:address, %{postal_code: "pepeHands", city: city})
 
-      {:ok, _country} =
-        Countries.update_country(Repo, city.state.country, %{
-          postal_code_rule: "/\\d/"
-        })
-
-      params = params_with_assocs(:address, %{postal_code: "pepeHands"})
-      assert {:ok, _address} = Addresses.create_address(Repo, params)
-    end
-
-    test "with nil postal code value" do
-      city = insert(:city)
-
-      {:ok, _country} =
-        Countries.update_country(Repo, city.state.country, %{
-          postal_code_rule: "/\\d/"
-        })
-
-      params = params_with_assocs(:address, %{postal_code: "pepeHands"})
-      assert {:ok, _address} = Addresses.create_address(Repo, params)
-    end
+    assert {:error, changeset} = Addresses.create_address(Repo, params)
   end
 
-  test "Address.get_postal_code_rule/1" do
+  test "getting postal code rule from config" do
     assert Address.default_postal_code_rule() == Address.get_postal_code_rule([])
     assert 123 == Address.get_postal_code_rule(postal_code_rule: 123)
   end

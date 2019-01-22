@@ -2,67 +2,65 @@ defmodule StrawHat.Map.CountiesTests do
   use StrawHat.Map.TestSupport.CaseTemplate, async: true
   alias StrawHat.Map.Counties
 
-  describe "find_county/1" do
-    test "with valid id should find the county" do
+  describe "finding a county" do
+    test "with a valid ID" do
       county = insert(:county)
 
       assert {:ok, _county} = Counties.find_county(Repo, county.id)
     end
 
-    test "with invalid id shouldn't find the county" do
+    test "with an invalid ID" do
       county_id = Ecto.UUID.generate()
+
       assert {:error, _reason} = Counties.find_county(Repo, county_id)
     end
   end
 
-  test "get_counties/1 returns a pagination of counties" do
-    insert_list(10, :county)
+  test "returning a pagination of counties" do
+    insert_list(6, :county)
     county_page = Counties.get_counties(Repo, %{page: 2, page_size: 5})
 
-    assert county_page.total_entries == 10
+    assert length(county_page.entries) == 1
   end
 
-  test "create_county/1 with valid inputs creates a county" do
+  test "creating a county with valid inputs" do
     params = params_with_assocs(:county)
 
     assert {:ok, _county} = Counties.create_county(Repo, params)
   end
 
-  test "update_county/2 with valid inputs updates the county" do
+  test "updating a county with valid inputs" do
     county = insert(:county)
     {:ok, county} = Counties.update_county(Repo, county, %{name: "Havana"})
 
     assert county.name == "Havana"
   end
 
-  test "destroy_county/1 with a found county destroys the county" do
+  test "destroying an existing county" do
     county = insert(:county)
 
     assert {:ok, _} = Counties.destroy_county(Repo, county)
   end
 
-  test "get_counties_by_ids/1 with a list of IDs returns the relative counties" do
-    available_counties = insert_list(3, :county)
+  test "getting a list of counties with a list of counties's IDs" do
+    counties_ids =
+      3
+      |> insert_list(:county)
+      |> Enum.map(&Map.get(&1, :id))
 
-    ids =
-      available_counties
-      |> Enum.take(2)
-      |> Enum.map(fn county -> county.id end)
+    found_counties_ids =
+      Repo
+      |> Counties.get_counties_by_ids(counties_ids)
+      |> Enum.map(&Map.get(&1, :id))
 
-    counties = Counties.get_counties_by_ids(Repo, ids)
-
-    assert List.first(counties).id == List.first(ids)
-    assert List.last(counties).id == List.last(ids)
+    assert counties_ids == found_counties_ids
   end
 
-  test "get_states/1 with a list of county IDs returns the relative states" do
-    counties = insert_list(2, :county)
-
-    insert_list(2, :city, %{county_id: List.first(counties).id})
-    insert_list(2, :city, %{county_id: List.last(counties).id})
-
-    ids = Enum.map(counties, fn county -> county.id end)
-    cities = Counties.get_cities(Repo, ids)
+  test "getting a list of cities with a list of county's IDs" do
+    [first_county, second_county] = insert_list(2, :county)
+    insert_list(2, :city, %{county: first_county})
+    insert_list(2, :city, %{county: second_county})
+    cities = Counties.get_cities(Repo, [first_county.id, second_county.id])
 
     assert length(cities) == 4
   end

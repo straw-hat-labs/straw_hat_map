@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Countries do
 
   @spec get_countries(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_countries(repo, pagination \\ []) do
-    repo.paginate(Country, pagination)
+    Scrivener.paginate(Country, Scrivener.Config.new(repo, [], pagination))
   end
 
   @spec create_country(Ecto.Repo.t(), Country.country_attrs()) ::

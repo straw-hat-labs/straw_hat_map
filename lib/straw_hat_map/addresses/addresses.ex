@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Addresses do
 
   @spec get_addresses(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_addresses(repo, pagination \\ []) do
-    repo.paginate(Address, pagination)
+    Scrivener.paginate(Address, Scrivener.Config.new(repo, [], pagination))
   end
 
   @spec create_address(Ecto.Repo.t(), Address.address_attrs()) ::

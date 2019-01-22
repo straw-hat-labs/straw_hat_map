@@ -9,7 +9,7 @@ defmodule StrawHat.Map.States do
 
   @spec get_states(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_states(repo, pagination \\ []) do
-    repo.paginate(State, pagination)
+    Scrivener.paginate(State, Scrivener.Config.new(repo, [], pagination))
   end
 
   @spec create_state(Ecto.Repo.t(), State.state_attrs()) ::

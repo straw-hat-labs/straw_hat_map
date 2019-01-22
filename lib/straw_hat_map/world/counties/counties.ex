@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Counties do
 
   @spec get_counties(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_counties(repo, pagination \\ []) do
-    repo.paginate(County, pagination)
+    Scrivener.paginate(County, Scrivener.Config.new(repo, [], pagination))
   end
 
   @spec create_county(Ecto.Repo.t(), County.county_attrs()) ::

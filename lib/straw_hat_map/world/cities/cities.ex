@@ -9,7 +9,7 @@ defmodule StrawHat.Map.Cities do
 
   @spec get_cities(Ecto.Repo.t(), Scrivener.Config.t()) :: Scrivener.Page.t()
   def get_cities(repo, pagination \\ []) do
-    repo.paginate(City, pagination)
+    Scrivener.paginate(City, Scrivener.Config.new(repo, [], pagination))
   end
 
   @spec create_city(Ecto.Repo.t(), City.city_attrs()) :: Response.t(City.t(), Ecto.Changeset.t())

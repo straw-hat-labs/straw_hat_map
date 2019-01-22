@@ -6,4 +6,4 @@
 
 #### Committers
 
-- Yordis Prieto (@yordis)
+- Yordis Prieto ([yordis](https://github.com/yordis))

@@ -64,10 +64,12 @@ defmodule StrawHat.Map.AddressesTests do
 
   test "postal code validations with invalid postal code" do
     city = insert(:city)
+
     {:ok, _country} =
       Countries.update_country(Repo, city.state.country, %{
         postal_code_rule: "/\d{4}+-\d{4}+/"
       })
+
     params = params_with_assocs(:address, %{postal_code: "pepeHands", city: city})
 
     assert {:error, changeset} = Addresses.create_address(Repo, params)

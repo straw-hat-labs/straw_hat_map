@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Addresses do
   Addresses management use cases.
   """
 
-  import Ecto.Query, only: [from: 2]
+  import Ecto.Query
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.{Address, Cities}
 
@@ -59,7 +59,9 @@ defmodule StrawHat.Map.Addresses do
 
   @spec get_addresses_by_ids(Ecto.Repo.t(), [integer()]) :: [Address.t()] | no_return()
   def get_addresses_by_ids(repo, address_ids) do
-    query = from(address in Address, where: address.id in ^address_ids)
-    repo.all(query)
+    Address
+    |> select([address], address)
+    |> where([address], address.id in ^address_ids)
+    |> repo.all()
   end
 end

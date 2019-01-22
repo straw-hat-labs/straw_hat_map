@@ -48,6 +48,24 @@ You will need to handle the migrations on your application that contains the
 repository.
 
 The `migrations` directory contains a series of migrations that should cover
-the common use cases. Each migration module has a `Created at` timestamp, this
-information is useful to decide when and the order on which the migrations
-should be run.
+the common use cases.
+
+> **Note**
+>
+> Each migration module has a `Created at` timestamp, this information is useful
+> to decide when and the order on which the migrations should be run.
+
+### Using migrations
+
+After creating an Ecto migration in your project you could call one of the
+migrations from your `change` callback in your module.
+
+```elixir
+defmodule MyApp.Repo.Migrations.CreateCountriesTable do
+  use Ecto.Migration
+
+  def change do
+    StrawHat.Map.Migrations.CreateCountriesTable.change()
+  end
+end
+```

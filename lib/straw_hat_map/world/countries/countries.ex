@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Countries do
   Countries management use cases.
   """
 
-  import Ecto.Query, only: [from: 2]
+  import Ecto.Query
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.{Country, State}
 
@@ -53,13 +53,17 @@ defmodule StrawHat.Map.Countries do
 
   @spec get_countries_by_ids(Ecto.Repo.t(), [integer()]) :: [Country.t()] | no_return()
   def get_countries_by_ids(repo, country_ids) do
-    query = from(country in Country, where: country.id in ^country_ids)
-    repo.all(query)
+    Country
+    |> select([country], country)
+    |> where([country], country.id in ^country_ids)
+    |> repo.all()
   end
 
   @spec get_states(Ecto.Repo.t(), [integer()]) :: [State.t()] | no_return()
   def get_states(repo, country_ids) when is_list(country_ids) do
-    query = from(state in State, where: state.country_id in ^country_ids)
-    repo.all(query)
+    State
+    |> select([state], state)
+    |> where([state], state.country_id in ^country_ids)
+    |> repo.all()
   end
 end

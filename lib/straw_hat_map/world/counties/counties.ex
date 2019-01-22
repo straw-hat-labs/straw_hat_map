@@ -2,7 +2,8 @@ defmodule StrawHat.Map.Counties do
   @moduledoc """
   Counties management use cases.
   """
-  import Ecto.Query, only: [from: 2]
+
+  import Ecto.Query
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.{City, County}
 
@@ -52,13 +53,17 @@ defmodule StrawHat.Map.Counties do
 
   @spec get_counties_by_ids(Ecto.Repo.t(), [integer()]) :: [County.t()] | no_return()
   def get_counties_by_ids(repo, county_ids) do
-    query = from(c in County, where: c.id in ^county_ids)
-    repo.all(query)
+    County
+    |> select([county], county)
+    |> where([county], county.id in ^county_ids)
+    |> repo.all()
   end
 
   @spec get_cities(Ecto.Repo.t(), [integer()]) :: [State.t()] | no_return()
   def get_cities(repo, county_ids) when is_list(county_ids) do
-    query = from(city in City, where: city.county_id in ^county_ids)
-    repo.all(query)
+    City
+    |> select([city], city)
+    |> where([city], city.county_id in ^county_ids)
+    |> repo.all()
   end
 end

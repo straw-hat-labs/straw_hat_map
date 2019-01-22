@@ -3,7 +3,7 @@ defmodule StrawHat.Map.Cities do
   Cities management use cases.
   """
 
-  import Ecto.Query, only: [from: 2]
+  import Ecto.Query
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.City
 
@@ -52,8 +52,10 @@ defmodule StrawHat.Map.Cities do
 
   @spec get_cities_by_ids(Ecto.Repo.t(), [integer()]) :: [City.t()] | no_return()
   def get_cities_by_ids(repo, city_ids) do
-    query = from(city in City, where: city.id in ^city_ids)
-    repo.all(query)
+    City
+    |> select([city], city)
+    |> where([city], city.id in ^city_ids)
+    |> repo.all()
   end
 
   @spec get_postal_code_rule(Ecto.Repo.t(), Integer.t()) :: Regex.t() | nil

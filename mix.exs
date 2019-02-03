@@ -1,4 +1,4 @@
-defmodule StrawHat.Map.Mixfile do
+defmodule StrawHat.Map.MixProject do
   use Mix.Project
 
   @name :straw_hat_map

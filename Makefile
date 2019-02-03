@@ -4,12 +4,10 @@ deps:
 	mix deps.get
 
 linter:
-	mix compile --warnings-as-errors --force
 	mix format --check-formatted
-	mix credo --strict
-	# mix dialyzer --halt-exit-status
+	mix credo
 
-testing:
+testing: deps
 	mix coveralls.json
 
 ci: deps linter testing

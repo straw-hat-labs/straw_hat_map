@@ -3,7 +3,7 @@ defmodule StrawHat.Map.States do
   States management use cases.
   """
 
-  import Ecto.Query, only: [from: 2]
+  import Ecto.Query
   alias StrawHat.{Error, Response}
   alias StrawHat.Map.{City, County, State}
 
@@ -53,25 +53,33 @@ defmodule StrawHat.Map.States do
 
   @spec get_states_by_ids(Ecto.Repo.t(), [integer()]) :: [State.t()] | no_return()
   def get_states_by_ids(repo, state_ids) do
-    query = from(state in State, where: state.id in ^state_ids)
-    repo.all(query)
+    State
+    |> select([state], state)
+    |> where([state], state.id in ^state_ids)
+    |> repo.all()
   end
 
   @spec get_cities(Ecto.Repo.t(), State.t()) :: [City.t()] | no_return()
   def get_cities(repo, %State{} = state) do
-    query = from(city in City, where: city.state_id == ^state.id)
-    repo.all(query)
+    City
+    |> select([city], city)
+    |> where([city], state_id: ^state.id)
+    |> repo.all()
   end
 
   @spec get_cities(Ecto.Repo.t(), [integer()]) :: [City.t()] | no_return()
   def get_cities(repo, state_ids) when is_list(state_ids) do
-    query = from(city in City, where: city.state_id in ^state_ids)
-    repo.all(query)
+    City
+    |> select([city], city)
+    |> where([city], city.state_id in ^state_ids)
+    |> repo.all()
   end
 
   @spec get_counties(Ecto.Repo.t(), [integer()]) :: [County.t()] | no_return()
   def get_counties(repo, state_ids) when is_list(state_ids) do
-    query = from(county in County, where: county.state_id in ^state_ids)
-    repo.all(query)
+    County
+    |> select([county], county)
+    |> where([county], county.state_id in ^state_ids)
+    |> repo.all()
   end
 end
